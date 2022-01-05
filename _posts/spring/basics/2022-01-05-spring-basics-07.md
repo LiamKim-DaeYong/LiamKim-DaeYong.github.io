@@ -1,6 +1,6 @@
 ---
 title: "[스프링 핵심원리-기본편] 7. 예제 만들기 - 회원 도메인 개발"
-search: true
+search: false
 categories: [스프링, 스프링 핵심 원리-기본편]
 tags: [Srping]
 toc: true
@@ -30,7 +30,7 @@ toc: true
 
    ```java
    package hello.core.member;
-   
+
    public enum Grade {
        BASIC, // 일반회원
        VIP // VIP
@@ -49,43 +49,43 @@ toc: true
 
    - **windows**: alt + insert
    - **macOs**: command + N
-   
+
    | ![]({{site.url}}/assets/img/post/spring/basics/07/img02.jpg) | ![]({{site.url}}/assets/img/post/spring/basics/07/img03.jpg) |
 
    ```java
    package hello.core.member;
-   
+
    public class Member {
        private Long id;
        private String name;
        private Grade grade;
-   
+
         public Member(Long id, String name, Grade grade) {
            this.id = id;
            this.name = name;
            this.grade = grade;
        }
-   
+
        public Long getId() {
            return id;
        }
-   
+
        public void setId(Long id) {
            this.id = id;
        }
-   
+
        public String getName() {
            return name;
        }
-   
+
        public void setName(String name) {
            this.name = name;
        }
-   
+
        public Grade getGrade() {
            return grade;
        }
-   
+
        public void setGrade(Grade grade) {
            this.grade = grade;
        }
@@ -100,16 +100,16 @@ toc: true
 
    ```java
    package hello.core.member;
-   
+
    public interface MemberRepository {
-   
+
        // 회원저장
        void save(Member member);
-   
+
        // 회원조회
        Member findById(Long memberId);
    }
-   
+
    ```
 
 
@@ -122,19 +122,19 @@ toc: true
 
    ```java
    package hello.core.member;
-   
+
    import java.util.HashMap;
    import java.util.Map;
-   
+
    public class MemoryMemberRepository implements MemberRepository {
-   
+
        private static Map<Long, Member> store = new HashMap<>();
-   
+
        @Override
        public void save(Member member) {
            store.put(member.getId(), member);
        }
-   
+
        @Override
        public Member findById(Long memberId) {
            return store.get(memberId);
@@ -142,7 +142,7 @@ toc: true
    }
    ```
 
-   
+
 
 6. **회원 서비스**
 
@@ -150,19 +150,19 @@ toc: true
 
    ```java
    package hello.core.member;
-   
+
    public interface MemberService {
-   
+
        // 회원가입
        void join(Member member);
-   
+
        // 회원조회
        Member findMember(Long memberId);
    }
-   
+
    ```
 
-   
+
 
 7. **회원 서비스 구현체**
 
@@ -170,16 +170,16 @@ toc: true
 
    ```java
    package hello.core.member;
-   
+
    public class MemberServiceImpl implements MemberService {
-   
+
        private final MemberRepository memberRepository = new MemoryMemberRepository();
-   
+
        @Override
        public void join(Member member) {
            memberRepository.save(member);
        }
-   
+
        @Override
        public Member findMember(Long memberId) {
            return memberRepository.findById(memberId);
@@ -187,7 +187,7 @@ toc: true
    }
    ```
 
-   
+
 
 ## 정리
 

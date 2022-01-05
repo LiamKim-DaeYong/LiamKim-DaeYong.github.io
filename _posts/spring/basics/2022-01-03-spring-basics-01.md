@@ -1,6 +1,6 @@
 ---
 title: "[스프링 핵심원리-기본편] 1. 자바 진영의 추운 겨울과 스프링의 탄생"
-search: true
+search: false
 categories: [스프링, 스프링 핵심 원리-기본편]
 tags: [Srping]
 toc: true

@@ -1,6 +1,6 @@
 ---
 title: "[스프링 핵심원리-기본편] 3. 좋은 객체 지향 설계의 5가지 원칙(SOLID)"
-search: true
+search: false
 categories: [스프링, 스프링 핵심 원리-기본편]
 tags: [Srping]
 toc: true
