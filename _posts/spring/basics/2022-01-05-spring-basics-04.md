@@ -1,7 +1,7 @@
 ---
 title: "[스프링 핵심원리-기본편] 4. 예제 만들기 - 프로젝트 생성"
 search: true
-categories: [스프링 핵심 원리-기본편, 예제 만들기]
+categories: [스프링, 스프링 핵심 원리-기본편]
 tags: [Srping]
 toc: true
 ---
@@ -46,7 +46,7 @@ toc: true
 - Dependencies: 선택하지 않는다.
 
 
-![]({{site.url}}/assets/img/post/spring/2022-01-05-spring04/project.PNG)
+![]({{site.url}}/assets/img/post/spring/basics/04/project.PNG)
 
 
 
@@ -54,6 +54,6 @@ toc: true
 
 스프링부트 스타터 사이트에서 다운받은 프로젝트를 Open하여 실행시켜본다.
 
-![]({{site.url}}/assets/img/post/spring/2022-01-05-spring04\buildAndRun.png)
+![]({{site.url}}/assets/img/post/spring/basics/04/buildAndRun.png)
 
 위의 사진처럼 Spring 로고가 출력되었다면 성공적으로 프로젝트 생성이 완료된 것이다.

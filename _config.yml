@@ -20,7 +20,7 @@ timezone: Asia/Seoul
 
 title: D.Yong Blog                          # the main title
 
-tagline: 코드장인을 꿈꾸는 백앤드 개발자입니다.   # it will display as the sub-title
+tagline: 코드장인을 꿈꾸는 백앤드 개발자   # it will display as the sub-title
 
 description: >-                        # used by seo meta and the atom feed
   A minimal, portfolio, sidebar,
