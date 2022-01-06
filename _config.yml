@@ -23,7 +23,8 @@ title: D.Yong Blog                          # the main title
 tagline: 코드장인을 꿈꾸는 백앤드 개발자   # it will display as the sub-title
 
 description: >-                        # used by seo meta and the atom feed
-  java, spring, spring boot, jpa, backend, study, 개발, 공부, 학습
+# java, spring, spring boot, jpa, backend, study, 개발, 공부, 학습,
+  # D.Yong, daeYong, liamkim, liam
 
 # fill in the protocol & hostname for your site, e.g., 'https://username.github.io'
 url: 'https://liamkim-daeyong.github.io'

@@ -1,6 +1,6 @@
 ---
 title: "[스프링 핵심원리-기본편] 2. 좋은 객체 지향 프로그래밍이란?"
-search: true
+search: false
 categories: [스프링, 스프링 핵심 원리-기본편]
 tags: [Srping]
 toc: true

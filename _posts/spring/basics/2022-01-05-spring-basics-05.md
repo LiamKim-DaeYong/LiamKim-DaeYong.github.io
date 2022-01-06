@@ -1,6 +1,6 @@
 ---
 title: "[스프링 핵심원리-기본편] 5. 예제 만들기 - 비즈니스 요구사항과 설계"
-search: true
+search: false
 categories: [스프링, 스프링 핵심 원리-기본편]
 tags: [Srping]
 toc: true

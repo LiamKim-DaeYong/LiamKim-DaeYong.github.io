@@ -1,6 +1,6 @@
 ---
 title: "[스프링 핵심원리-기본편] 4. 예제 만들기 - 프로젝트 생성"
-search: true
+search: false
 categories: [스프링, 스프링 핵심 원리-기본편]
 tags: [Srping]
 toc: true
