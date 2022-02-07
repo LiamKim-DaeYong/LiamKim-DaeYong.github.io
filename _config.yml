@@ -20,10 +20,10 @@ timezone: Asia/Seoul
 
 title: D.Yong Blog                          # the main title
 
-tagline: 코드장인을 꿈꾸는 백앤드 개발자   # it will display as the sub-title
+tagline: 소프트웨어 장인을 꿈꾸는<br>백앤드 개발자   # it will display as the sub-title
 
 description: >-                        # used by seo meta and the atom feed
-  코드장인을 꿈꾸는 백앤드 개발자의 블로그
+  소프트웨어 장인을 꿈꾸는 백앤드 개발자의 블로그
 
 # fill in the protocol & hostname for your site, e.g., 'https://username.github.io'
 url: 'https://liamkim-daeyong.github.io'
