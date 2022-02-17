@@ -12,6 +12,9 @@ baseurl: ''
 # otherwise, the layout language will use the default value of 'en'.
 lang: en
 
+# Additional parameters for datetime localization, optional. › https://github.com/iamkun/dayjs/tree/dev/src/locale
+prefer_datetime_locale:
+
 # Change to your timezone › http://www.timezoneconverter.com/cgi-bin/findzone/findzone
 timezone: Asia/Seoul
 
@@ -20,13 +23,13 @@ timezone: Asia/Seoul
 
 title: D.Yong Blog                          # the main title
 
-tagline: 소프트웨어 장인을 꿈꾸는 백앤드 개발자   # it will display as the sub-title
+tagline: 소프트웨어 장인을 꿈꾸는<br>백앤드 개발자   # it will display as the sub-title
 
 description: >-                        # used by seo meta and the atom feed
   소프트웨어 장인을 꿈꾸는 백앤드 개발자의 블로그
 
 # fill in the protocol & hostname for your site, e.g., 'https://username.github.io'
-url: 'https://liamkim-daeyong.github.io'
+url: 'https://liamkim-daeyong.github.io/'
 
 github:
   username: LiamKim-DaeYong             # change to your github username
