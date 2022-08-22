@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://liamkim-daeyong.github.io/sitemap.xml
