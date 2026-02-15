@@ -9,51 +9,51 @@ title: Home
 
 <div class="home-shell">
   <section class="hero">
-    <p class="eyebrow">Backend Learning Journal</p>
-    <h1>현업에 바로 쓰는 백엔드 학습 기록</h1>
-    <p class="lead">개념 설명에서 끝내지 않고, 실험과 적용 관점까지 정리한 실전형 기술 노트입니다.</p>
+    <p class="eyebrow">Raf Experiment Journal</p>
+    <h1>라프의 실험일지</h1>
+    <p class="lead">여러 주제를 직접 다뤄보며, 코드와 구조에서 확인한 내용을 정리합니다.</p>
     <div class="hero-actions">
-      <a class="btn-primary" href="#latest-posts">최신 글 보기</a>
-      <a class="btn-ghost" href="{{ '/about/' | relative_url }}">About</a>
+      <a class="btn-primary" href="#latest-posts">최근 기록 보기</a>
+      <a class="btn-ghost" href="{{ '/about/' | relative_url }}">소개</a>
     </div>
   </section>
 
   <section class="intro-grid">
     <article class="intro-card">
-      <h3>Concept Notes</h3>
-      <p>핵심 개념을 짧고 명확하게 정리합니다. 왜 중요한지, 실무에서 언제 쓰는지까지 함께 다룹니다.</p>
+      <h3>구현 메모</h3>
+      <p>직접 만들어 보며 확인한 포인트를 간단히 정리합니다.</p>
     </article>
     <article class="intro-card">
-      <h3>Lab Results</h3>
-      <p>아이디어를 코드로 검증한 뒤 결과를 기록합니다. 성능, 트레이드오프, 실패 사례를 포함합니다.</p>
+      <h3>검증 기록</h3>
+      <p>시도한 방식과 결과를 남겨서 다음 선택의 기준으로 삼습니다.</p>
     </article>
     <article class="intro-card">
-      <h3>Practical Takeaways</h3>
-      <p>읽고 바로 적용할 수 있게 체크리스트와 의사결정 포인트를 남깁니다.</p>
+      <h3>구조 실험</h3>
+      <p>구조를 바꿔보면서 생긴 차이를 기록합니다.</p>
     </article>
   </section>
 
   <section class="meta-strip">
     <article class="meta-card">
-      <p class="meta-card-title">Published</p>
+      <p class="meta-card-title">기록 수</p>
       <p class="meta-card-value">{{ visible_posts.size }} posts</p>
     </article>
     <article class="meta-card">
-      <p class="meta-card-title">Latest Update</p>
+      <p class="meta-card-title">최근 업데이트</p>
       <p class="meta-card-value">
         {% if latest_post %}{{ latest_post.date | date: "%Y-%m-%d" }}{% else %}-{% endif %}
       </p>
     </article>
     <article class="meta-card">
-      <p class="meta-card-title">Topics</p>
+      <p class="meta-card-title">주제 수</p>
       <p class="meta-card-value">{{ topic_count }}</p>
     </article>
   </section>
 
   <section id="latest-posts" class="latest">
     <div class="section-head">
-      <h2>Latest Posts</h2>
-      <p>최근 학습 노트와 실험 기록입니다.</p>
+      <h2>최근 기록</h2>
+      <p>최근에 올린 글입니다.</p>
     </div>
 
     {% if visible_posts.size > 0 %}
@@ -81,7 +81,7 @@ title: Home
 
   <section class="topics">
     <div class="section-head">
-      <h2>Topic Map</h2>
+      <h2>다룬 주제</h2>
       <p>지금까지 다룬 주제들입니다.</p>
     </div>
     {% if site.categories.size > 0 %}
