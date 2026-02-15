@@ -1,0 +1,28 @@
+name: Markdown Lint
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '**/*.md'
+      - '.markdownlint.yaml'
+      - '.github/workflows/markdown-lint.yml'
+  pull_request:
+    paths:
+      - '**/*.md'
+      - '.markdownlint.yaml'
+      - '.github/workflows/markdown-lint.yml'
+
+jobs:
+  markdownlint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Lint markdown
+        uses: DavidAnson/markdownlint-cli2-action@v20
+        with:
+          config: .markdownlint.yaml
+          globs: |
+            **/*.md
