@@ -176,6 +176,32 @@ body::before {
   gap: 0.9rem;
 }
 
+.intro-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.9rem;
+}
+
+.intro-card {
+  border-radius: 16px;
+  border: 1px solid var(--line);
+  background: rgba(255, 254, 249, 0.72);
+  padding: 1rem;
+}
+
+.intro-card h3 {
+  margin: 0;
+  font-family: "Manrope", "Noto Sans KR", sans-serif;
+  font-size: 1rem;
+}
+
+.intro-card p {
+  margin: 0.55rem 0 0;
+  color: #334155;
+  font-size: 0.94rem;
+  line-height: 1.55;
+}
+
 .meta-card {
   padding: 1rem;
   border-radius: 16px;
@@ -291,11 +317,58 @@ body::before {
   color: #334155;
 }
 
+.post-excerpt {
+  margin: 0 0 0.6rem;
+  color: #475569;
+  font-size: 0.91rem;
+  line-height: 1.45;
+}
+
 .empty-state {
   border: 1px dashed rgba(23, 34, 44, 0.22);
   border-radius: 14px;
   padding: 1rem;
   color: #475569;
+}
+
+.topics {
+  border-radius: 20px;
+  border: 1px solid var(--line);
+  background: rgba(255, 254, 249, 0.74);
+  padding: clamp(1rem, 2vw, 1.4rem);
+}
+
+.topic-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+.topic-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.38rem 0.68rem;
+  border-radius: 999px;
+  border: 1px solid rgba(23, 34, 44, 0.18);
+  background: #fff;
+  font-size: 0.88rem;
+}
+
+.topic-pill em {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.2rem;
+  height: 1.2rem;
+  border-radius: 999px;
+  font-style: normal;
+  font-size: 0.75rem;
+  background: rgba(21, 94, 117, 0.1);
+  color: #0f4c5c;
 }
 
 .post-content h1,
@@ -323,6 +396,10 @@ a:hover {
 }
 
 @media (max-width: 900px) {
+  .intro-grid {
+    grid-template-columns: 1fr;
+  }
+
   .post-grid {
     grid-template-columns: 1fr;
   }
