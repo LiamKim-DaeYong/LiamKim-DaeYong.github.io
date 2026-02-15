@@ -10,7 +10,10 @@ plugins:
   - jekyll-feed
 
 show_drafts: false
+show_excerpts: true
 permalink: /:year/:month/:day/:title/
+header_pages:
+  - about.md
 
 exclude:
   - README.md

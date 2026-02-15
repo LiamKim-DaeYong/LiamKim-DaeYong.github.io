@@ -1,0 +1,345 @@
+---
+---
+
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Space+Grotesk:wght@400;500;700&display=swap");
+@import "minima";
+
+:root {
+  --bg: #f3efe4;
+  --text: #17222c;
+  --card: #fffef9;
+  --line: #d2c9b8;
+  --hero-a: #0f766e;
+  --hero-b: #155e75;
+  --accent: #cc5a2a;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  position: relative;
+  min-height: 100vh;
+  font-family: "Space Grotesk", "Segoe UI", sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(circle at 12% 10%, rgba(21, 94, 117, 0.12), transparent 26%),
+    radial-gradient(circle at 85% 18%, rgba(204, 90, 42, 0.14), transparent 30%),
+    linear-gradient(180deg, #f8f4ea 0%, #f3efe4 100%);
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  right: -120px;
+  bottom: -120px;
+  width: 320px;
+  height: 320px;
+  border-radius: 40px;
+  background: linear-gradient(135deg, rgba(15, 118, 110, 0.12), rgba(21, 94, 117, 0.05));
+  transform: rotate(20deg);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.site-header {
+  border-top: 0;
+  border-bottom: 1px solid rgba(23, 34, 44, 0.12);
+  background: rgba(248, 244, 234, 0.86);
+  backdrop-filter: blur(8px);
+}
+
+.site-title {
+  font-family: "Fraunces", serif;
+  letter-spacing: 0.2px;
+  font-weight: 700;
+}
+
+.site-nav .page-link {
+  font-weight: 600;
+}
+
+.wrapper {
+  max-width: 1060px;
+}
+
+.page-content {
+  padding: 2.4rem 0 3.8rem;
+}
+
+.home-shell {
+  display: grid;
+  gap: 1.6rem;
+  animation: page-reveal 0.7s ease both;
+}
+
+@keyframes page-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  border-radius: 24px;
+  padding: clamp(1.4rem, 3vw, 2.8rem);
+  color: #f8fafc;
+  background: linear-gradient(125deg, var(--hero-a), var(--hero-b));
+  box-shadow: 0 24px 40px rgba(15, 23, 42, 0.2);
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  top: -60px;
+  right: -40px;
+  width: 220px;
+  height: 220px;
+  border-radius: 60px;
+  background: rgba(255, 255, 255, 0.12);
+  transform: rotate(16deg);
+}
+
+.hero > * {
+  position: relative;
+  z-index: 1;
+}
+
+.eyebrow {
+  margin: 0 0 0.6rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: rgba(248, 250, 252, 0.88);
+}
+
+.hero h1 {
+  margin: 0;
+  font-family: "Fraunces", serif;
+  font-size: clamp(1.9rem, 4vw, 3.2rem);
+  line-height: 1.1;
+}
+
+.lead {
+  margin: 0.95rem 0 1.4rem;
+  max-width: 58ch;
+  font-size: clamp(1rem, 1.4vw, 1.1rem);
+  color: rgba(248, 250, 252, 0.92);
+}
+
+.hero-actions {
+  display: flex;
+  gap: 0.72rem;
+  flex-wrap: wrap;
+}
+
+.btn-primary,
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.62rem 1rem;
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: 700;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-primary {
+  background: #fff;
+  color: #0f172a;
+  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.22);
+}
+
+.btn-ghost {
+  border: 1px solid rgba(248, 250, 252, 0.52);
+  color: #f8fafc;
+}
+
+.btn-primary:hover,
+.btn-ghost:hover {
+  transform: translateY(-1px);
+}
+
+.meta-strip {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.9rem;
+}
+
+.meta-card {
+  padding: 1rem;
+  border-radius: 16px;
+  border: 1px solid var(--line);
+  background: var(--card);
+}
+
+.meta-card-title {
+  margin: 0 0 0.45rem;
+  font-size: 0.83rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #52525b;
+  font-weight: 700;
+}
+
+.meta-card-value {
+  margin: 0;
+  font-size: 1.35rem;
+  font-weight: 700;
+}
+
+.latest {
+  border-radius: 20px;
+  border: 1px solid var(--line);
+  background: rgba(255, 254, 249, 0.78);
+  padding: clamp(1rem, 2vw, 1.5rem);
+}
+
+.section-head {
+  margin-bottom: 0.9rem;
+}
+
+.section-head h2 {
+  margin: 0;
+  font-family: "Fraunces", serif;
+  font-size: clamp(1.4rem, 2.2vw, 2rem);
+}
+
+.section-head p {
+  margin: 0.45rem 0 0;
+  color: #4b5563;
+}
+
+.post-grid {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.9rem;
+}
+
+.post-card {
+  border: 1px solid rgba(23, 34, 44, 0.12);
+  border-radius: 16px;
+  background: #fff;
+  overflow: hidden;
+  box-shadow: 0 12px 24px rgba(15, 23, 42, 0.08);
+  opacity: 0;
+  transform: translateY(10px);
+  animation: card-in 0.5s ease forwards;
+}
+
+.post-card:nth-child(2) {
+  animation-delay: 0.08s;
+}
+
+.post-card:nth-child(3) {
+  animation-delay: 0.16s;
+}
+
+.post-card:nth-child(4) {
+  animation-delay: 0.24s;
+}
+
+@keyframes card-in {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.post-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 28px rgba(15, 23, 42, 0.12);
+}
+
+.card-link {
+  display: block;
+  height: 100%;
+  padding: 1rem 1rem 1.1rem;
+  text-decoration: none;
+  color: inherit;
+}
+
+.post-date {
+  margin: 0;
+  font-size: 0.82rem;
+  color: #4b5563;
+}
+
+.post-title {
+  margin: 0.38rem 0 0.5rem;
+  font-size: 1.1rem;
+  line-height: 1.35;
+}
+
+.post-meta {
+  margin: 0;
+  font-size: 0.88rem;
+  color: #334155;
+}
+
+.empty-state {
+  border: 1px dashed rgba(23, 34, 44, 0.22);
+  border-radius: 14px;
+  padding: 1rem;
+  color: #475569;
+}
+
+.post-content h1,
+.post-content h2,
+.post-content h3 {
+  font-family: "Fraunces", serif;
+}
+
+.post-link {
+  color: var(--hero-b);
+}
+
+a {
+  color: var(--hero-b);
+}
+
+a:hover {
+  color: var(--accent);
+}
+
+.site-footer {
+  border-top: 1px solid rgba(23, 34, 44, 0.12);
+  background: rgba(248, 244, 234, 0.5);
+}
+
+@media (max-width: 900px) {
+  .post-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 700px) {
+  .meta-strip {
+    grid-template-columns: 1fr;
+  }
+
+  .site-title {
+    padding-right: 0.5rem;
+  }
+
+  .hero-actions {
+    width: 100%;
+  }
+
+  .btn-primary,
+  .btn-ghost {
+    width: 100%;
+  }
+}
