@@ -68,7 +68,7 @@ title: Home
           <p class="post-excerpt">{{ summary | truncate: 110 }}</p>
           {% endif %}
           {% if post.categories and post.categories.size > 0 %}
-          <p class="post-meta">{{ post.categories | join: " · " }}</p>
+          <p class="card-meta">{{ post.categories | join: " · " }}</p>
           {% endif %}
         </a>
       </li>

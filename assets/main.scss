@@ -311,7 +311,7 @@ body::before {
   line-height: 1.35;
 }
 
-.post-meta {
+.card-meta {
   margin: 0;
   font-size: 0.88rem;
   color: #334155;
@@ -371,11 +371,188 @@ body::before {
   color: #0f4c5c;
 }
 
+.post {
+  border: 1px solid rgba(23, 34, 44, 0.12);
+  border-radius: 20px;
+  background: rgba(255, 254, 249, 0.82);
+  box-shadow: 0 14px 28px rgba(15, 23, 42, 0.08);
+  padding: clamp(1rem, 2vw, 1.6rem);
+}
+
+.post .post-header,
+.post .post-content {
+  max-width: 760px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.post .post-header {
+  padding-bottom: 0.9rem;
+  margin-bottom: 1.3rem;
+  border-bottom: 1px solid rgba(23, 34, 44, 0.12);
+}
+
+.post .post-title {
+  margin: 0;
+  font-family: "Manrope", "Noto Sans KR", sans-serif;
+  font-size: clamp(1.65rem, 3.2vw, 2.35rem);
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+}
+
+.post .post-meta {
+  margin-top: 0.55rem;
+  color: #556070;
+  font-size: 0.92rem;
+}
+
+.post-content {
+  font-size: 1.04rem;
+  line-height: 1.84;
+  letter-spacing: -0.004em;
+  color: #1f2937;
+}
+
+.post-content > * {
+  margin-top: 0;
+  margin-bottom: 1.1rem;
+}
+
+.post-content > :last-child {
+  margin-bottom: 0;
+}
+
 .post-content h1,
 .post-content h2,
-.post-content h3 {
+.post-content h3,
+.post-content h4 {
   font-family: "Manrope", "Noto Sans KR", sans-serif;
   letter-spacing: -0.01em;
+  color: #0f172a;
+}
+
+.post-content h2 {
+  margin-top: 2.25rem;
+  margin-bottom: 0.9rem;
+  font-size: 1.45rem;
+  border-left: 4px solid rgba(21, 94, 117, 0.35);
+  padding-left: 0.6rem;
+}
+
+.post-content h3 {
+  margin-top: 1.9rem;
+  margin-bottom: 0.75rem;
+  font-size: 1.23rem;
+}
+
+.post-content p {
+  margin: 0 0 1.1rem;
+}
+
+.post-content ul,
+.post-content ol {
+  margin: 0.65rem 0 1.15rem;
+  padding-left: 1.28rem;
+}
+
+.post-content li {
+  margin-bottom: 0.42rem;
+}
+
+.post-content li::marker {
+  color: rgba(21, 94, 117, 0.85);
+}
+
+.post-content blockquote {
+  margin: 1.25rem 0;
+  padding: 0.78rem 0.92rem;
+  border-left: 4px solid rgba(204, 90, 42, 0.45);
+  border-radius: 0 10px 10px 0;
+  background: rgba(204, 90, 42, 0.08);
+  color: #374151;
+}
+
+.post-content blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+.post-content code {
+  background: rgba(15, 118, 110, 0.12);
+  border-radius: 6px;
+  padding: 0.1rem 0.34rem;
+  font-size: 0.9em;
+  color: #123343;
+}
+
+.post-content pre {
+  margin: 1.2rem 0 1.35rem;
+  padding: 0.95rem 1rem;
+  border-radius: 12px;
+  background: #111827;
+  color: #e5e7eb;
+  border: 1px solid rgba(148, 163, 184, 0.28);
+  overflow-x: auto;
+}
+
+.post-content pre code {
+  background: transparent;
+  color: inherit;
+  padding: 0;
+}
+
+.post-content .highlighter-rouge {
+  margin: 1.2rem 0 1.35rem;
+}
+
+.post-content .highlighter-rouge .highlight {
+  margin: 0;
+  border-radius: 12px;
+  border: 1px solid rgba(148, 163, 184, 0.28);
+  overflow: hidden;
+}
+
+.post-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.2rem 0 1.35rem;
+  font-size: 0.95rem;
+  display: block;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.post-content th,
+.post-content td {
+  border: 1px solid rgba(23, 34, 44, 0.15);
+  padding: 0.55rem 0.68rem;
+}
+
+.post-content th {
+  background: rgba(21, 94, 117, 0.08);
+  font-weight: 700;
+}
+
+.post-content hr {
+  border: 0;
+  border-top: 1px dashed rgba(23, 34, 44, 0.25);
+  margin: 2rem 0;
+}
+
+.post-content img {
+  max-width: 100%;
+  border-radius: 12px;
+  border: 1px solid rgba(23, 34, 44, 0.12);
+}
+
+.post-content strong {
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.post-content a {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-thickness: 1.5px;
 }
 
 .post-link {
@@ -421,5 +598,24 @@ a:hover {
   .btn-primary,
   .btn-ghost {
     width: 100%;
+  }
+
+  .post {
+    border-radius: 14px;
+    padding: 0.95rem;
+  }
+
+  .post .post-title {
+    font-size: 1.72rem;
+  }
+
+  .post-content {
+    font-size: 0.99rem;
+    line-height: 1.76;
+  }
+
+  .post-content pre {
+    border-radius: 10px;
+    padding: 0.82rem 0.86rem;
   }
 }
