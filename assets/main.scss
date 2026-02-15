@@ -1,7 +1,7 @@
 ---
 ---
 
-@import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Space+Grotesk:wght@400;500;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+KR:wght@400;500;700&display=swap");
 @import "minima";
 
 :root {
@@ -21,7 +21,7 @@
 body {
   position: relative;
   min-height: 100vh;
-  font-family: "Space Grotesk", "Segoe UI", sans-serif;
+  font-family: "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
   color: var(--text);
   background:
     radial-gradient(circle at 12% 10%, rgba(21, 94, 117, 0.12), transparent 26%),
@@ -51,9 +51,9 @@ body::before {
 }
 
 .site-title {
-  font-family: "Fraunces", serif;
-  letter-spacing: 0.2px;
-  font-weight: 700;
+  font-family: "Manrope", "Noto Sans KR", sans-serif;
+  letter-spacing: 0.1px;
+  font-weight: 800;
 }
 
 .site-nav .page-link {
@@ -123,9 +123,10 @@ body::before {
 
 .hero h1 {
   margin: 0;
-  font-family: "Fraunces", serif;
+  font-family: "Manrope", "Noto Sans KR", sans-serif;
   font-size: clamp(1.9rem, 4vw, 3.2rem);
   line-height: 1.1;
+  letter-spacing: -0.015em;
 }
 
 .lead {
@@ -210,8 +211,9 @@ body::before {
 
 .section-head h2 {
   margin: 0;
-  font-family: "Fraunces", serif;
+  font-family: "Manrope", "Noto Sans KR", sans-serif;
   font-size: clamp(1.4rem, 2.2vw, 2rem);
+  letter-spacing: -0.01em;
 }
 
 .section-head p {
@@ -299,7 +301,8 @@ body::before {
 .post-content h1,
 .post-content h2,
 .post-content h3 {
-  font-family: "Fraunces", serif;
+  font-family: "Manrope", "Noto Sans KR", sans-serif;
+  letter-spacing: -0.01em;
 }
 
 .post-link {
