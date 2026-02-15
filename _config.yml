@@ -1,0 +1,16 @@
+title: LiamKim Dev Blog
+description: Learning notes and engineering experiments
+url: "https://liamkim-daeyong.github.io"
+baseurl: ""
+lang: ko-KR
+timezone: Asia/Seoul
+
+theme: minima
+plugins:
+  - jekyll-feed
+
+show_drafts: false
+permalink: /:year/:month/:day/:title/
+
+exclude:
+  - README.md
