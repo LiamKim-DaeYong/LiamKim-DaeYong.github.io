@@ -163,9 +163,17 @@ body::before {
 
 .btn-ghost {
   border: 1px solid rgba(248, 250, 252, 0.78);
-  color: #ffffff;
-  background: rgba(7, 16, 32, 0.34);
+  color: #0b2a47;
+  background: rgba(255, 255, 255, 0.94);
   box-shadow: 0 8px 20px rgba(7, 16, 32, 0.18);
+}
+
+.btn-primary:visited {
+  color: #0b2a47;
+}
+
+.btn-ghost:visited {
+  color: #0b2a47;
 }
 
 .hero .btn-primary:hover {
@@ -174,8 +182,8 @@ body::before {
 }
 
 .hero .btn-ghost:hover {
-  background: rgba(7, 16, 32, 0.56);
-  color: #ffffff;
+  background: #ffffff;
+  color: #08253f;
 }
 
 .btn-primary:hover,
@@ -276,30 +284,52 @@ body::before {
   font-size: 0.86rem;
 }
 
-.intro-grid {
+.action-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0.9rem;
 }
 
-.intro-card {
+.action-card {
+  display: block;
+  text-decoration: none;
   border-radius: 16px;
-  border: 1px solid var(--line);
-  background: rgba(255, 255, 255, 0.75);
-  padding: 1rem;
+  border: 1px solid rgba(23, 34, 44, 0.14);
+  background: linear-gradient(140deg, rgba(255, 255, 255, 0.9), rgba(240, 247, 255, 0.82));
+  padding: 0.96rem 1rem;
+  box-shadow: 0 10px 20px rgba(15, 23, 42, 0.07);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
-.intro-card h3 {
+.action-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 26px rgba(15, 23, 42, 0.12);
+  border-color: rgba(11, 101, 216, 0.35);
+  text-decoration: none;
+}
+
+.action-eyebrow {
   margin: 0;
-  font-family: "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
-  font-size: 1rem;
+  color: #0f3f6d;
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-weight: 700;
 }
 
-.intro-card p {
-  margin: 0.55rem 0 0;
+.action-card h3 {
+  margin: 0.34rem 0 0;
+  font-family: "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  color: #0f172a;
+  font-size: 1.03rem;
+  line-height: 1.32;
+}
+
+.action-text {
+  margin: 0.5rem 0 0;
   color: #334155;
-  font-size: 0.94rem;
-  line-height: 1.55;
+  font-size: 0.9rem;
+  line-height: 1.45;
 }
 
 .meta-card {
@@ -930,33 +960,42 @@ a:hover {
   padding: 0;
   list-style: none;
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.78rem;
+  grid-template-columns: 1fr;
+  gap: 0.62rem;
 }
 
 .posts-item {
-  border: 1px solid rgba(23, 34, 44, 0.12);
-  border-radius: 14px;
+  border: 1px solid rgba(23, 34, 44, 0.14);
+  border-radius: 12px;
   background: #fff;
   overflow: hidden;
 }
 
 .posts-link {
-  display: block;
+  display: grid;
+  grid-template-columns: 84px minmax(0, 1fr);
+  align-items: start;
+  gap: 0.72rem;
   text-decoration: none;
   color: inherit;
-  padding: 0.84rem 0.88rem 0.92rem;
+  padding: 0.76rem 0.82rem 0.8rem;
 }
 
 .posts-date {
   margin: 0;
-  color: #64748b;
-  font-size: 0.8rem;
+  color: #334155;
+  font-size: 0.82rem;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.posts-main {
+  min-width: 0;
 }
 
 .posts-title {
-  margin: 0.36rem 0 0.45rem;
-  font-size: 1.04rem;
+  margin: 0.04rem 0 0.42rem;
+  font-size: 1.02rem;
   line-height: 1.35;
 }
 
@@ -1022,15 +1061,15 @@ a:hover {
     grid-template-columns: 1fr;
   }
 
+  .action-grid {
+    grid-template-columns: 1fr;
+  }
+
   .post-grid {
     grid-template-columns: 1fr;
   }
 
   .search-results {
-    grid-template-columns: 1fr;
-  }
-
-  .posts-grid {
     grid-template-columns: 1fr;
   }
 

@@ -19,19 +19,28 @@ title: Home
     </div>
   </section>
 
-  <section class="intro-grid">
-    <article class="intro-card">
-      <h3>학습 요약</h3>
-      <p>핵심 개념을 짧고 정확하게 정리합니다.</p>
-    </article>
-    <article class="intro-card">
-      <h3>실습 기록</h3>
-      <p>직접 실행한 과정과 결과를 남겨 재현 가능하게 만듭니다.</p>
-    </article>
-    <article class="intro-card">
-      <h3>회고와 다음 단계</h3>
-      <p>막힌 지점과 다음 액션을 정리해 학습 흐름을 이어갑니다.</p>
-    </article>
+  <section class="action-grid">
+    <a class="action-card" href="{% if latest_post %}{{ latest_post.url | relative_url }}{% else %}#latest-posts{% endif %}">
+      <p class="action-eyebrow">Now Reading</p>
+      <h3>최신 글 바로 읽기</h3>
+      <p class="action-text">
+        {% if latest_post %}
+          {{ latest_post.title | truncate: 56 }}
+        {% else %}
+          첫 글이 발행되면 여기에 표시됩니다.
+        {% endif %}
+      </p>
+    </a>
+    <a class="action-card" href="{{ '/posts/' | relative_url }}">
+      <p class="action-eyebrow">Browse</p>
+      <h3>전체 글 목록</h3>
+      <p class="action-text">페이지별로 글을 탐색하고 필요한 주제로 빠르게 이동합니다.</p>
+    </a>
+    <a class="action-card" href="{{ '/about/' | relative_url }}">
+      <p class="action-eyebrow">Guide</p>
+      <h3>학습 방식 소개</h3>
+      <p class="action-text">이 블로그의 기록 규칙과 학습 운영 방식을 확인할 수 있습니다.</p>
+    </a>
   </section>
 
   <section class="meta-strip">

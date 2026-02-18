@@ -72,9 +72,11 @@
           <li class="posts-item">
             <a class="posts-link" href="${post.url}">
               <p class="posts-date">${post.date}</p>
-              <h3 class="posts-title">${post.title}</h3>
-              ${excerpt ? `<p class="posts-excerpt">${excerpt}</p>` : ""}
-              ${category ? `<p class="posts-meta">${category}</p>` : ""}
+              <div class="posts-main">
+                <h3 class="posts-title">${post.title}</h3>
+                ${excerpt ? `<p class="posts-excerpt">${excerpt}</p>` : ""}
+                ${category ? `<p class="posts-meta">${category}</p>` : ""}
+              </div>
             </a>
           </li>
         `;
