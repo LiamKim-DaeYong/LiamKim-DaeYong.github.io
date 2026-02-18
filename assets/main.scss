@@ -778,71 +778,106 @@ a:hover {
   background: rgba(245, 249, 255, 0.65);
 }
 
-.archive-shell {
+.posts-shell {
   border: 1px solid rgba(23, 34, 44, 0.12);
   border-radius: 18px;
   background: rgba(255, 255, 255, 0.84);
   padding: clamp(1rem, 2vw, 1.45rem);
 }
 
-.archive-intro {
+.posts-intro {
   margin: 0 0 1rem;
   color: #475569;
 }
 
-.archive-year {
-  margin: 1.25rem 0 0.55rem;
-  font-family: "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
-  font-size: 1.1rem;
-  color: #0f172a;
+.posts-summary {
+  margin: 0 0 0.9rem;
+  color: #334155;
+  font-size: 0.92rem;
 }
 
-.archive-list {
-  list-style: none;
+.posts-grid {
   margin: 0;
   padding: 0;
+  list-style: none;
   display: grid;
-  gap: 0.52rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.78rem;
 }
 
-.archive-item {
-  display: grid;
-  grid-template-columns: 56px minmax(0, 1fr);
-  gap: 0.7rem;
-  align-items: baseline;
-  padding: 0.52rem 0.58rem;
-  border-radius: 10px;
-  border: 1px solid rgba(23, 34, 44, 0.1);
+.posts-item {
+  border: 1px solid rgba(23, 34, 44, 0.12);
+  border-radius: 14px;
   background: #fff;
+  overflow: hidden;
 }
 
-.archive-date {
-  color: #64748b;
-  font-size: 0.86rem;
-  font-variant-numeric: tabular-nums;
-}
-
-.archive-main {
-  min-width: 0;
-}
-
-.archive-link {
-  font-weight: 600;
+.posts-link {
+  display: block;
   text-decoration: none;
+  color: inherit;
+  padding: 0.84rem 0.88rem 0.92rem;
+}
+
+.posts-date {
+  margin: 0;
+  color: #64748b;
+  font-size: 0.8rem;
+}
+
+.posts-title {
+  margin: 0.36rem 0 0.45rem;
+  font-size: 1.04rem;
+  line-height: 1.35;
+}
+
+.posts-excerpt {
+  margin: 0 0 0.48rem;
+  color: #475569;
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+
+.posts-meta {
+  margin: 0;
+  color: #334155;
+  font-size: 0.86rem;
+}
+
+.posts-empty {
+  border: 1px dashed rgba(23, 34, 44, 0.22);
+  border-radius: 14px;
+  padding: 1rem;
+  color: #475569;
+}
+
+.posts-pagination {
+  display: flex;
+  gap: 0.35rem;
+  flex-wrap: wrap;
+  margin-top: 0.95rem;
+}
+
+.posts-page-btn {
+  border: 1px solid rgba(23, 34, 44, 0.2);
+  background: #fff;
+  color: #1f2937;
+  border-radius: 8px;
+  padding: 0.34rem 0.58rem;
+  font-size: 0.86rem;
+  cursor: pointer;
+}
+
+.posts-page-btn:hover:not(:disabled) {
+  border-color: rgba(11, 101, 216, 0.42);
   color: #0f3f6d;
 }
 
-.archive-link:hover {
-  color: #0b65d8;
-  text-decoration: underline;
-  text-underline-offset: 2px;
-}
-
-.archive-meta {
-  display: inline-block;
-  margin-left: 0.48rem;
-  color: #475569;
-  font-size: 0.86rem;
+.posts-page-btn.is-active {
+  border-color: rgba(11, 101, 216, 0.5);
+  background: rgba(11, 101, 216, 0.12);
+  color: #0f3f6d;
+  font-weight: 700;
 }
 
 @media (max-width: 1160px) {
@@ -866,9 +901,8 @@ a:hover {
     grid-template-columns: 1fr;
   }
 
-  .archive-item {
+  .posts-grid {
     grid-template-columns: 1fr;
-    gap: 0.2rem;
   }
 }
 

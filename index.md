@@ -14,23 +14,23 @@ title: Home
     <p class="lead">여러 주제를 직접 다뤄보며, 코드와 구조에서 확인한 내용을 정리합니다.</p>
     <div class="hero-actions">
       <a class="btn-primary" href="#latest-posts">최근 기록 보기</a>
-      <a class="btn-ghost" href="{{ '/archive/' | relative_url }}">전체 기록</a>
+      <a class="btn-ghost" href="{{ '/posts/' | relative_url }}">전체 글 보기</a>
       <a class="btn-ghost" href="{{ '/about/' | relative_url }}">소개</a>
     </div>
   </section>
 
   <section class="intro-grid">
     <article class="intro-card">
-      <h3>구현 메모</h3>
-      <p>직접 만들어 보며 확인한 포인트를 간단히 정리합니다.</p>
+      <h3>학습 요약</h3>
+      <p>핵심 개념을 짧고 정확하게 정리합니다.</p>
     </article>
     <article class="intro-card">
-      <h3>검증 기록</h3>
-      <p>시도한 방식과 결과를 남겨서 다음 선택의 기준으로 삼습니다.</p>
+      <h3>실습 기록</h3>
+      <p>직접 실행한 과정과 결과를 남겨 재현 가능하게 만듭니다.</p>
     </article>
     <article class="intro-card">
-      <h3>구조 실험</h3>
-      <p>구조를 바꿔보면서 생긴 차이를 기록합니다.</p>
+      <h3>회고와 다음 단계</h3>
+      <p>막힌 지점과 다음 액션을 정리해 학습 흐름을 이어갑니다.</p>
     </article>
   </section>
 
