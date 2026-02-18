@@ -30,11 +30,7 @@ permalink: /about/
   </section>
 
   <section class="about-note">
-    <h3>현재 집중 영역</h3>
-    <ul>
-      <li>Database foundations -> indexing, transaction, lock, mvcc</li>
-      <li>cache/event/infrastructure까지 단계적 확장</li>
-      <li>학습 내용을 블로그 글과 실습 저장소에 동시 반영</li>
-    </ul>
+    <h3>블로그 주소</h3>
+    <p><a href="https://liamkim-daeyong.github.io/">https://liamkim-daeyong.github.io/</a></p>
   </section>
 </div>
