@@ -1,7 +1,8 @@
 ---
 ---
 
-@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+KR:wght@400;500;700&display=swap");
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css");
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap");
 @import "minima";
 
 :root {
@@ -21,7 +22,7 @@
 body {
   position: relative;
   min-height: 100vh;
-  font-family: "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  font-family: "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
   color: var(--text);
   background:
     radial-gradient(circle at 12% 10%, rgba(59, 130, 246, 0.14), transparent 26%),
@@ -51,7 +52,7 @@ body::before {
 }
 
 .site-title {
-  font-family: "Manrope", "Noto Sans KR", sans-serif;
+  font-family: "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
   letter-spacing: 0.1px;
   font-weight: 800;
 }
@@ -61,7 +62,7 @@ body::before {
 }
 
 .wrapper {
-  max-width: 1060px;
+  max-width: 1320px;
 }
 
 .page-content {
@@ -123,7 +124,7 @@ body::before {
 
 .hero h1 {
   margin: 0;
-  font-family: "Manrope", "Noto Sans KR", sans-serif;
+  font-family: "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
   font-size: clamp(1.9rem, 4vw, 3.2rem);
   line-height: 1.1;
   letter-spacing: -0.015em;
@@ -278,7 +279,7 @@ body::before {
 
 .intro-card h3 {
   margin: 0;
-  font-family: "Manrope", "Noto Sans KR", sans-serif;
+  font-family: "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
   font-size: 1rem;
 }
 
@@ -324,7 +325,7 @@ body::before {
 
 .section-head h2 {
   margin: 0;
-  font-family: "Manrope", "Noto Sans KR", sans-serif;
+  font-family: "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
   font-size: clamp(1.4rem, 2.2vw, 2rem);
   letter-spacing: -0.01em;
 }
@@ -472,8 +473,8 @@ body::before {
 
 .post-layout {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 250px;
-  gap: 1.2rem;
+  grid-template-columns: minmax(0, 1fr) 260px;
+  gap: 1.4rem;
   align-items: start;
 }
 
@@ -492,7 +493,7 @@ body::before {
 
 .toc-title {
   margin: 0 0 0.55rem;
-  font-family: "Manrope", "Noto Sans KR", sans-serif;
+  font-family: "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
   font-weight: 700;
   font-size: 0.92rem;
   color: #1e293b;
@@ -546,7 +547,7 @@ body::before {
 
 .post .post-header,
 .post .post-content {
-  max-width: 760px;
+  max-width: 980px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -559,7 +560,7 @@ body::before {
 
 .post .post-title {
   margin: 0;
-  font-family: "Manrope", "Noto Sans KR", sans-serif;
+  font-family: "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
   font-size: clamp(1.65rem, 3.2vw, 2.35rem);
   line-height: 1.2;
   letter-spacing: -0.015em;
@@ -591,7 +592,7 @@ body::before {
 .post-content h2,
 .post-content h3,
 .post-content h4 {
-  font-family: "Manrope", "Noto Sans KR", sans-serif;
+  font-family: "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
   letter-spacing: -0.01em;
   color: #0f172a;
 }
@@ -653,10 +654,16 @@ body::before {
   margin: 1.2rem 0 1.35rem;
   padding: 0.95rem 1rem;
   border-radius: 12px;
-  background: #111827;
+  background: #0b1220;
   color: #e5e7eb;
   border: 1px solid rgba(148, 163, 184, 0.28);
   overflow-x: auto;
+}
+
+.post-content pre,
+.post-content pre code,
+.post-content code {
+  font-family: "JetBrains Mono", "D2Coding", Consolas, monospace;
 }
 
 .post-content pre code {
@@ -690,6 +697,18 @@ body::before {
   border-radius: 12px;
   border: 1px solid rgba(148, 163, 184, 0.28);
   overflow: hidden;
+  background: #0b1220;
+}
+
+.post-content .highlighter-rouge .highlight pre,
+.post-content .highlighter-rouge .highlight code {
+  background: #0b1220;
+  color: #e5e7eb;
+}
+
+.post-content .highlighter-rouge .highlight span {
+  color: #e5e7eb !important;
+  background: transparent !important;
 }
 
 .post-content table {
@@ -699,7 +718,7 @@ body::before {
   font-size: 0.95rem;
   display: block;
   overflow-x: auto;
-  white-space: nowrap;
+  white-space: normal;
 }
 
 .post-content th,
@@ -753,7 +772,7 @@ a:hover {
   background: rgba(245, 249, 255, 0.65);
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1160px) {
   .post-layout {
     grid-template-columns: 1fr;
   }
