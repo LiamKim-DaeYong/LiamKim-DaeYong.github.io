@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: 'en' }}">
+  {% assign build_id = site.time | date: "%s" %}
+  {% include head.html %}
+  <meta name="site-build" content="{{ build_id }}">
+  <body>
+    {% include header.html %}
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        {{ content }}
+      </div>
+    </main>
+    {% include footer.html %}
+    <script src="{{ '/assets/cache-guard.js?v=' | append: build_id | relative_url }}" defer></script>
+  </body>
+</html>
