@@ -50,6 +50,25 @@ title: Home
     </article>
   </section>
 
+  <section class="search-panel" id="post-search">
+    <div class="section-head">
+      <h2>글 검색</h2>
+      <p>제목, 요약, 카테고리로 바로 찾을 수 있습니다.</p>
+    </div>
+    <div class="search-controls">
+      <label class="search-label" for="post-search-input">검색어</label>
+      <input
+        id="post-search-input"
+        class="search-input"
+        type="search"
+        placeholder="예: 캐시, DB, 동시성"
+        autocomplete="off"
+      />
+    </div>
+    <p id="post-search-status" class="search-status">검색어를 입력하면 결과가 표시됩니다.</p>
+    <ul id="post-search-results" class="search-results" hidden></ul>
+  </section>
+
   <section id="latest-posts" class="latest">
     <div class="section-head">
       <h2>최근 기록</h2>
@@ -75,7 +94,7 @@ title: Home
       {% endfor %}
     </ul>
     {% else %}
-    <div class="empty-state">아직 게시된 글이 없습니다. 첫 노트를 push하면 자동으로 여기에 나타납니다.</div>
+    <div class="empty-state">아직 게시된 글이 없습니다. 첫 글을 publish하면 여기에 나타납니다.</div>
     {% endif %}
   </section>
 
@@ -95,3 +114,18 @@ title: Home
     {% endif %}
   </section>
 </div>
+
+<script id="post-search-index" type="application/json">
+[
+{% for post in visible_posts %}
+  {
+    "title": {{ post.title | jsonify }},
+    "url": {{ post.url | relative_url | jsonify }},
+    "date": {{ post.date | date: "%Y-%m-%d" | jsonify }},
+    "categories": {{ post.categories | join: ", " | jsonify }},
+    "excerpt": {{ post.excerpt | strip_html | normalize_whitespace | truncate: 260 | jsonify }}
+  }{% unless forloop.last %},{% endunless %}
+{% endfor %}
+]
+</script>
+<script src="{{ '/assets/search.js' | relative_url }}" defer></script>
