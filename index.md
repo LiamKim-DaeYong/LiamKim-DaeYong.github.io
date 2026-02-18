@@ -38,8 +38,8 @@ title: Home
     </a>
     <a class="action-card" href="{{ '/about/' | relative_url }}">
       <p class="action-eyebrow">Guide</p>
-      <h3>학습 방식 소개</h3>
-      <p class="action-text">이 블로그의 기록 규칙과 학습 운영 방식을 확인할 수 있습니다.</p>
+      <h3>블로그 소개</h3>
+      <p class="action-text">이곳에서 다루는 주제와 작성자 정보를 간단히 확인할 수 있습니다.</p>
     </a>
   </section>
 

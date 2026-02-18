@@ -9,11 +9,9 @@ permalink: /posts/
 
 <div class="posts-shell">
   <section class="posts-hero">
-    <p class="posts-eyebrow">Learning Timeline</p>
-    <h2>전체 글 모아보기</h2>
-    <p>주제별 학습 기록을 한 곳에서 보고, 필요한 글로 바로 이동할 수 있습니다.</p>
+    <p>발행한 글을 최신순으로 모아둔 목록입니다.</p>
     <div class="posts-hero-meta">
-      <span class="posts-chip">총 {{ visible_posts.size }}개</span>
+      <span class="posts-chip">총 {{ visible_posts.size }}개 글</span>
       <span class="posts-chip">
         최근 업데이트:
         {% if latest_post %}{{ latest_post.date | date: "%Y-%m-%d" }}{% else %}-{% endif %}
@@ -21,7 +19,14 @@ permalink: /posts/
     </div>
   </section>
 
-  <p class="posts-intro">발행한 글을 날짜순으로 확인할 수 있습니다.</p>
+  <section class="posts-controls" aria-label="Posts controls">
+    <div class="posts-sort" id="posts-sort" role="tablist" aria-label="정렬">
+      <button class="posts-sort-btn" type="button" data-sort="latest" role="tab" aria-selected="true">최신순</button>
+      <button class="posts-sort-btn" type="button" data-sort="oldest" role="tab" aria-selected="false">오래된순</button>
+    </div>
+    <div class="posts-tags-filter" id="posts-tags-filter" aria-label="태그 필터"></div>
+  </section>
+
   <p class="posts-summary" id="posts-summary">로딩 중...</p>
   <ul class="posts-grid" id="posts-grid" hidden></ul>
   <div class="posts-empty" id="posts-empty" hidden>아직 게시된 글이 없습니다.</div>
@@ -35,6 +40,8 @@ permalink: /posts/
     "title": {{ post.title | jsonify }},
     "url": {{ post.url | relative_url | jsonify }},
     "date": {{ post.date | date: "%Y-%m-%d" | jsonify }},
+    "wordCount": {{ post.content | number_of_words | jsonify }},
+    "charCount": {{ post.content | strip_html | normalize_whitespace | size | jsonify }},
     "categories": {{ post.categories | join: ", " | jsonify }},
     "excerpt": {{ post.excerpt | strip_html | normalize_whitespace | truncate: 180 | jsonify }}
   }{% unless forloop.last %},{% endunless %}
