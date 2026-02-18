@@ -11,9 +11,3 @@ permalink: /about/
 - 여러 주제를 직접 다뤄보며, 코드와 구조에서 확인한 내용을 정리합니다.
 - 구현 과정에서 선택한 방법과 결과를 함께 남깁니다.
 - 다음에 다시 볼 수 있게 짧게 기록합니다.
-
-## 흐름
-
-```text
-dev-console notes -> blog draft PR -> review/refine -> publish
-```

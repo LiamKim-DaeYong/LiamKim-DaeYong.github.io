@@ -1,8 +1,7 @@
 <!DOCTYPE html>
-<html lang="{{ page.lang | default: site.lang | default: 'en' }}">
-  {% assign build_id = site.time | date: "%s" %}
+{% assign build_id = site.time | date: "%s" %}
+<html lang="{{ page.lang | default: site.lang | default: 'en' }}" data-build="{{ build_id }}">
   {% include head.html %}
-  <meta name="site-build" content="{{ build_id }}">
   <body>
     {% include header.html %}
     <main class="page-content" aria-label="Content">
