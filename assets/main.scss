@@ -665,6 +665,22 @@ body::before {
   padding: 0;
 }
 
+.post-content .mermaid {
+  margin: 1.2rem 0 1.35rem;
+  padding: 0.75rem;
+  border-radius: 12px;
+  border: 1px solid rgba(148, 163, 184, 0.28);
+  background: #fff;
+  overflow-x: auto;
+}
+
+.post-content .mermaid svg {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+  height: auto;
+}
+
 .post-content .highlighter-rouge {
   margin: 1.2rem 0 1.35rem;
 }

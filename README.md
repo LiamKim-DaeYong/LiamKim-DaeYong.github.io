@@ -57,3 +57,15 @@ draft: false
 
 - `main` 브랜치 push 시 `pages-deploy.yml`이 실행되어 GitHub Pages에 배포됩니다.
 - 배포가 처음 실패하면 저장소 `Settings > Pages`에서 `Build and deployment`를 `GitHub Actions`로 설정하세요.
+
+## Mermaid 다이어그램
+
+- 포스트 본문에서 fenced block으로 `mermaid`를 사용하면 자동 렌더링됩니다.
+
+````markdown
+```mermaid
+flowchart LR
+  A[Start] --> B[Process]
+  B --> C[Done]
+```
+````
