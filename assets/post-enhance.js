@@ -25,6 +25,18 @@
   window.addEventListener("scroll", updateProgress, { passive: true });
   window.addEventListener("resize", updateProgress);
 
+  // Wrap tables so wide tables can scroll without forcing all tables to full width.
+  const tables = Array.from(content.querySelectorAll("table"));
+  tables.forEach((table) => {
+    if (!table.parentElement || table.parentElement.classList.contains("table-scroll")) {
+      return;
+    }
+    const wrapper = document.createElement("div");
+    wrapper.className = "table-scroll";
+    table.parentElement.insertBefore(wrapper, table);
+    wrapper.appendChild(table);
+  });
+
   if (!tocCard || !tocList) {
     return;
   }

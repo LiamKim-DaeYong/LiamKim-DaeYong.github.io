@@ -14,6 +14,7 @@ title: Home
     <p class="lead">여러 주제를 직접 다뤄보며, 코드와 구조에서 확인한 내용을 정리합니다.</p>
     <div class="hero-actions">
       <a class="btn-primary" href="#latest-posts">최근 기록 보기</a>
+      <a class="btn-ghost" href="{{ '/archive/' | relative_url }}">전체 기록</a>
       <a class="btn-ghost" href="{{ '/about/' | relative_url }}">소개</a>
     </div>
   </section>

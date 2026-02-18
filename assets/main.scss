@@ -711,20 +711,26 @@ body::before {
   background: transparent !important;
 }
 
-.post-content table {
-  width: 100%;
-  border-collapse: collapse;
+.post-content .table-scroll {
   margin: 1.2rem 0 1.35rem;
-  font-size: 0.95rem;
-  display: block;
   overflow-x: auto;
-  white-space: normal;
+}
+
+.post-content .table-scroll table {
+  margin: 0;
+}
+
+.post-content table {
+  width: auto;
+  border-collapse: collapse;
+  font-size: 0.95rem;
 }
 
 .post-content th,
 .post-content td {
   border: 1px solid rgba(23, 34, 44, 0.15);
   padding: 0.55rem 0.68rem;
+  white-space: normal;
 }
 
 .post-content th {
@@ -772,6 +778,73 @@ a:hover {
   background: rgba(245, 249, 255, 0.65);
 }
 
+.archive-shell {
+  border: 1px solid rgba(23, 34, 44, 0.12);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.84);
+  padding: clamp(1rem, 2vw, 1.45rem);
+}
+
+.archive-intro {
+  margin: 0 0 1rem;
+  color: #475569;
+}
+
+.archive-year {
+  margin: 1.25rem 0 0.55rem;
+  font-family: "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  font-size: 1.1rem;
+  color: #0f172a;
+}
+
+.archive-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.52rem;
+}
+
+.archive-item {
+  display: grid;
+  grid-template-columns: 56px minmax(0, 1fr);
+  gap: 0.7rem;
+  align-items: baseline;
+  padding: 0.52rem 0.58rem;
+  border-radius: 10px;
+  border: 1px solid rgba(23, 34, 44, 0.1);
+  background: #fff;
+}
+
+.archive-date {
+  color: #64748b;
+  font-size: 0.86rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.archive-main {
+  min-width: 0;
+}
+
+.archive-link {
+  font-weight: 600;
+  text-decoration: none;
+  color: #0f3f6d;
+}
+
+.archive-link:hover {
+  color: #0b65d8;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.archive-meta {
+  display: inline-block;
+  margin-left: 0.48rem;
+  color: #475569;
+  font-size: 0.86rem;
+}
+
 @media (max-width: 1160px) {
   .post-layout {
     grid-template-columns: 1fr;
@@ -791,6 +864,11 @@ a:hover {
 
   .search-results {
     grid-template-columns: 1fr;
+  }
+
+  .archive-item {
+    grid-template-columns: 1fr;
+    gap: 0.2rem;
   }
 }
 
