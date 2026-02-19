@@ -51,19 +51,11 @@ body::before {
   backdrop-filter: blur(8px);
 }
 
-.site-header .wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.site-header-right {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
+/* Theme toggle — mobile: absolute left of hamburger, desktop: float right */
 .theme-toggle {
+  position: absolute;
+  top: 9px;
+  right: 56px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -73,7 +65,17 @@ body::before {
   padding: 0.3rem;
   cursor: pointer;
   color: #475569;
+  z-index: 3;
   transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+}
+
+@media screen and (min-width: 601px) {
+  .theme-toggle {
+    position: static;
+    float: right;
+    margin-top: 10px;
+    margin-left: 10px;
+  }
 }
 
 .theme-toggle:hover {
@@ -1449,6 +1451,50 @@ a:hover {
 
   .posts-chip {
     font-size: 0.78rem;
+  }
+
+  /* About mobile */
+  .about-shell {
+    gap: 0.8rem;
+  }
+
+  .about-hero {
+    border-radius: 16px;
+  }
+
+  .about-card {
+    border-radius: 16px;
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .about-card .about-section + .about-section {
+    padding-top: 1rem;
+  }
+
+  .about-pills {
+    gap: 0.4rem;
+  }
+
+  /* Posts mobile */
+  .posts-hero {
+    border-radius: 16px;
+  }
+
+  .posts-panel {
+    border-radius: 16px;
+    padding: 0.9rem;
+  }
+
+  /* Post nav mobile */
+  .post-nav-item {
+    padding: 0.75rem 0.85rem;
+  }
+
+  /* Giscus mobile */
+  .giscus-wrap {
+    margin-top: 1.6rem;
+    padding-top: 1.2rem;
   }
 }
 
