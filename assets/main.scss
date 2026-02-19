@@ -49,6 +49,8 @@ body::before {
   border-bottom: 1px solid rgba(23, 34, 44, 0.12);
   background: rgba(245, 249, 255, 0.9);
   backdrop-filter: blur(8px);
+  position: relative;
+  z-index: 100;
 }
 
 /* Theme toggle — mobile: absolute left of hamburger, desktop: float right */
@@ -658,6 +660,8 @@ body::before {
   line-height: 1.84;
   letter-spacing: -0.004em;
   color: #1f2937;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 .post-content > * {
@@ -802,9 +806,12 @@ body::before {
 }
 
 .post-content table {
-  width: auto;
+  width: 100%;
   border-collapse: collapse;
   font-size: 0.95rem;
+  display: block;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .post-content th,
@@ -849,6 +856,10 @@ body::before {
   margin-top: 2rem;
   padding-top: 1.5rem;
   border-top: 1px solid rgba(23, 34, 44, 0.12);
+}
+
+.post-nav-empty {
+  display: block;
 }
 
 .post-nav-item {
