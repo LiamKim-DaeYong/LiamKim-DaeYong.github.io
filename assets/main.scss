@@ -51,6 +51,43 @@ body::before {
   backdrop-filter: blur(8px);
 }
 
+.site-header .wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.site-header-right {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: 1px solid rgba(23, 34, 44, 0.14);
+  border-radius: 8px;
+  padding: 0.3rem;
+  cursor: pointer;
+  color: #475569;
+  transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+}
+
+.theme-toggle:hover {
+  background: rgba(11, 101, 216, 0.08);
+  border-color: rgba(11, 101, 216, 0.25);
+  color: var(--accent);
+}
+
+.theme-toggle .icon-sun { display: none; }
+.theme-toggle .icon-moon { display: block; }
+
+[data-theme="dark"] .theme-toggle .icon-sun { display: block; }
+[data-theme="dark"] .theme-toggle .icon-moon { display: none; }
+
 .site-title {
   font-family: "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
   letter-spacing: 0.1px;
@@ -1413,4 +1450,365 @@ a:hover {
   .posts-chip {
     font-size: 0.78rem;
   }
+}
+
+/* ============================================
+   DARK MODE
+   ============================================ */
+
+[data-theme="dark"] {
+  --bg: #0d1117;
+  --text: #c9d1d9;
+  --card: #161b22;
+  --line: #30363d;
+  --accent: #58a6ff;
+}
+
+[data-theme="dark"] body {
+  background:
+    radial-gradient(circle at 12% 10%, rgba(59, 130, 246, 0.06), transparent 26%),
+    radial-gradient(circle at 85% 18%, rgba(16, 185, 129, 0.05), transparent 32%),
+    linear-gradient(180deg, #0d1117 0%, #0d1117 100%);
+  color: var(--text);
+}
+
+[data-theme="dark"] .site-header {
+  background: rgba(13, 17, 23, 0.92);
+  border-bottom-color: rgba(48, 54, 61, 0.7);
+}
+
+[data-theme="dark"] .site-title,
+[data-theme="dark"] .site-nav .page-link {
+  color: #c9d1d9;
+}
+
+[data-theme="dark"] .theme-toggle {
+  border-color: rgba(48, 54, 61, 0.8);
+  color: #8b949e;
+}
+
+[data-theme="dark"] .theme-toggle:hover {
+  background: rgba(88, 166, 255, 0.1);
+  border-color: rgba(88, 166, 255, 0.3);
+  color: #58a6ff;
+}
+
+/* Panels */
+[data-theme="dark"] .search-panel,
+[data-theme="dark"] .latest,
+[data-theme="dark"] .topics,
+[data-theme="dark"] .about-card,
+[data-theme="dark"] .posts-panel,
+[data-theme="dark"] .toc-card {
+  background: rgba(22, 27, 34, 0.95);
+  border-color: rgba(48, 54, 61, 0.7);
+}
+
+[data-theme="dark"] .meta-card {
+  background: #161b22;
+  border-color: rgba(48, 54, 61, 0.7);
+}
+
+[data-theme="dark"] .meta-card-title {
+  color: #8b949e;
+}
+
+[data-theme="dark"] .meta-card-value {
+  color: #c9d1d9;
+}
+
+/* Action cards */
+[data-theme="dark"] .action-card {
+  background: linear-gradient(140deg, rgba(22, 27, 34, 0.95), rgba(15, 23, 42, 0.9));
+  border-color: rgba(48, 54, 61, 0.7);
+}
+
+[data-theme="dark"] .action-eyebrow {
+  color: #58a6ff;
+}
+
+[data-theme="dark"] .action-card h3 {
+  color: #c9d1d9;
+}
+
+[data-theme="dark"] .action-text {
+  color: #8b949e;
+}
+
+/* Section headings */
+[data-theme="dark"] .section-head h2 {
+  color: #c9d1d9;
+}
+
+[data-theme="dark"] .section-head p {
+  color: #8b949e;
+}
+
+/* Search */
+[data-theme="dark"] .search-label {
+  color: #8b949e;
+}
+
+[data-theme="dark"] .search-input {
+  background: #0d1117;
+  border-color: rgba(48, 54, 61, 0.9);
+  color: #c9d1d9;
+}
+
+[data-theme="dark"] .search-status {
+  color: #8b949e;
+}
+
+[data-theme="dark"] .search-result-item {
+  background: #0d1117;
+  border-color: rgba(48, 54, 61, 0.7);
+}
+
+[data-theme="dark"] .search-result-date,
+[data-theme="dark"] .search-result-excerpt,
+[data-theme="dark"] .search-result-meta {
+  color: #8b949e;
+}
+
+[data-theme="dark"] .search-result-title {
+  color: #c9d1d9;
+}
+
+/* Post cards (home) */
+[data-theme="dark"] .post-card {
+  background: #161b22;
+  border-color: rgba(48, 54, 61, 0.7);
+}
+
+[data-theme="dark"] .post-date,
+[data-theme="dark"] .card-meta {
+  color: #8b949e;
+}
+
+[data-theme="dark"] .post-title {
+  color: #c9d1d9;
+}
+
+[data-theme="dark"] .post-excerpt {
+  color: #8b949e;
+}
+
+/* Topic pills */
+[data-theme="dark"] .topic-pill {
+  background: #161b22;
+  border-color: rgba(48, 54, 61, 0.8);
+  color: #8b949e;
+}
+
+/* About */
+[data-theme="dark"] .about-section h3 {
+  color: #c9d1d9;
+}
+
+[data-theme="dark"] .about-pills li {
+  background: #161b22;
+  border-color: rgba(48, 54, 61, 0.8);
+  color: #8b949e;
+}
+
+/* Posts list */
+[data-theme="dark"] .posts-sort {
+  background: #161b22;
+}
+
+[data-theme="dark"] .posts-sort-btn {
+  color: #8b949e;
+}
+
+[data-theme="dark"] .posts-sort-btn.is-active {
+  background: #30363d;
+  color: #c9d1d9;
+}
+
+[data-theme="dark"] .posts-filter-chip {
+  background: #161b22;
+  border-color: rgba(48, 54, 61, 0.8);
+  color: #8b949e;
+}
+
+[data-theme="dark"] .posts-filter-chip.is-active {
+  background: rgba(88, 166, 255, 0.12);
+  color: #58a6ff;
+  border-color: rgba(88, 166, 255, 0.3);
+}
+
+[data-theme="dark"] .posts-summary {
+  color: #8b949e;
+}
+
+[data-theme="dark"] .posts-item {
+  border-bottom-color: rgba(48, 54, 61, 0.5);
+}
+
+[data-theme="dark"] .posts-item:hover {
+  background: rgba(22, 27, 34, 0.7);
+}
+
+[data-theme="dark"] .posts-date,
+[data-theme="dark"] .posts-read-time {
+  color: #8b949e;
+}
+
+[data-theme="dark"] .posts-title {
+  color: #c9d1d9;
+}
+
+[data-theme="dark"] .posts-excerpt {
+  color: #8b949e;
+}
+
+[data-theme="dark"] .posts-tag {
+  background: rgba(88, 166, 255, 0.1);
+  color: #58a6ff;
+}
+
+[data-theme="dark"] .posts-chip {
+  background: #161b22;
+  border-color: rgba(48, 54, 61, 0.8);
+  color: #8b949e;
+}
+
+[data-theme="dark"] .posts-page-btn {
+  background: #161b22;
+  border-color: rgba(48, 54, 61, 0.8);
+  color: #8b949e;
+}
+
+[data-theme="dark"] .posts-page-btn.is-active {
+  background: rgba(88, 166, 255, 0.12);
+  color: #58a6ff;
+}
+
+/* Post article */
+[data-theme="dark"] .post {
+  background: rgba(22, 27, 34, 0.95);
+  border-color: rgba(48, 54, 61, 0.7);
+}
+
+[data-theme="dark"] .post .post-title {
+  color: #e6edf3;
+}
+
+[data-theme="dark"] .post .post-meta {
+  color: #8b949e;
+}
+
+[data-theme="dark"] .post-content {
+  color: #c9d1d9;
+}
+
+[data-theme="dark"] .post-content h1,
+[data-theme="dark"] .post-content h2,
+[data-theme="dark"] .post-content h3,
+[data-theme="dark"] .post-content h4 {
+  color: #e6edf3;
+}
+
+[data-theme="dark"] .post-content strong {
+  color: #e6edf3;
+}
+
+[data-theme="dark"] .post-content code {
+  background: rgba(88, 166, 255, 0.1);
+  color: #79c0ff;
+}
+
+[data-theme="dark"] .post-content blockquote {
+  background: rgba(88, 166, 255, 0.06);
+  border-left-color: rgba(88, 166, 255, 0.4);
+  color: #8b949e;
+}
+
+[data-theme="dark"] .post-content th {
+  background: rgba(88, 166, 255, 0.08);
+}
+
+[data-theme="dark"] .post-content th,
+[data-theme="dark"] .post-content td {
+  border-color: rgba(48, 54, 61, 0.7);
+}
+
+[data-theme="dark"] .post-content hr {
+  border-top-color: rgba(48, 54, 61, 0.5);
+}
+
+[data-theme="dark"] .post-content img {
+  border-color: rgba(48, 54, 61, 0.5);
+}
+
+/* TOC */
+[data-theme="dark"] .toc-title {
+  color: #c9d1d9;
+}
+
+[data-theme="dark"] .toc-link {
+  color: #8b949e;
+}
+
+[data-theme="dark"] .toc-link:hover {
+  background: rgba(88, 166, 255, 0.1);
+  color: #58a6ff;
+}
+
+[data-theme="dark"] .toc-link.is-active {
+  background: rgba(88, 166, 255, 0.12);
+  color: #58a6ff;
+}
+
+/* Post navigation */
+[data-theme="dark"] .post-nav-item {
+  background: #161b22;
+  border-color: rgba(48, 54, 61, 0.7);
+}
+
+[data-theme="dark"] .post-nav-label {
+  color: #8b949e;
+}
+
+[data-theme="dark"] .post-nav-title {
+  color: #c9d1d9;
+}
+
+/* Footer */
+[data-theme="dark"] .site-footer {
+  background: rgba(13, 17, 23, 0.7);
+  border-top-color: rgba(48, 54, 61, 0.5);
+}
+
+[data-theme="dark"] .site-footer,
+[data-theme="dark"] .site-footer a {
+  color: #8b949e;
+}
+
+/* Links */
+[data-theme="dark"] a {
+  color: #58a6ff;
+}
+
+[data-theme="dark"] a:hover {
+  color: #79c0ff;
+}
+
+/* Empty states */
+[data-theme="dark"] .empty-state,
+[data-theme="dark"] .posts-empty {
+  border-color: rgba(48, 54, 61, 0.6);
+  color: #8b949e;
+}
+
+/* Giscus comments */
+.giscus-wrap {
+  margin-top: 2.4rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(23, 34, 44, 0.12);
+}
+
+[data-theme="dark"] .giscus-wrap {
+  border-top-color: rgba(48, 54, 61, 0.5);
+}
 }

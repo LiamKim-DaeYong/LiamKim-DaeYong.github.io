@@ -8,6 +8,7 @@ timezone: Asia/Seoul
 theme: minima
 plugins:
   - jekyll-feed
+  - jekyll-seo-tag
 
 show_drafts: false
 show_excerpts: true
