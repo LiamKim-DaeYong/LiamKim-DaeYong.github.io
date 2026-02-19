@@ -221,16 +221,14 @@
           <li class="posts-item">
             <a class="posts-link" href="${escapeHtml(post.url)}">
               <div class="posts-main">
+                <p class="posts-meta-line">
+                  <span class="posts-date">${escapeHtml(post.date)}</span>
+                  <span class="posts-dot">•</span>
+                  <span class="posts-read-time">${post.readMinutes}분 읽기</span>
+                </p>
                 <h3 class="posts-title">${escapeHtml(post.title)}</h3>
                 ${excerpt ? `<p class="posts-excerpt">${excerpt}</p>` : ""}
-                <div class="posts-footer">
-                  <p class="posts-meta-line">
-                    <span class="posts-date">${escapeHtml(post.date)}</span>
-                    <span class="posts-dot">•</span>
-                    <span class="posts-read-time">${post.readMinutes}분 읽기</span>
-                  </p>
-                  ${tagsHtml}
-                </div>
+                ${tagsHtml}
               </div>
             </a>
           </li>

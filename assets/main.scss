@@ -1106,7 +1106,7 @@ a:hover {
 }
 
 .posts-meta-line {
-  margin: 0;
+  margin: 0 0 0.3rem;
   display: inline-flex;
   align-items: center;
   gap: 0.36rem;
@@ -1129,31 +1129,29 @@ a:hover {
 
 .posts-title {
   margin: 0;
-  font-size: 1.14rem;
-  line-height: 1.4;
+  font-size: 1.22rem;
+  font-weight: 700;
+  line-height: 1.38;
   color: #0f172a;
+  transition: color 0.18s ease;
+}
+
+.posts-link:hover .posts-title {
+  color: var(--accent);
 }
 
 .posts-excerpt {
-  margin: 0.44rem 0 0;
-  color: #475569;
-  font-size: 0.92rem;
-  line-height: 1.55;
-}
-
-.posts-footer {
-  margin-top: 0.68rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.6rem;
-  flex-wrap: wrap;
+  margin: 0.46rem 0 0;
+  color: #4b5563;
+  font-size: 0.93rem;
+  line-height: 1.58;
 }
 
 .posts-tags {
   display: flex;
   flex-wrap: wrap;
   gap: 0.35rem;
+  margin-top: 0.56rem;
 }
 
 .posts-tag {
