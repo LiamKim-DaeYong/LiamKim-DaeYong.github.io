@@ -20,18 +20,20 @@ permalink: /posts/
     </div>
   </section>
 
-  <section class="posts-controls" aria-label="Posts controls">
-    <div class="posts-sort" id="posts-sort" role="tablist" aria-label="정렬">
-      <button class="posts-sort-btn" type="button" data-sort="latest" role="tab" aria-selected="true">최신순</button>
-      <button class="posts-sort-btn" type="button" data-sort="oldest" role="tab" aria-selected="false">오래된순</button>
-    </div>
-    <div class="posts-tags-filter" id="posts-tags-filter" aria-label="태그 필터"></div>
-  </section>
+  <div class="posts-panel">
+    <section class="posts-controls" aria-label="Posts controls">
+      <div class="posts-sort" id="posts-sort" role="tablist" aria-label="정렬">
+        <button class="posts-sort-btn" type="button" data-sort="latest" role="tab" aria-selected="true">최신순</button>
+        <button class="posts-sort-btn" type="button" data-sort="oldest" role="tab" aria-selected="false">오래된순</button>
+      </div>
+      <div class="posts-tags-filter" id="posts-tags-filter" aria-label="태그 필터"></div>
+    </section>
 
-  <p class="posts-summary" id="posts-summary">로딩 중...</p>
-  <ul class="posts-grid" id="posts-grid" hidden></ul>
-  <div class="posts-empty" id="posts-empty" hidden>아직 게시된 글이 없습니다.</div>
-  <nav class="posts-pagination" id="posts-pagination" aria-label="Posts pagination" hidden></nav>
+    <p class="posts-summary" id="posts-summary">로딩 중...</p>
+    <ul class="posts-grid" id="posts-grid" hidden></ul>
+    <div class="posts-empty" id="posts-empty" hidden>아직 게시된 글이 없습니다.</div>
+    <nav class="posts-pagination" id="posts-pagination" aria-label="Posts pagination" hidden></nav>
+  </div>
 </div>
 
 <script id="posts-index" type="application/json">

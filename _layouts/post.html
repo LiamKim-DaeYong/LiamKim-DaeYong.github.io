@@ -22,6 +22,25 @@ layout: default
       {{ content }}
     </div>
 
+    <nav class="post-nav" aria-label="게시글 탐색">
+      {% if page.previous %}
+      <a class="post-nav-item post-nav-prev" href="{{ page.previous.url | relative_url }}">
+        <span class="post-nav-label">← 이전 글</span>
+        <span class="post-nav-title">{{ page.previous.title | escape }}</span>
+      </a>
+      {% else %}
+      <div class="post-nav-empty"></div>
+      {% endif %}
+      {% if page.next %}
+      <a class="post-nav-item post-nav-next" href="{{ page.next.url | relative_url }}">
+        <span class="post-nav-label">다음 글 →</span>
+        <span class="post-nav-title">{{ page.next.title | escape }}</span>
+      </a>
+      {% else %}
+      <div class="post-nav-empty"></div>
+      {% endif %}
+    </nav>
+
     <a class="u-url" href="{{ page.url | relative_url }}" hidden></a>
   </article>
 
