@@ -9,6 +9,7 @@ permalink: /posts/
 
 <div class="posts-shell">
   <section class="posts-hero">
+    <h2>글 목록</h2>
     <p>발행한 글을 최신순으로 모아둔 목록입니다.</p>
     <div class="posts-hero-meta">
       <span class="posts-chip">총 {{ visible_posts.size }}개 글</span>

@@ -828,29 +828,80 @@ a:hover {
 }
 
 .about-hero {
-  padding-bottom: 0.9rem;
-  border-bottom: 1px solid rgba(148, 163, 184, 0.36);
+  position: relative;
+  overflow: hidden;
+  border-radius: 24px;
+  padding: clamp(1.6rem, 3vw, 2.8rem);
+  color: #f8fafc;
+  background: linear-gradient(125deg, var(--hero-a), var(--hero-b));
+  box-shadow: 0 24px 40px rgba(15, 23, 42, 0.2);
+}
+
+.about-hero::after {
+  content: "";
+  position: absolute;
+  top: -60px;
+  right: -40px;
+  width: 220px;
+  height: 220px;
+  border-radius: 60px;
+  background: rgba(255, 255, 255, 0.12);
+  transform: rotate(16deg);
+}
+
+.about-hero > * {
+  position: relative;
+  z-index: 1;
 }
 
 .about-eyebrow {
   margin: 0 0 0.35rem;
-  color: #64748b;
   font-size: 0.74rem;
   text-transform: uppercase;
   letter-spacing: 0.06em;
   font-weight: 700;
 }
 
+.about-hero .about-eyebrow {
+  color: rgba(248, 250, 252, 0.78);
+}
+
 .about-hero h2 {
   margin: 0;
-  font-size: 1.65rem;
-  color: #0f172a;
+  font-size: clamp(1.65rem, 3vw, 2.2rem);
+  color: #f8fafc;
 }
 
 .about-hero p {
   margin: 0.58rem 0 0;
-  color: #475569;
+  color: rgba(248, 250, 252, 0.88);
   line-height: 1.72;
+}
+
+.about-hero-actions {
+  margin-top: 1.4rem;
+}
+
+.about-github-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.6rem 1.1rem;
+  border-radius: 999px;
+  background: #fff;
+  color: #0b2a47;
+  font-weight: 700;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.about-github-btn:hover {
+  transform: translateY(-1px);
+  color: #0b2a47;
+}
+
+.about-github-btn:visited {
+  color: #0b2a47;
 }
 
 .about-section h3 {
@@ -868,6 +919,24 @@ a:hover {
 
 .about-section li + li {
   margin-top: 0.22rem;
+}
+
+.about-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  list-style: none;
+  margin: 0.7rem 0 0;
+  padding: 0;
+}
+
+.about-pills li {
+  padding: 0.38rem 0.8rem;
+  border-radius: 999px;
+  border: 1px solid rgba(23, 34, 44, 0.18);
+  background: #fff;
+  font-size: 0.88rem;
+  color: #334155;
 }
 
 .about-links {
@@ -1012,17 +1081,20 @@ a:hover {
 
 .posts-item {
   border-bottom: 1px solid rgba(148, 163, 184, 0.28);
+  border-left: 3px solid transparent;
+  transition: border-color 0.18s ease, background 0.18s ease;
 }
 
 .posts-item:hover {
   background: rgba(248, 250, 252, 0.85);
+  border-left-color: var(--accent);
 }
 
 .posts-link {
   display: block;
   text-decoration: none;
   color: inherit;
-  padding: 1rem 0.15rem 1rem 0.1rem;
+  padding: 1rem 0.15rem 1rem 0.6rem;
 }
 
 .posts-date {
