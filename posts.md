@@ -1,6 +1,6 @@
 ---
-layout: page
-title: Posts
+layout: default
+title: 글 목록
 permalink: /posts/
 ---
 

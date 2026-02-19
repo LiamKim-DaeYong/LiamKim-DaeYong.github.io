@@ -1,14 +1,14 @@
 ---
-layout: page
-title: About
+layout: default
+title: 소개
 permalink: /about/
 ---
 
 <div class="about-shell">
   <section class="about-hero">
-    <p class="about-eyebrow">Backend Developer · 9 Years</p>
+    <p class="about-eyebrow">Backend Developer</p>
     <h2>라프</h2>
-    <p>제조·물류 도메인에서 9년째 백엔드 개발을 하고 있습니다.
+    <p>학사 시스템, AI, 제조 도메인을 거쳐 현재는 물류 시스템을 개발하고 있습니다.
     요즘은 Kotlin과 Spring을 주로 쓰며, AI 활용과 시스템 설계에 관심이 많습니다.</p>
     <div class="about-hero-actions">
       <a class="about-github-btn" href="https://github.com/LiamKim-DaeYong">GitHub</a>
