@@ -8,11 +8,35 @@ permalink: /about/
   <section class="about-hero">
     <p class="about-eyebrow">Backend Developer · 9 Years</p>
     <h2>라프</h2>
-    <p>제조(MES)와 물류(WMS) 도메인에서 9년차 백엔드 개발자로 일해 왔습니다.
-    요즘은 Kotlin 중심으로 서비스를 개발하며, AI와 시스템 설계에 관심이 많습니다.</p>
+    <p>제조·물류 도메인에서 9년째 백엔드 개발을 하고 있습니다.
+    요즘은 Kotlin과 Spring을 주로 쓰며, AI 활용과 시스템 설계에 관심이 많습니다.</p>
     <div class="about-hero-actions">
       <a class="about-github-btn" href="https://github.com/LiamKim-DaeYong">GitHub</a>
     </div>
+  </section>
+
+  <section class="about-section">
+    <h3>기술 스택</h3>
+    <ul class="about-pills">
+      <li>Kotlin</li>
+      <li>Spring</li>
+      <li>JPA</li>
+      <li>MySQL</li>
+      <li>PostgreSQL</li>
+      <li>Docker</li>
+      <li>Redis</li>
+      <li>AWS</li>
+      <li>Git</li>
+    </ul>
+  </section>
+
+  <section class="about-section">
+    <h3>관심 분야</h3>
+    <ul class="about-pills">
+      <li>금융</li>
+      <li>주문·커머스</li>
+      <li>AI 활용</li>
+    </ul>
   </section>
 
   <section class="about-section">
