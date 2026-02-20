@@ -138,7 +138,7 @@ const nextPost =
           >
             <IconChevronLeft class="inline-block flex-none rtl:rotate-180" />
             <div>
-              <span>Previous Post</span>
+              <span>이전 글</span>
               <div class="text-sm text-accent/85">{prevPost.title}</div>
             </div>
           </a>
@@ -151,7 +151,7 @@ const nextPost =
             class="flex w-full justify-end gap-1 text-end hover:opacity-75 sm:col-start-2"
           >
             <div>
-              <span>Next Post</span>
+              <span>다음 글</span>
               <div class="text-sm text-accent/85">{nextPost.title}</div>
             </div>
             <IconChevronRight class="inline-block flex-none rtl:rotate-180" />
@@ -162,6 +162,31 @@ const nextPost =
   </main>
   <Footer />
 </Layout>
+
+<script is:inline type="module" data-astro-rerun>
+  async function renderMermaid() {
+    const codeBlocks = document.querySelectorAll("pre > code.language-mermaid");
+    if (codeBlocks.length === 0) return;
+
+    codeBlocks.forEach(code => {
+      const text = code.textContent ?? "";
+      const div = document.createElement("div");
+      div.className = "mermaid not-prose my-6 flex justify-center";
+      div.textContent = text;
+      code.closest("pre")?.replaceWith(div);
+    });
+
+    const { default: mermaid } = await import(
+      "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs"
+    );
+    const isDark = document.documentElement.classList.contains("dark");
+    mermaid.initialize({ startOnLoad: false, theme: isDark ? "dark" : "default" });
+    await mermaid.run();
+  }
+
+  renderMermaid();
+  document.addEventListener("astro:after-swap", renderMermaid);
+</script>
 
 <script is:inline data-astro-rerun>
   /** Create a progress indicator

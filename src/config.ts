@@ -1,9 +1,9 @@
 export const SITE = {
   website: "https://liamkim-daeyong.github.io", // replace this with your deployed domain
-  author: "Liam Kim",
-  profile: "https://liamkim-daeyong.github.io",
-  desc: "백엔드 개발 학습 기록",
-  title: "Liam's Dev Log",
+  author: "라프",
+  profile: "https://github.com/LiamKim-DaeYong",
+  desc: "여러 주제를 직접 다뤄보며, 코드와 구조에서 확인한 내용을 정리합니다.",
+  title: "라프의 실험일지",
   ogImage: "astropaper-og.jpg",
   lightAndDarkMode: true,
   postPerIndex: 4,

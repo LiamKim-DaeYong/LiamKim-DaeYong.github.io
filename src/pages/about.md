@@ -1,37 +1,26 @@
 ---
 layout: ../layouts/AboutLayout.astro
-title: "About"
+title: "소개"
 ---
 
-AstroPaper is a minimal, accessible and SEO-friendly blog theme built with [Astro](https://astro.build/) and [Tailwind CSS](https://tailwindcss.com/).
+## 안녕하세요, 라프입니다.
 
-![Astro Paper](public/astropaper-og.jpg)
+백엔드 개발자로, 학사 시스템 → AI → 제조 도메인을 거쳐 현재는 물류 시스템을 개발하고 있습니다.
 
-AstroPaper provides a solid foundation for blogs, or even portfolios\_ with full markdown support, built-in dark mode, and a clean layout that works out-of-the-box.
+주로 Kotlin과 Spring을 사용하며, AI 활용과 시스템 설계에 관심이 많습니다.
 
-The blog posts in this theme also serve as guides, docs or example articles\_ making AstroPaper a flexible starting point for your next content-driven site.
+[GitHub →](https://github.com/LiamKim-DaeYong)
 
-## Features
+## 기술 스택
 
-AstroPaper comes with a set of useful features that make content publishing easy and effective:
+Kotlin · Spring · JPA · MySQL · PostgreSQL · Docker · Redis · AWS · Git
 
-- SEO-friendly
-- Fast performance
-- Light & dark mode
-- Highly customizable
-- Organizable blog posts
-- Responsive & accessible
-- Static search with [PageFind](https://pagefind.app/)
-- Automatic social image generation
+## 관심 분야
 
-and so much more.
+금융 · 주문·커머스 · AI 활용
 
-## Show your support
+## 요즘 학습 중인 주제
 
-If you like [AstroPaper](https://github.com/satnaing/astro-paper), consider giving it a star ⭐️.
-
-Found a bug 🐛 or have an improvement ✨ in mind? Feel free to open an [issue](https://github.com/satnaing/astro-paper/issues), submit a [pull request](https://github.com/satnaing/astro-paper/pulls) or start a [discussion](https://github.com/satnaing/astro-paper/discussions).
-
-If you find this theme helpful, you can also [sponsor me on GitHub](https://github.com/sponsors/satnaing) or [buy me a coffee](https://buymeacoffee.com/satnaing) to show your support — every penny counts.
-
-Kyay zuu! 🙏🏼
+- AI 활용 개발 · 에이전트 · 컨텍스트 설계
+- DB · 캐시 · 이벤트 기반 처리
+- Docker · Kubernetes · AWS
