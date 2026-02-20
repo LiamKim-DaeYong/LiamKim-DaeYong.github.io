@@ -165,21 +165,21 @@ const nextPost =
 
 <script is:inline type="module" data-astro-rerun>
   async function renderMermaid() {
-    const codeBlocks = document.querySelectorAll("pre > code.language-mermaid");
-    if (codeBlocks.length === 0) return;
+    const preTags = document.querySelectorAll('pre[data-language="mermaid"]');
+    if (preTags.length === 0) return;
 
-    codeBlocks.forEach(code => {
-      const text = code.textContent ?? "";
+    preTags.forEach(pre => {
+      const text = (pre.textContent ?? "").trim();
       const div = document.createElement("div");
       div.className = "mermaid not-prose my-6 flex justify-center";
       div.textContent = text;
-      code.closest("pre")?.replaceWith(div);
+      pre.replaceWith(div);
     });
 
     const { default: mermaid } = await import(
       "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs"
     );
-    const isDark = document.documentElement.classList.contains("dark");
+    const isDark = document.documentElement.getAttribute("data-theme") === "dark";
     mermaid.initialize({ startOnLoad: false, theme: isDark ? "dark" : "default" });
     await mermaid.run();
   }

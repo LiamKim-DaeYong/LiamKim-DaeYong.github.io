@@ -21,7 +21,8 @@ html[data-theme="dark"] {
 }
 
 @theme inline {
-  --font-app: var(--font-google-sans-code);
+  --font-app: 'Inter', 'Noto Sans KR', sans-serif;
+  --font-mono: var(--font-google-sans-code), ui-monospace, 'Courier New', monospace;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-accent: var(--accent);
