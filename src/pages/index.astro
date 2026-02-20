@@ -4,7 +4,6 @@ import Layout from "@/layouts/Layout.astro";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
 import Socials from "@/components/Socials.astro";
-import LinkButton from "@/components/LinkButton.astro";
 import Card from "@/components/Card.astro";
 import getSortedPosts from "@/utils/getSortedPosts";
 import IconArrowRight from "@/assets/icons/IconArrowRight.svg";
@@ -16,20 +15,35 @@ const posts = await getCollection("blog");
 const sortedPosts = getSortedPosts(posts);
 const featuredPosts = sortedPosts.filter(({ data }) => data.featured);
 const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
+
+const techStack = ["Kotlin", "Spring Boot", "JPA", "SQL", "Redis"];
 ---
 
 <Layout>
   <Header />
   <main id="main-content" data-layout="index" class="app-layout">
-    <section id="hero" class="border-b border-border/60 py-12">
-      <p class="max-w-2xl text-base leading-8 text-foreground/70 sm:text-[1.0625rem] sm:leading-9">
-        학사 시스템, AI, 제조, 물류 도메인을 거쳐온 백엔드 개발자입니다.<br />
-        주로 <span class="font-semibold text-accent">Kotlin · Spring</span>을 쓰며,
+
+    <!-- Hero -->
+    <section id="hero" class="border-b border-border/60 py-14">
+      <p class="mb-3 text-sm font-medium tracking-wide text-accent/80">
+        백엔드 개발자
+      </p>
+      <p class="max-w-xl text-[1.0625rem] leading-8 text-foreground/70">
+        학사 시스템, AI, 제조, 물류 도메인을 거쳐온 개발자입니다.<br />
+        주로 <span class="font-semibold text-foreground/90">Kotlin · Spring</span>을 쓰며,
         코드와 구조에서 확인한 내용을 직접 실험하고 기록합니다.
       </p>
-      {SOCIALS.length > 0 && <div class="mt-6"><Socials /></div>}
+      <div class="mt-5 flex flex-wrap gap-2">
+        {techStack.map(tech => (
+          <span class="inline-flex items-center rounded-md border border-border/70 bg-muted px-2.5 py-1 text-xs font-medium text-foreground/55">
+            {tech}
+          </span>
+        ))}
+      </div>
+      {SOCIALS.length > 0 && <div class="mt-5"><Socials /></div>}
     </section>
 
+    <!-- Featured Posts -->
     {
       featuredPosts.length > 0 && (
         <section
@@ -39,9 +53,11 @@ const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
             { "border-b border-border/60": recentPosts.length > 0 },
           ]}
         >
-          <h2 class="mb-3 text-[0.6875rem] font-semibold uppercase tracking-widest text-foreground/35">
-            주요 글
-          </h2>
+          <div class="mb-4 flex items-center justify-between">
+            <h2 class="text-xs font-semibold uppercase tracking-widest text-foreground/40">
+              주요 글
+            </h2>
+          </div>
           <ul>
             {featuredPosts.map(data => (
               <Card variant="h3" {...data} />
@@ -51,12 +67,22 @@ const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
       )
     }
 
+    <!-- Recent Posts -->
     {
       recentPosts.length > 0 && (
         <section id="recent-posts" class="pt-10 pb-6">
-          <h2 class="mb-3 text-[0.6875rem] font-semibold uppercase tracking-widest text-foreground/35">
-            최근 글
-          </h2>
+          <div class="mb-4 flex items-center justify-between">
+            <h2 class="text-xs font-semibold uppercase tracking-widest text-foreground/40">
+              최근 글
+            </h2>
+            <a
+              href="/posts/"
+              class="flex items-center gap-1 text-xs text-foreground/40 transition-colors hover:text-accent"
+            >
+              전체 보기
+              <IconArrowRight class="inline-block size-3.5 rtl:-rotate-180" />
+            </a>
+          </div>
           <ul>
             {recentPosts.map(
               (data, index) =>
@@ -67,12 +93,6 @@ const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
       )
     }
 
-    <div class="my-10 text-center">
-      <LinkButton href="/posts/">
-        전체 글 보기
-        <IconArrowRight class="inline-block rtl:-rotate-180" />
-      </LinkButton>
-    </div>
   </main>
   <Footer />
 </Layout>
