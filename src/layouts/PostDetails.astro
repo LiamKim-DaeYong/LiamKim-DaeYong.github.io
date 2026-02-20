@@ -169,7 +169,9 @@ const nextPost =
     if (preTags.length === 0) return;
 
     preTags.forEach(pre => {
-      const text = (pre.textContent ?? "").trim();
+      // Use code element to avoid picking up the "Copy" button text
+      const codeEl = pre.querySelector("code");
+      const text = (codeEl?.textContent ?? pre.textContent ?? "").trim();
       const div = document.createElement("div");
       div.className = "mermaid not-prose my-6 flex justify-center";
       div.textContent = text;

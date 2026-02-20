@@ -10,24 +10,40 @@ type Props = {
 
 const { variant: Heading = "h2", id, data, filePath } = Astro.props;
 
-const { title, description, ...props } = data;
+const { title, description, tags, ...props } = data;
 ---
 
-<li class="my-6">
+<li class="my-3">
   <a
     href={getPath(id, filePath)}
-    class:list={[
-      "inline-block text-lg font-medium text-accent",
-      "decoration-dashed underline-offset-4 hover:underline",
-      "focus-visible:no-underline focus-visible:underline-offset-0",
-    ]}
+    class="group block rounded-xl border border-border bg-background p-5 transition-all duration-200 hover:border-accent/50 hover:shadow-lg hover:shadow-accent/5"
   >
     <Heading
       style={{ viewTransitionName: slugifyStr(title.replaceAll(".", "-")) }}
+      class="text-lg font-semibold leading-snug text-foreground transition-colors duration-200 group-hover:text-accent"
     >
       {title}
     </Heading>
+    <div class="mt-2">
+      <Datetime {...props} />
+    </div>
+    {
+      description && (
+        <p class="mt-2 line-clamp-2 text-sm leading-relaxed text-foreground/60">
+          {description}
+        </p>
+      )
+    }
+    {
+      tags && tags.length > 0 && (
+        <div class="mt-3 flex flex-wrap gap-1.5">
+          {tags.map(tag => (
+            <span class="rounded-full bg-muted px-2.5 py-0.5 text-xs font-medium text-foreground/70">
+              #{tag}
+            </span>
+          ))}
+        </div>
+      )
+    }
   </a>
-  <Datetime {...props} />
-  <p>{description}</p>
 </li>

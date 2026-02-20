@@ -22,39 +22,25 @@ const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
 <Layout>
   <Header />
   <main id="main-content" data-layout="index" class="app-layout">
-    <section id="hero" class:list={["pt-8 pb-6", "border-b border-border"]}>
-      <div class="flex items-center gap-3 my-4 sm:my-8">
-        <h1 class="inline-block text-3xl font-bold sm:text-4xl">
-          라프의 실험일지
-        </h1>
+    <section id="hero" class="border-b border-border pt-10 pb-8">
+      <p class="max-w-xl text-base leading-relaxed text-foreground/75">
+        학사 시스템, AI, 제조, 물류 도메인을 거쳐온 백엔드 개발자입니다.<br />
+        주로 <span class="font-semibold text-accent">Kotlin · Spring</span>을 쓰며,
+        코드와 구조에서 확인한 내용을 직접 실험하고 기록합니다.
+      </p>
+      <div class="mt-5 flex items-center gap-4">
+        {SOCIALS.length > 0 && <Socials />}
         <a
           target="_blank"
           href="/rss.xml"
-          class="inline-block"
+          class="flex items-center gap-1.5 text-sm text-foreground/40 transition-colors hover:text-accent"
           aria-label="rss feed"
           title="RSS Feed"
         >
-          <IconRss
-            width={18}
-            height={18}
-            class="scale-125 stroke-accent stroke-3 rtl:-rotate-90"
-          />
-          <span class="sr-only">RSS Feed</span>
+          <IconRss width={14} height={14} class="stroke-current" />
+          <span>RSS</span>
         </a>
       </div>
-
-      <p>
-        백엔드 개발자 라프입니다. 학사 시스템, AI, 제조 도메인을 거쳐 현재는 물류 시스템을 개발하고 있습니다.
-        여러 주제를 직접 다뤄보며, 코드와 구조에서 확인한 내용을 정리합니다.
-      </p>
-      {
-        // only display if at least one social link is enabled
-        SOCIALS.length > 0 && (
-          <div class="mt-4 flex max-sm:flex-col sm:items-center">
-            <Socials />
-          </div>
-        )
-      }
     </section>
 
     {
@@ -62,11 +48,13 @@ const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
         <section
           id="featured"
           class:list={[
-            "pt-12 pb-6",
+            "pt-10 pb-6",
             { "border-b border-border": recentPosts.length > 0 },
           ]}
         >
-          <h2 class="text-2xl font-semibold tracking-wide">주요 글</h2>
+          <h2 class="mb-2 text-xs font-semibold uppercase tracking-widest text-foreground/40">
+            주요 글
+          </h2>
           <ul>
             {featuredPosts.map(data => (
               <Card variant="h3" {...data} />
@@ -78,8 +66,10 @@ const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
 
     {
       recentPosts.length > 0 && (
-        <section id="recent-posts" class="pt-12 pb-6">
-          <h2 class="text-2xl font-semibold tracking-wide">최근 글</h2>
+        <section id="recent-posts" class="pt-10 pb-6">
+          <h2 class="mb-2 text-xs font-semibold uppercase tracking-widest text-foreground/40">
+            최근 글
+          </h2>
           <ul>
             {recentPosts.map(
               (data, index) =>
