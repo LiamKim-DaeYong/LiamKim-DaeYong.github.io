@@ -6,18 +6,18 @@
 :root,
 html[data-theme="light"] {
   --background: #ffffff;
-  --foreground: #18181b;
+  --foreground: #0f172a;
   --accent: #2563eb;
   --muted: #f1f5f9;
   --border: #e2e8f0;
 }
 
 html[data-theme="dark"] {
-  --background: #0f172a;
-  --foreground: #e2e8f0;
-  --accent: #60a5fa;
-  --muted: #1e293b;
-  --border: #334155;
+  --background: #0d1117;
+  --foreground: #f0f6fc;
+  --accent: #58a6ff;
+  --muted: #161b22;
+  --border: #21262d;
 }
 
 @theme inline {
@@ -33,14 +33,17 @@ html[data-theme="dark"] {
 @layer base {
   * {
     @apply border-border outline-accent/75;
-    scrollbar-width: auto;
-    scrollbar-color: var(--color-muted) transparent;
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-border) transparent;
   }
   html {
-    @apply overflow-y-scroll scroll-smooth;
+    @apply overflow-y-scroll;
   }
   body {
-    @apply flex min-h-svh flex-col bg-background font-app text-foreground selection:bg-accent/75 selection:text-background;
+    @apply flex min-h-svh flex-col bg-background font-app text-foreground selection:bg-accent/15 selection:text-accent;
+    word-break: keep-all;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
   a,
   button {
@@ -61,11 +64,9 @@ html[data-theme="dark"] {
 }
 
 .active-nav {
-  @apply underline decoration-wavy decoration-2 underline-offset-8;
+  @apply font-semibold text-foreground;
 }
 
-/* Source: https://piccalil.li/blog/a-more-modern-css-reset/ */
-/* Anything that has been anchored to should have extra scroll margin */
 :target {
-  scroll-margin-block: 1rem;
+  scroll-margin-block: 5rem;
 }

@@ -87,16 +87,16 @@ const nextPost =
   <BackButton />
   <main
     id="main-content"
-    class:list={["app-layout pb-12", { "mt-8": !SITE.showBackButton }]}
+    class:list={["app-layout pb-14", { "mt-8": !SITE.showBackButton }]}
     data-pagefind-body
   >
     <h1
       transition:name={slugifyStr(title.replaceAll(".", "-"))}
-      class="inline-block text-2xl font-bold text-accent sm:text-3xl"
+      class="inline-block text-2xl font-bold leading-snug tracking-tight text-foreground sm:text-3xl"
     >
       {title}
     </h1>
-    <div class="my-2 flex items-center gap-2">
+    <div class="my-3 flex items-center gap-2">
       <Datetime {pubDatetime} {modDatetime} {timezone} size="lg" />
       <span
         aria-hidden="true"
@@ -129,17 +129,19 @@ const nextPost =
     <hr class="my-6 border-dashed" />
 
     <!-- Previous/Next Post Buttons -->
-    <div data-pagefind-ignore class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+    <div data-pagefind-ignore class="grid grid-cols-1 gap-4 sm:grid-cols-2">
       {
         prevPost && (
           <a
             href={getPath(prevPost.id, prevPost.filePath)}
-            class="flex w-full gap-1 hover:opacity-75"
+            class="group flex w-full gap-2 rounded-xl border border-border/60 p-4 transition-all duration-200 hover:border-accent/40 hover:shadow-md hover:shadow-black/5 dark:hover:shadow-black/30"
           >
-            <IconChevronLeft class="inline-block flex-none rtl:rotate-180" />
+            <IconChevronLeft class="mt-0.5 inline-block flex-none opacity-50 rtl:rotate-180" />
             <div>
-              <span>이전 글</span>
-              <div class="text-sm text-accent/85">{prevPost.title}</div>
+              <span class="text-xs font-medium text-foreground/40">이전 글</span>
+              <div class="mt-0.5 text-sm font-medium text-foreground/80 group-hover:text-accent">
+                {prevPost.title}
+              </div>
             </div>
           </a>
         )
@@ -148,13 +150,15 @@ const nextPost =
         nextPost && (
           <a
             href={getPath(nextPost.id, nextPost.filePath)}
-            class="flex w-full justify-end gap-1 text-end hover:opacity-75 sm:col-start-2"
+            class="group flex w-full justify-end gap-2 rounded-xl border border-border/60 p-4 text-end transition-all duration-200 hover:border-accent/40 hover:shadow-md hover:shadow-black/5 dark:hover:shadow-black/30 sm:col-start-2"
           >
             <div>
-              <span>다음 글</span>
-              <div class="text-sm text-accent/85">{nextPost.title}</div>
+              <span class="text-xs font-medium text-foreground/40">다음 글</span>
+              <div class="mt-0.5 text-sm font-medium text-foreground/80 group-hover:text-accent">
+                {nextPost.title}
+              </div>
             </div>
-            <IconChevronRight class="inline-block flex-none rtl:rotate-180" />
+            <IconChevronRight class="mt-0.5 inline-block flex-none opacity-50 rtl:rotate-180" />
           </a>
         )
       }

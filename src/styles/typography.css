@@ -11,6 +11,8 @@
     h4,
     th {
       @apply mb-3 text-foreground;
+      word-break: keep-all;
+      letter-spacing: -0.015em;
     }
 
     p,
@@ -21,6 +23,12 @@
     table,
     code {
       @apply text-foreground;
+    }
+
+    p,
+    li {
+      line-height: 1.88;
+      word-break: keep-all;
     }
 
     a {
