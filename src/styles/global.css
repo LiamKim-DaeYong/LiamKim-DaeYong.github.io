@@ -1,6 +1,5 @@
 @import "tailwindcss";
 @import "./typography.css";
-@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.css");
 
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 

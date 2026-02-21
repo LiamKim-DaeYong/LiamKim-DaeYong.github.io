@@ -66,14 +66,24 @@ const tocHeadings = headings.filter(h => h.depth === 2 || h.depth === 3);
 
     activate(headingEls[0].id);
 
+    const visibleHeadings = new Set<string>();
+
     const observer = new IntersectionObserver(
       entries => {
-        const intersecting = entries.filter(e => e.isIntersecting);
-        if (intersecting.length > 0) {
-          activate(intersecting[0].target.id);
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            visibleHeadings.add(entry.target.id);
+          } else {
+            visibleHeadings.delete(entry.target.id);
+          }
+        });
+
+        const activeHeading = headingEls.find(el => visibleHeadings.has(el.id));
+        if (activeHeading) {
+          activate(activeHeading.id);
         }
       },
-      { rootMargin: "-10% 0% -75% 0%", threshold: 0 }
+      { rootMargin: "0px 0px -75% 0px", threshold: 0 }
     );
 
     headingEls.forEach(el => observer.observe(el));
