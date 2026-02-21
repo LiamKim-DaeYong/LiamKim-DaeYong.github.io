@@ -1,0 +1,84 @@
+---
+type Heading = {
+  depth: number;
+  slug: string;
+  text: string;
+};
+
+type Props = {
+  headings: Heading[];
+};
+
+const { headings } = Astro.props;
+const tocHeadings = headings.filter(h => h.depth === 2 || h.depth === 3);
+---
+
+{
+  tocHeadings.length > 0 && (
+    <nav id="toc">
+      <p class="mb-3 text-xs font-semibold uppercase tracking-widest text-foreground/40">
+        목차
+      </p>
+      <ul class="space-y-2 border-l border-border/50 pl-4">
+        {tocHeadings.map(heading => (
+          <li>
+            <a
+              href={`#${heading.slug}`}
+              class:list={[
+                "toc-link block leading-snug text-foreground/50 transition-colors duration-150 hover:text-accent",
+                heading.depth === 3 ? "pl-3 text-xs" : "text-sm",
+              ]}
+              data-heading={heading.slug}
+            >
+              {heading.text}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  )
+}
+
+<script>
+  function initToc() {
+    const links = document.querySelectorAll<HTMLAnchorElement>(".toc-link");
+    if (links.length === 0) return;
+
+    const activate = (id: string) => {
+      links.forEach(l => {
+        l.classList.remove("text-accent", "font-medium");
+        l.classList.add("text-foreground/50");
+      });
+      const active = document.querySelector<HTMLAnchorElement>(
+        `.toc-link[data-heading="${id}"]`
+      );
+      if (active) {
+        active.classList.remove("text-foreground/50");
+        active.classList.add("text-accent", "font-medium");
+      }
+    };
+
+    const headingEls = Array.from(links)
+      .map(l => document.getElementById(l.dataset.heading!))
+      .filter(Boolean) as HTMLElement[];
+
+    if (headingEls.length === 0) return;
+
+    activate(headingEls[0].id);
+
+    const observer = new IntersectionObserver(
+      entries => {
+        const intersecting = entries.filter(e => e.isIntersecting);
+        if (intersecting.length > 0) {
+          activate(intersecting[0].target.id);
+        }
+      },
+      { rootMargin: "-10% 0% -75% 0%", threshold: 0 }
+    );
+
+    headingEls.forEach(el => observer.observe(el));
+  }
+
+  initToc();
+  document.addEventListener("astro:after-swap", initToc);
+</script>
