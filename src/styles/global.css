@@ -1,11 +1,12 @@
 @import "tailwindcss";
 @import "./typography.css";
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.css");
 
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
 :root,
 html[data-theme="light"] {
-  --background: #ffffff;
+  --background: #f7fafe;
   --foreground: #0f172a;
   --accent: #2563eb;
   --muted: #f1f5f9;
@@ -21,7 +22,7 @@ html[data-theme="dark"] {
 }
 
 @theme inline {
-  --font-app: 'Inter', 'Noto Sans KR', sans-serif;
+  --font-app: 'Pretendard Variable', 'Pretendard', 'Inter', 'Noto Sans KR', sans-serif;
   --font-mono: var(--font-google-sans-code), ui-monospace, 'Courier New', monospace;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
