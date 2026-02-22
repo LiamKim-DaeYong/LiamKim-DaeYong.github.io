@@ -495,7 +495,6 @@ WHERE event_type = 'view';
 결국 인덱스 설계는 "구조를 외우는 문제"보다
 "실행계획과 실측 수치로 선택하는 문제"에 가깝다.
 
-다음 글에서는 `Index Scan`과 `Index Only Scan`을 비교해
-어떤 조건에서 heap 접근이 줄어드는지 먼저 정리한다.
-이어지는 글에서는 조인 노드(Nested Loop / Hash Join / Merge Join)를
-실행계획 관점에서 어떻게 읽고 판단할지 다룰 예정이다.
+다음 글(4편)은 `Index Scan`과 `Index Only Scan` 비교에만 집중한다.
+그 다음 글(5편)에서 조인 노드(Nested Loop / Hash Join / Merge Join)를
+실행계획 관점으로 읽는 순서와 판단 기준을 정리한다.
