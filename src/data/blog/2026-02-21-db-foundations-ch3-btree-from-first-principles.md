@@ -1,4 +1,4 @@
----
+﻿---
 title: "트리는 아는데 인덱스는 왜 어려울까: 페이지·블록·슬롯으로 다시 보는 B+Tree"
 pubDatetime: 2026-02-21T00:00:00.000Z
 categories: [database, learning]
@@ -495,5 +495,7 @@ WHERE event_type = 'view';
 결국 인덱스 설계는 "구조를 외우는 문제"보다
 "실행계획과 실측 수치로 선택하는 문제"에 가깝다.
 
-다음 글에서는 `Index Scan`과 `Index Only Scan`을 비교해,
-어떤 조건에서 heap 접근이 줄어드는지 더 구체적으로 다룰 예정이다.
+다음 글에서는 `Index Scan`과 `Index Only Scan`을 비교해
+어떤 조건에서 heap 접근이 줄어드는지 먼저 정리한다.
+이어지는 글에서는 조인 노드(Nested Loop / Hash Join / Merge Join)를
+실행계획 관점에서 어떻게 읽고 판단할지 다룰 예정이다.
