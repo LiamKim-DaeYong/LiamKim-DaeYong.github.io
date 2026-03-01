@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" role="img" aria-labelledby="title desc">
+  <title id="title">MySQL Preprocessor Validation Flow</title>
+  <desc id="desc">Top-down flow of preprocessor validation: object mapping, existence check, privilege check, then optimizer.</desc>
+  <defs>
+    <style>
+      .bg { fill: #f8fafc; }
+      .title { font: 700 32px 'Segoe UI', Arial, sans-serif; fill: #0f172a; }
+      .subtitle { font: 500 18px 'Segoe UI', Arial, sans-serif; fill: #334155; }
+      .box { fill: #dbeafe; stroke: #2563eb; stroke-width: 1.8; rx: 10; }
+      .decision { fill: #fff7ed; stroke: #ea580c; stroke-width: 1.8; }
+      .ok { fill: #dcfce7; stroke: #16a34a; stroke-width: 1.8; rx: 10; }
+      .err { fill: #fee2e2; stroke: #dc2626; stroke-width: 1.8; rx: 10; }
+      .text {
+        font: 600 16px 'Segoe UI', Arial, sans-serif;
+        fill: #0f172a;
+        text-anchor: middle;
+        dominant-baseline: middle;
+      }
+      .label { font: 600 14px 'Segoe UI', Arial, sans-serif; fill: #334155; }
+      .note { font: 500 14px 'Segoe UI', Arial, sans-serif; fill: #334155; }
+      .arrow {
+        stroke: #0f172a;
+        stroke-width: 2.2;
+        fill: none;
+        marker-end: url(#arrowHead);
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+    </style>
+    <marker id="arrowHead" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#0f172a" />
+    </marker>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="1200" height="720" />
+  <text class="title" x="50" y="54">Preprocessor Validation Flow</text>
+  <text class="subtitle" x="50" y="84">Top-down view: checks after parser and before optimizer</text>
+
+  <rect class="box" x="430" y="110" width="340" height="60" />
+  <text class="text" x="600" y="140">Parser Tree Input</text>
+
+  <rect class="box" x="410" y="220" width="380" height="60" />
+  <text class="text" x="600" y="250">Token -> Object Mapping</text>
+
+  <polygon class="decision" points="600,330 730,370 600,410 470,370" />
+  <text class="text" x="600" y="370">Object Exists?</text>
+
+  <rect class="err" x="120" y="342" width="250" height="56" />
+  <text class="text" x="245" y="370">Error: object not found</text>
+
+  <polygon class="decision" points="600,480 730,520 600,560 470,520" />
+  <text class="text" x="600" y="520">Privilege OK?</text>
+
+  <rect class="err" x="830" y="492" width="250" height="56" />
+  <text class="text" x="955" y="520">Error: access denied</text>
+
+  <rect class="ok" x="470" y="620" width="260" height="56" />
+  <text class="text" x="600" y="648">Pass to Optimizer</text>
+
+  <path class="arrow" d="M 600 170 L 600 220" />
+  <path class="arrow" d="M 600 280 L 600 330" />
+  <path class="arrow" d="M 470 370 L 370 370" />
+  <path class="arrow" d="M 600 410 L 600 480" />
+  <path class="arrow" d="M 730 520 L 830 520" />
+  <path class="arrow" d="M 600 560 L 600 620" />
+
+  <text class="label" x="388" y="356">No</text>
+  <text class="label" x="612" y="448">Yes</text>
+  <text class="label" x="742" y="504">No</text>
+  <text class="label" x="612" y="596">Yes</text>
+
+  <text class="note" x="50" y="702">Preprocessor rejects queries with missing objects or insufficient privileges before optimization.</text>
+</svg>

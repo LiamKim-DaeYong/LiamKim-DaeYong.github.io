@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="700" viewBox="0 0 1200 700" role="img" aria-labelledby="title desc">
+  <title id="title">MySQL Optimizer Plan Selection</title>
+  <desc id="desc">Optimizer compares candidate plans and selects the lowest estimated cost plan.</desc>
+  <defs>
+    <style>
+      .bg { fill: #f8fafc; }
+      .title { font: 700 32px 'Segoe UI', Arial, sans-serif; fill: #0f172a; }
+      .subtitle { font: 500 18px 'Segoe UI', Arial, sans-serif; fill: #334155; }
+      .box { fill: #dbeafe; stroke: #2563eb; stroke-width: 1.8; rx: 10; }
+      .candidate { fill: #e2e8f0; stroke: #334155; stroke-width: 1.6; rx: 10; }
+      .choice { fill: #dcfce7; stroke: #16a34a; stroke-width: 2; rx: 10; }
+      .text {
+        font: 600 16px 'Segoe UI', Arial, sans-serif;
+        fill: #0f172a;
+        text-anchor: middle;
+        dominant-baseline: middle;
+      }
+      .small { font: 500 14px 'Segoe UI', Arial, sans-serif; fill: #334155; text-anchor: middle; dominant-baseline: middle; }
+      .arrow {
+        stroke: #0f172a;
+        stroke-width: 2.2;
+        fill: none;
+        marker-end: url(#arrowHead);
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+      .note { font: 500 14px 'Segoe UI', Arial, sans-serif; fill: #334155; }
+    </style>
+    <marker id="arrowHead" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#0f172a" />
+    </marker>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="1200" height="700" />
+  <text class="title" x="50" y="54">Optimizer: Candidate Plan Selection</text>
+  <text class="subtitle" x="50" y="84">Compare multiple plans and pick the lowest estimated cost</text>
+
+  <rect class="box" x="440" y="120" width="320" height="60" />
+  <text class="text" x="600" y="150">Input SQL + Statistics</text>
+
+  <rect class="candidate" x="90" y="240" width="300" height="85" />
+  <text class="text" x="240" y="270">Candidate A</text>
+  <text class="small" x="240" y="295">Index Range Scan</text>
+  <text class="small" x="240" y="315">Estimated cost: 120</text>
+
+  <rect class="candidate" x="450" y="240" width="300" height="85" />
+  <text class="text" x="600" y="270">Candidate B</text>
+  <text class="small" x="600" y="295">Full Table Scan</text>
+  <text class="small" x="600" y="315">Estimated cost: 320</text>
+
+  <rect class="candidate" x="810" y="240" width="300" height="85" />
+  <text class="text" x="960" y="270">Candidate C</text>
+  <text class="small" x="960" y="295">Different Join Order</text>
+  <text class="small" x="960" y="315">Estimated cost: 95</text>
+
+  <rect class="box" x="450" y="390" width="300" height="60" />
+  <text class="text" x="600" y="420">Cost Comparison</text>
+
+  <rect class="choice" x="400" y="510" width="400" height="75" />
+  <text class="text" x="600" y="540">Chosen Plan: Candidate C</text>
+  <text class="small" x="600" y="565">lowest estimated cost in current statistics</text>
+
+  <path class="arrow" d="M 600 180 L 240 240" />
+  <path class="arrow" d="M 600 180 L 600 240" />
+  <path class="arrow" d="M 600 180 L 960 240" />
+
+  <path class="arrow" d="M 240 325 L 520 390" />
+  <path class="arrow" d="M 600 325 L 600 390" />
+  <path class="arrow" d="M 960 325 L 680 390" />
+
+  <path class="arrow" d="M 600 450 L 600 510" />
+
+  <text class="note" x="50" y="652">Estimated cost is based on statistics/model, so the selected plan can differ from actual runtime performance.</text>
+</svg>

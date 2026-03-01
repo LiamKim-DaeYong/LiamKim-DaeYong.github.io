@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="620" viewBox="-24 -24 1248 648" role="img" aria-labelledby="title desc">
+  <title id="title">MySQL Query Execution Flow</title>
+  <desc id="desc">Client SQL flows through parser, preprocessor, optimizer, execution engine, handler, and InnoDB.</desc>
+  <defs>
+    <style>
+      .bg { fill: #f8fafc; }
+      .title { font: 700 34px 'Segoe UI', Arial, sans-serif; fill: #0f172a; }
+      .subtitle { font: 500 18px 'Segoe UI', Arial, sans-serif; fill: #334155; }
+      .lane { fill: #ffffff; stroke: #1e293b; stroke-width: 2; rx: 12; }
+      .laneTitle { font: 700 20px 'Segoe UI', Arial, sans-serif; fill: #0f172a; }
+      .boxClient { fill: #e2e8f0; stroke: #334155; stroke-width: 1.6; rx: 8; }
+      .boxServer { fill: #dbeafe; stroke: #2563eb; stroke-width: 1.6; rx: 8; }
+      .boxStorage { fill: #dcfce7; stroke: #15803d; stroke-width: 1.6; rx: 8; }
+      .text {
+        font: 600 16px 'Segoe UI', Arial, sans-serif;
+        fill: #0f172a;
+        text-anchor: middle;
+        dominant-baseline: middle;
+      }
+      .note { font: 500 14px 'Segoe UI', Arial, sans-serif; fill: #334155; }
+      .arrow {
+        stroke: #0f172a;
+        stroke-width: 2.2;
+        fill: none;
+        marker-end: url(#arrowHead);
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+      .arrowReturn {
+        stroke: #334155;
+        stroke-width: 2;
+        fill: none;
+        marker-end: url(#arrowHeadGray);
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-dasharray: 8 6;
+      }
+    </style>
+    <marker id="arrowHead" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#0f172a" />
+    </marker>
+    <marker id="arrowHeadGray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#334155" />
+    </marker>
+  </defs>
+
+  <rect class="bg" x="-24" y="-24" width="1248" height="648" />
+  <text class="title" x="50" y="56">MySQL Query Execution Flow</text>
+  <text class="subtitle" x="50" y="88">5-stage view: parser to handler</text>
+
+  <rect class="lane" x="40" y="130" width="1160" height="190" />
+  <text class="laneTitle" x="70" y="162">MySQL Server Layer</text>
+
+  <rect class="lane" x="40" y="350" width="1160" height="210" />
+  <text class="laneTitle" x="70" y="382">Storage Engine Layer</text>
+
+  <rect class="boxClient" x="80" y="210" width="150" height="60" />
+  <text class="text" x="155" y="240">Client SQL</text>
+
+  <rect class="boxServer" x="260" y="210" width="150" height="60" />
+  <text class="text" x="335" y="240">1) Query Parser</text>
+
+  <rect class="boxServer" x="440" y="210" width="150" height="60" />
+  <text class="text" x="515" y="240">2) Preprocessor</text>
+
+  <rect class="boxServer" x="620" y="210" width="150" height="60" />
+  <text class="text" x="695" y="240">3) Optimizer</text>
+
+  <rect class="boxServer" x="800" y="210" width="150" height="60" />
+  <text class="text" x="875" y="240">4) Execution Engine</text>
+
+  <rect class="boxStorage" x="785" y="430" width="180" height="60" />
+  <text class="text" x="875" y="460">5) Handler API</text>
+
+  <rect class="boxStorage" x="1010" y="430" width="180" height="60" />
+  <text class="text" x="1100" y="460">InnoDB (read/write)</text>
+
+  <path class="arrow" d="M 230 240 L 260 240" />
+  <path class="arrow" d="M 410 240 L 440 240" />
+  <path class="arrow" d="M 590 240 L 620 240" />
+  <path class="arrow" d="M 770 240 L 800 240" />
+
+  <path class="arrow" d="M 875 270 L 875 430" />
+  <path class="arrow" d="M 965 452 L 1010 452" />
+
+  <path class="arrowReturn" d="M 1010 478 L 965 478" />
+  <path class="arrowReturn" d="M 895 430 L 895 270" />
+
+  <text class="note" x="72" y="308">Request path (solid): Execution Engine -> Handler -> InnoDB</text>
+  <text class="note" x="500" y="534">Response path (dashed): InnoDB -> Handler -> Execution Engine</text>
+</svg>

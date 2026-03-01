@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="760" viewBox="0 0 1100 760" role="img" aria-labelledby="title desc">
+  <title id="title">MySQL Memory Allocation Overview</title>
+  <desc id="desc">Diagram showing global memory area and per-session memory area in MySQL.</desc>
+  <defs>
+    <style>
+      .bg { fill: #f8fafc; }
+      .title { font: 700 34px 'Segoe UI', Arial, sans-serif; fill: #0f172a; }
+      .subtitle { font: 500 18px 'Segoe UI', Arial, sans-serif; fill: #334155; }
+      .layer { fill: #ffffff; stroke: #1e293b; stroke-width: 2; rx: 12; }
+      .layer-title { font: 700 24px 'Segoe UI', Arial, sans-serif; fill: #0f172a; }
+      .box-global { fill: #dbeafe; stroke: #1d4ed8; stroke-width: 1.6; rx: 8; }
+      .box-session { fill: #dcfce7; stroke: #15803d; stroke-width: 1.6; rx: 8; }
+      .box-text {
+        font: 600 16px 'Segoe UI', Arial, sans-serif;
+        fill: #0f172a;
+        text-anchor: middle;
+        dominant-baseline: middle;
+      }
+      .note { font: 500 14px 'Segoe UI', Arial, sans-serif; fill: #334155; }
+      .legend-title { font: 700 16px 'Segoe UI', Arial, sans-serif; fill: #0f172a; }
+      .arrow { stroke: #0f172a; stroke-width: 2.2; fill: none; marker-end: url(#arrowHead); }
+      .conn { font: 600 14px 'Segoe UI', Arial, sans-serif; fill: #334155; text-anchor: middle; }
+    </style>
+    <marker id="arrowHead" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#0f172a" />
+    </marker>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="1100" height="760" />
+  <text class="title" x="50" y="60">MySQL Memory Allocation</text>
+  <text class="subtitle" x="50" y="90">Global (shared) memory and per-session memory</text>
+
+  <rect class="layer" x="40" y="120" width="1020" height="250" />
+  <text class="layer-title" x="70" y="160">Global Memory Area (shared by all connections)</text>
+
+  <rect class="box-global" x="70" y="190" width="300" height="62" />
+  <text class="box-text" x="220" y="221">InnoDB Buffer Pool</text>
+
+  <rect class="box-global" x="400" y="190" width="280" height="62" />
+  <text class="box-text" x="540" y="221">InnoDB Log Buffer</text>
+
+  <rect class="box-global" x="710" y="190" width="320" height="62" />
+  <text class="box-text" x="870" y="221">Table/Dictionary Caches</text>
+
+  <rect class="box-global" x="70" y="274" width="300" height="62" />
+  <text class="box-text" x="220" y="305">Adaptive Hash Index</text>
+
+  <rect class="box-global" x="400" y="274" width="280" height="62" />
+  <text class="box-text" x="540" y="305">Redo Log Metadata</text>
+
+  <rect class="box-global" x="710" y="274" width="320" height="62" />
+  <text class="box-text" x="870" y="305">Other Shared Buffers</text>
+
+  <rect class="layer" x="40" y="400" width="1020" height="300" />
+  <text class="layer-title" x="70" y="440">Session Memory Area (allocated per connection/query)</text>
+
+  <rect class="box-session" x="70" y="470" width="220" height="56" />
+  <text class="box-text" x="180" y="498">thread stack</text>
+
+  <rect class="box-session" x="310" y="470" width="220" height="56" />
+  <text class="box-text" x="420" y="498">sort buffer</text>
+
+  <rect class="box-session" x="550" y="470" width="220" height="56" />
+  <text class="box-text" x="660" y="498">join buffer</text>
+
+  <rect class="box-session" x="790" y="470" width="240" height="56" />
+  <text class="box-text" x="910" y="498">read/read_rnd buffer</text>
+
+  <rect class="box-session" x="70" y="548" width="300" height="56" />
+  <text class="box-text" x="220" y="576">temporary table memory</text>
+
+  <rect class="box-session" x="400" y="548" width="300" height="56" />
+  <text class="box-text" x="550" y="576">network/session buffers</text>
+
+  <rect class="box-session" x="730" y="548" width="300" height="56" />
+  <text class="box-text" x="880" y="576">statement execution memory</text>
+
+  <text class="conn" x="180" y="655">Connection A</text>
+  <text class="conn" x="420" y="655">Connection B</text>
+  <text class="conn" x="660" y="655">Connection C</text>
+  <text class="conn" x="910" y="655">Connection N</text>
+
+  <path class="arrow" d="M 180 635 L 180 610" />
+  <path class="arrow" d="M 420 635 L 420 610" />
+  <path class="arrow" d="M 660 635 L 660 610" />
+  <path class="arrow" d="M 910 635 L 910 610" />
+
+  <text class="legend-title" x="70" y="730">Key idea: Global memory is shared, session memory scales with active connections.</text>
+</svg>
