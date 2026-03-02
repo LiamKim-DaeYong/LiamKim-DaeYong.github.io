@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="430" viewBox="0 0 1400 430">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#4b5563"/>
+    </marker>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f8fafc"/>
+      <stop offset="100%" stop-color="#eef2ff"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="0" y="0" width="1400" height="430" fill="url(#bg)"/>
+  <text x="700" y="44" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="26" fill="#111827" font-weight="700">
+    Compiler pipeline around IR
+  </text>
+
+  <rect x="36" y="98" width="240" height="250" rx="14" fill="#ffffff" stroke="#94a3b8" stroke-width="2"/>
+  <text x="156" y="134" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="18" fill="#0f172a" font-weight="700">Source code</text>
+  <text x="156" y="170" text-anchor="middle" font-family="Consolas, monospace" font-size="15" fill="#1f2937">x = a + b * c</text>
+  <text x="156" y="204" text-anchor="middle" font-family="Consolas, monospace" font-size="15" fill="#1f2937">if (ready) run();</text>
+  <text x="156" y="238" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#475569">human-friendly form</text>
+
+  <rect x="312" y="98" width="240" height="250" rx="14" fill="#ffffff" stroke="#94a3b8" stroke-width="2"/>
+  <text x="432" y="134" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="18" fill="#0f172a" font-weight="700">AST</text>
+  <text x="432" y="170" text-anchor="middle" font-family="Consolas, monospace" font-size="14" fill="#1f2937">assign(x)</text>
+  <text x="432" y="194" text-anchor="middle" font-family="Consolas, monospace" font-size="14" fill="#1f2937">+- add(a, mul(b,c))</text>
+  <text x="432" y="228" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#475569">structure and order</text>
+
+  <rect x="588" y="98" width="240" height="250" rx="14" fill="#ffffff" stroke="#94a3b8" stroke-width="2"/>
+  <text x="708" y="134" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="18" fill="#0f172a" font-weight="700">IR (before opt)</text>
+  <text x="608" y="170" font-family="Consolas, monospace" font-size="14" fill="#1f2937">t1 = 3 * 4</text>
+  <text x="608" y="194" font-family="Consolas, monospace" font-size="14" fill="#1f2937">t2 = a + t1</text>
+  <text x="608" y="228" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#475569">machine-neutral form</text>
+
+  <rect x="864" y="98" width="240" height="250" rx="14" fill="#ecfeff" stroke="#06b6d4" stroke-width="2"/>
+  <text x="984" y="134" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="18" fill="#0f172a" font-weight="700">IR (optimized)</text>
+  <text x="884" y="170" font-family="Consolas, monospace" font-size="14" fill="#0f172a">t2 = a + 12</text>
+  <text x="884" y="194" font-family="Consolas, monospace" font-size="14" fill="#0f172a">...</text>
+  <text x="984" y="228" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#0f766e">constant folding done</text>
+
+  <rect x="1140" y="98" width="224" height="250" rx="14" fill="#ffffff" stroke="#94a3b8" stroke-width="2"/>
+  <text x="1252" y="134" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="18" fill="#0f172a" font-weight="700">Target code</text>
+  <text x="1252" y="170" text-anchor="middle" font-family="Consolas, monospace" font-size="14" fill="#1f2937">mov r1, a</text>
+  <text x="1252" y="194" text-anchor="middle" font-family="Consolas, monospace" font-size="14" fill="#1f2937">add r1, #12</text>
+  <text x="1252" y="228" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#475569">architecture-specific</text>
+
+  <line x1="276" y1="223" x2="304" y2="223" stroke="#4b5563" stroke-width="3" marker-end="url(#arrow)"/>
+  <line x1="552" y1="223" x2="580" y2="223" stroke="#4b5563" stroke-width="3" marker-end="url(#arrow)"/>
+  <line x1="828" y1="223" x2="856" y2="223" stroke="#4b5563" stroke-width="3" marker-end="url(#arrow)"/>
+  <line x1="1104" y1="223" x2="1132" y2="223" stroke="#4b5563" stroke-width="3" marker-end="url(#arrow)"/>
+
+  <text x="700" y="388" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="16" fill="#334155">
+    IR is the bridge between language-level structure and machine-specific code generation.
+  </text>
+</svg>

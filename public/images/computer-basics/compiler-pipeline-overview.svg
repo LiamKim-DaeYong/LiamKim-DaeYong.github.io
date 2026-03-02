@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="360" viewBox="0 0 1200 360" role="img" aria-labelledby="title desc">
+  <title id="title">Compiler Pipeline Overview</title>
+  <desc id="desc">Source code goes through tokenization, parsing, semantic analysis, IR, and code generation to object file.</desc>
+  <defs>
+    <style>
+      .title { font: 700 30px Arial, sans-serif; fill: #111827; }
+      .label { font: 700 14px Arial, sans-serif; fill: #111827; }
+      .small { font: 500 13px Arial, sans-serif; fill: #475569; }
+      .box { rx: 10; ry: 10; stroke-width: 2; }
+      .arrow { stroke: #64748b; stroke-width: 2.2; fill: none; marker-end: url(#arrow); }
+    </style>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#64748b"/>
+    </marker>
+  </defs>
+
+  <text x="600" y="42" text-anchor="middle" class="title">Compiler Pipeline (High Level)</text>
+
+  <rect x="30" y="120" width="130" height="80" class="box" fill="#eef2ff" stroke="#6366f1"/>
+  <text x="95" y="150" text-anchor="middle" class="label">Source</text>
+  <text x="95" y="172" text-anchor="middle" class="small">.c / .cpp</text>
+
+  <rect x="190" y="120" width="130" height="80" class="box" fill="#ecfeff" stroke="#06b6d4"/>
+  <text x="255" y="150" text-anchor="middle" class="label">Lexing</text>
+  <text x="255" y="172" text-anchor="middle" class="small">Tokens</text>
+
+  <rect x="350" y="120" width="130" height="80" class="box" fill="#f0fdf4" stroke="#22c55e"/>
+  <text x="415" y="150" text-anchor="middle" class="label">Parsing</text>
+  <text x="415" y="172" text-anchor="middle" class="small">AST</text>
+
+  <rect x="510" y="120" width="140" height="80" class="box" fill="#fefce8" stroke="#eab308"/>
+  <text x="580" y="150" text-anchor="middle" class="label">Semantic</text>
+  <text x="580" y="172" text-anchor="middle" class="small">Type/Scope</text>
+
+  <rect x="680" y="120" width="120" height="80" class="box" fill="#fff7ed" stroke="#f97316"/>
+  <text x="740" y="150" text-anchor="middle" class="label">IR</text>
+  <text x="740" y="172" text-anchor="middle" class="small">Optimize</text>
+
+  <rect x="830" y="120" width="150" height="80" class="box" fill="#fdf2f8" stroke="#ec4899"/>
+  <text x="905" y="150" text-anchor="middle" class="label">Code Gen</text>
+  <text x="905" y="172" text-anchor="middle" class="small">Target ISA</text>
+
+  <rect x="1010" y="120" width="160" height="80" class="box" fill="#f8fafc" stroke="#64748b"/>
+  <text x="1090" y="150" text-anchor="middle" class="label">Object File</text>
+  <text x="1090" y="172" text-anchor="middle" class="small">.o / .obj</text>
+
+  <path d="M160 160 L190 160" class="arrow"/>
+  <path d="M320 160 L350 160" class="arrow"/>
+  <path d="M480 160 L510 160" class="arrow"/>
+  <path d="M650 160 L680 160" class="arrow"/>
+  <path d="M800 160 L830 160" class="arrow"/>
+  <path d="M980 160 L1010 160" class="arrow"/>
+
+  <text x="600" y="292" text-anchor="middle" class="small">Object files are not final executables yet. Linking is needed next.</text>
+</svg>

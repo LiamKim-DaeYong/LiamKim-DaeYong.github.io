@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="560" viewBox="0 0 1200 560" role="img" aria-labelledby="title desc">
+  <title id="title">Native vs VM Execution</title>
+  <desc id="desc">Comparison between native binary execution and VM-based execution.</desc>
+  <defs>
+    <style>
+      .title { font: 700 30px Arial, sans-serif; fill: #111827; }
+      .label { font: 700 18px Arial, sans-serif; fill: #111827; }
+      .small { font: 500 14px Arial, sans-serif; fill: #374151; }
+      .box { rx: 14; ry: 14; stroke-width: 2; }
+      .arrow { stroke: #6b7280; stroke-width: 2.4; fill: none; marker-end: url(#arrow); }
+      .chip { rx: 10; ry: 10; stroke-width: 1.8; }
+    </style>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#6b7280"/>
+    </marker>
+  </defs>
+
+  <text x="600" y="46" text-anchor="middle" class="title">Native Build vs VM-Based Execution</text>
+
+  <rect x="40" y="90" width="540" height="430" class="box" fill="#f0fdf4" stroke="#16a34a"/>
+  <text x="310" y="126" text-anchor="middle" class="label">A. Native Binary Path</text>
+
+  <rect x="90" y="168" width="180" height="62" class="chip" fill="#ffffff" stroke="#22c55e"/>
+  <text x="180" y="206" text-anchor="middle" class="small">Source Code</text>
+
+  <rect x="320" y="168" width="180" height="62" class="chip" fill="#ffffff" stroke="#22c55e"/>
+  <text x="410" y="206" text-anchor="middle" class="small">Compile (x86 target)</text>
+
+  <rect x="320" y="286" width="180" height="62" class="chip" fill="#ffffff" stroke="#22c55e"/>
+  <text x="410" y="324" text-anchor="middle" class="small">x86 Binary</text>
+
+  <rect x="90" y="396" width="180" height="62" class="chip" fill="#ffffff" stroke="#f97316"/>
+  <text x="180" y="434" text-anchor="middle" class="small">x86 CPU: runs</text>
+
+  <rect x="320" y="396" width="180" height="62" class="chip" fill="#ffffff" stroke="#ef4444"/>
+  <text x="410" y="434" text-anchor="middle" class="small">ARM CPU: cannot run</text>
+
+  <path d="M270 199 L320 199" class="arrow"/>
+  <path d="M410 230 L410 286" class="arrow"/>
+  <path d="M360 348 L225 396" class="arrow"/>
+  <path d="M430 348 L430 396" class="arrow"/>
+
+  <rect x="620" y="90" width="540" height="430" class="box" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="890" y="126" text-anchor="middle" class="label">B. Bytecode + VM Path</text>
+
+  <rect x="670" y="168" width="150" height="62" class="chip" fill="#ffffff" stroke="#3b82f6"/>
+  <text x="745" y="206" text-anchor="middle" class="small">Source Code</text>
+
+  <rect x="860" y="168" width="180" height="62" class="chip" fill="#ffffff" stroke="#3b82f6"/>
+  <text x="950" y="206" text-anchor="middle" class="small">Compile to Bytecode</text>
+
+  <rect x="860" y="286" width="180" height="62" class="chip" fill="#ffffff" stroke="#3b82f6"/>
+  <text x="950" y="324" text-anchor="middle" class="small">Bytecode</text>
+
+  <rect x="670" y="396" width="150" height="62" class="chip" fill="#ffffff" stroke="#0ea5e9"/>
+  <text x="745" y="434" text-anchor="middle" class="small">VM on x86</text>
+
+  <rect x="860" y="396" width="150" height="62" class="chip" fill="#ffffff" stroke="#0ea5e9"/>
+  <text x="935" y="434" text-anchor="middle" class="small">VM on ARM</text>
+
+  <rect x="1040" y="396" width="90" height="62" class="chip" fill="#ffffff" stroke="#0ea5e9"/>
+  <text x="1085" y="434" text-anchor="middle" class="small">VM on ...</text>
+
+  <path d="M820 199 L860 199" class="arrow"/>
+  <path d="M950 230 L950 286" class="arrow"/>
+  <path d="M920 348 L770 396" class="arrow"/>
+  <path d="M950 348 L935 396" class="arrow"/>
+  <path d="M980 348 L1085 396" class="arrow"/>
+
+  <text x="890" y="488" text-anchor="middle" class="small">Same bytecode can run on different CPUs with corresponding VM.</text>
+</svg>

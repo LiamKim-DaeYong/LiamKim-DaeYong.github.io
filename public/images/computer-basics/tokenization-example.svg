@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="460" viewBox="0 0 1200 460" role="img" aria-labelledby="title desc">
+  <title id="title">Tokenization Example</title>
+  <desc id="desc">A visual example showing how a code line is split into tokens.</desc>
+  <defs>
+    <style>
+      .title { font: 700 30px Arial, sans-serif; fill: #111827; }
+      .label { font: 700 18px Arial, sans-serif; fill: #111827; }
+      .code { font: 700 26px 'Courier New', monospace; fill: #1f2937; }
+      .token { font: 700 18px 'Courier New', monospace; fill: #0f172a; }
+      .small { font: 500 14px Arial, sans-serif; fill: #475569; }
+      .box { rx: 14; ry: 14; stroke-width: 2; }
+      .arrow { stroke: #64748b; stroke-width: 2.2; fill: none; marker-end: url(#arrow); }
+    </style>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#64748b"/>
+    </marker>
+  </defs>
+
+  <text x="600" y="44" text-anchor="middle" class="title">Tokenization</text>
+
+  <rect x="120" y="84" width="960" height="110" class="box" fill="#eef2ff" stroke="#6366f1"/>
+  <text x="600" y="124" text-anchor="middle" class="label">Input Source Line</text>
+  <text x="600" y="166" text-anchor="middle" class="code">int sum = a + 10;</text>
+
+  <path d="M600 194 L600 232" class="arrow"/>
+  <text x="600" y="220" text-anchor="middle" class="small">split by lexical rules</text>
+
+  <rect x="90" y="264" width="120" height="64" class="box" fill="#ffffff" stroke="#0ea5e9"/>
+  <text x="150" y="304" text-anchor="middle" class="token">int</text>
+
+  <rect x="230" y="264" width="120" height="64" class="box" fill="#ffffff" stroke="#0ea5e9"/>
+  <text x="290" y="304" text-anchor="middle" class="token">sum</text>
+
+  <rect x="370" y="264" width="90" height="64" class="box" fill="#ffffff" stroke="#0ea5e9"/>
+  <text x="415" y="304" text-anchor="middle" class="token">=</text>
+
+  <rect x="480" y="264" width="90" height="64" class="box" fill="#ffffff" stroke="#0ea5e9"/>
+  <text x="525" y="304" text-anchor="middle" class="token">a</text>
+
+  <rect x="590" y="264" width="90" height="64" class="box" fill="#ffffff" stroke="#0ea5e9"/>
+  <text x="635" y="304" text-anchor="middle" class="token">+</text>
+
+  <rect x="700" y="264" width="110" height="64" class="box" fill="#ffffff" stroke="#0ea5e9"/>
+  <text x="755" y="304" text-anchor="middle" class="token">10</text>
+
+  <rect x="830" y="264" width="90" height="64" class="box" fill="#ffffff" stroke="#0ea5e9"/>
+  <text x="875" y="304" text-anchor="middle" class="token">;</text>
+
+  <text x="600" y="382" text-anchor="middle" class="small">Result: sequence of tokens used for syntax analysis</text>
+</svg>

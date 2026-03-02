@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="520" viewBox="0 0 1200 520" role="img" aria-labelledby="title desc">
+  <title id="title">While AST Example</title>
+  <desc id="desc">A simplified abstract syntax tree for a while statement.</desc>
+  <defs>
+    <style>
+      .title { font: 700 30px Arial, sans-serif; fill: #111827; }
+      .label { font: 700 16px Arial, sans-serif; fill: #111827; }
+      .small { font: 500 14px Arial, sans-serif; fill: #475569; }
+      .node { rx: 10; ry: 10; stroke-width: 2; }
+      .line { stroke: #64748b; stroke-width: 2.2; fill: none; }
+    </style>
+  </defs>
+
+  <text x="600" y="44" text-anchor="middle" class="title">AST Example: while (condition) { do_work(); }</text>
+
+  <rect x="540" y="92" width="120" height="44" class="node" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="600" y="120" text-anchor="middle" class="label">WhileStmt</text>
+
+  <rect x="290" y="200" width="180" height="44" class="node" fill="#f0fdf4" stroke="#16a34a"/>
+  <text x="380" y="228" text-anchor="middle" class="label">ConditionExpr</text>
+
+  <rect x="730" y="200" width="180" height="44" class="node" fill="#fefce8" stroke="#ca8a04"/>
+  <text x="820" y="228" text-anchor="middle" class="label">BodyBlock</text>
+
+  <rect x="730" y="320" width="180" height="44" class="node" fill="#fff7ed" stroke="#ea580c"/>
+  <text x="820" y="348" text-anchor="middle" class="label">CallExpr: do_work</text>
+
+  <path d="M575 136 L430 200" class="line"/>
+  <path d="M625 136 L770 200" class="line"/>
+  <path d="M820 244 L820 320" class="line"/>
+
+  <text x="600" y="470" text-anchor="middle" class="small">Parser builds this tree after syntax rules are satisfied.</text>
+</svg>

@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="520" viewBox="0 0 1200 520" role="img" aria-labelledby="title desc">
+  <title id="title">Semantic Analysis Check</title>
+  <desc id="desc">Semantic checks on a syntax tree for type and declaration errors.</desc>
+  <defs>
+    <style>
+      .title { font: 700 30px Arial, sans-serif; fill: #111827; }
+      .label { font: 700 16px Arial, sans-serif; fill: #111827; }
+      .small { font: 500 14px Arial, sans-serif; fill: #475569; }
+      .code { font: 600 17px 'Courier New', monospace; fill: #1f2937; }
+      .node { rx: 10; ry: 10; stroke-width: 2; }
+      .line { stroke: #64748b; stroke-width: 2.2; fill: none; }
+      .bad { fill: #dc2626; font: 700 14px Arial, sans-serif; }
+      .ok { fill: #16a34a; font: 700 14px Arial, sans-serif; }
+    </style>
+  </defs>
+
+  <text x="600" y="44" text-anchor="middle" class="title">Semantic Analysis: "Grammar OK" vs "Meaning OK"</text>
+
+  <rect x="70" y="86" width="480" height="370" class="node" fill="#f8fafc" stroke="#cbd5e1"/>
+  <text x="310" y="124" text-anchor="middle" class="label">Input Code (syntax is valid)</text>
+  <text x="110" y="176" class="code">int count = "hello";</text>
+  <text x="110" y="210" class="code">total = count + 1;</text>
+  <text x="110" y="254" class="small">Parser can still build a tree from this code.</text>
+
+  <rect x="660" y="86" width="470" height="370" class="node" fill="#f8fafc" stroke="#cbd5e1"/>
+  <text x="895" y="124" text-anchor="middle" class="label">Semantic Checks on AST</text>
+
+  <rect x="790" y="170" width="210" height="42" class="node" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="895" y="197" text-anchor="middle" class="label">Assign(count, "hello")</text>
+
+  <rect x="790" y="276" width="210" height="42" class="node" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="895" y="303" text-anchor="middle" class="label">Assign(total, count+1)</text>
+
+  <text x="895" y="236" text-anchor="middle" class="bad">Type mismatch: int &lt;- string</text>
+  <text x="895" y="342" text-anchor="middle" class="bad">Undefined symbol: total</text>
+
+  <path d="M550 220 L660 220" class="line"/>
+  <path d="M550 300 L660 300" class="line"/>
+
+  <text x="600" y="486" text-anchor="middle" class="ok">Only code that passes semantic checks moves to code generation.</text>
+</svg>
