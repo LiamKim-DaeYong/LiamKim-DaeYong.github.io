@@ -21,6 +21,16 @@ if (breadcrumbList[0] === "tags" && !isNaN(Number(breadcrumbList[2]))) {
     `${breadcrumbList[1]} ${Number(breadcrumbList[2]) === 1 ? "" : "(page " + breadcrumbList[2] + ")"}`
   );
 }
+
+// if breadcrumb is Home > Categories > [category] > [page] <etc>
+// replace [category] > [page] with [category] (page number)
+if (breadcrumbList[0] === "categories" && !isNaN(Number(breadcrumbList[2]))) {
+  breadcrumbList.splice(
+    1,
+    3,
+    `${breadcrumbList[1]} ${Number(breadcrumbList[2]) === 1 ? "" : "(page " + breadcrumbList[2] + ")"}`
+  );
+}
 ---
 
 <nav class="app-layout mt-8 mb-1" aria-label="breadcrumb">

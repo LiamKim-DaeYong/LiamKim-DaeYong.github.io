@@ -1,10 +1,10 @@
 ---
 import { getCollection } from "astro:content";
 import type { GetStaticPathsOptions } from "astro";
-import Main from "@/layouts/Main.astro";
 import Layout from "@/layouts/Layout.astro";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
+import Breadcrumb from "@/components/Breadcrumb.astro";
 import Card from "@/components/Card.astro";
 import Pagination from "@/components/Pagination.astro";
 import getUniqueCategories from "@/utils/getUniqueCategories";
@@ -20,29 +20,51 @@ export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
 
     return paginate(categoryPosts, {
       params: { category },
-      props: { categoryName },
+      props: { categoryName, allCategories: categories },
       pageSize: SITE.postPerPage,
     });
   });
 }
 
-const params = Astro.params;
-const { category } = params;
-const { page, categoryName } = Astro.props;
+const { category } = Astro.params;
+const { page, categoryName, allCategories } = Astro.props;
 ---
 
 <Layout title={`Category: ${categoryName} | ${SITE.title}`}>
   <Header />
-  <Main
-    pageTitle={[`Category:`, `${categoryName}`]}
-    titleTransition={`cat-${category}`}
-    pageDesc={`All the articles in the category "${categoryName}".`}
-  >
-    <h1 slot="title" transition:name={`cat-${category}`}>{`Category:${category}`}</h1>
-    <ul>
-      {page.data.map(data => <Card {...data} />)}
-    </ul>
-  </Main>
+  <Breadcrumb />
+  <main id="main-content" class="app-layout pb-4">
+    <h1 class="text-2xl font-semibold sm:text-3xl">Categories</h1>
+    <p class="mt-2 mb-6 italic">Browse posts by category.</p>
+
+    <div class="flex flex-col gap-8 sm:flex-row">
+      <!-- 좌측: 카테고리 목록 -->
+      <nav class="flex shrink-0 flex-row flex-wrap gap-2 sm:w-44 sm:flex-col sm:gap-1">
+        {
+          allCategories.map(({ category: cat, categoryName: name }) => (
+            <a
+              href={`/categories/${cat}/`}
+              class:list={[
+                "rounded-lg px-3 py-2 text-sm font-medium transition-colors",
+                cat === category
+                  ? "bg-accent/15 text-accent"
+                  : "text-foreground/60 hover:bg-muted hover:text-foreground/90",
+              ]}
+            >
+              {name}
+            </a>
+          ))
+        }
+      </nav>
+
+      <!-- 우측: 포스트 리스트 -->
+      <div class="min-w-0 flex-1">
+        <ul>
+          {page.data.map(data => <Card {...data} />)}
+        </ul>
+      </div>
+    </div>
+  </main>
 
   <Pagination {page} />
 
