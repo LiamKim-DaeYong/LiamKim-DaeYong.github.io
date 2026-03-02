@@ -33,6 +33,7 @@ const {
   modDatetime,
   timezone,
   tags,
+  categories,
   hideEditPost,
 } = post.data;
 
@@ -123,6 +124,22 @@ const nextPost = currentPostIndex !== 0 ? allPosts[currentPostIndex - 1] : null;
 
           <EditPost class="sm:hidden" {hideEditPost} {post} />
 
+          {
+            categories && categories.length > 0 && (
+              <ul class="mt-4 flex flex-wrap gap-3">
+                {categories.map(cat => (
+                  <li>
+                    <a
+                      href={`/categories/${slugifyStr(cat)}/`}
+                      class="rounded-full bg-accent/10 px-3 py-1 text-sm font-medium text-accent/80 transition-colors hover:bg-accent/20 hover:text-accent"
+                    >
+                      @{cat}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            )
+          }
           <ul class="mt-4 mb-8 flex flex-wrap gap-4 sm:my-8">
             {tags.map(tag => <Tag tag={slugifyStr(tag)} tagName={tag} size="sm" />)}
           </ul>
