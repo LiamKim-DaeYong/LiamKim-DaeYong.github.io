@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="620" viewBox="-20 -20 1040 660" role="img" aria-labelledby="title desc">
+  <title id="title">InnoDB MVCC 잠금 없는 일관된 읽기</title>
+  <desc id="desc">버퍼 풀에 최신 버전, 언두 로그에 과거 버전을 보관하며 Read View가 어떤 버전을 볼지 결정한다.</desc>
+  <defs>
+    <style>
+      .bg { fill: #f8fafc; }
+      .title { font: 700 28px 'Segoe UI', Arial, sans-serif; fill: #0f172a; }
+      .subtitle { font: 500 16px 'Segoe UI', Arial, sans-serif; fill: #334155; }
+      .layer { fill: #ffffff; stroke: #1e293b; stroke-width: 2; rx: 12; }
+      .layerTitle { font: 700 18px 'Segoe UI', Arial, sans-serif; fill: #0f172a; }
+      .box { fill: #e2e8f0; stroke: #334155; stroke-width: 1.5; rx: 8; }
+      .boxLatest { fill: #dbeafe; stroke: #1d4ed8; stroke-width: 2; rx: 8; }
+      .boxUndo { fill: #fef3c7; stroke: #d97706; stroke-width: 1.5; rx: 8; }
+      .boxRV { fill: #ede9fe; stroke: #7c3aed; stroke-width: 2; rx: 8; }
+      .boxText { font: 600 14px 'Segoe UI', Arial, sans-serif; fill: #0f172a; text-anchor: middle; dominant-baseline: middle; }
+      .boxTextSm { font: 500 12px 'Segoe UI', Arial, sans-serif; fill: #334155; text-anchor: middle; dominant-baseline: middle; }
+      .note { font: 500 13px 'Segoe UI', Arial, sans-serif; fill: #334155; }
+      .noteWarn { font: 600 13px 'Segoe UI', Arial, sans-serif; fill: #dc2626; }
+      .arrow { stroke: #0f172a; stroke-width: 2; fill: none; marker-end: url(#ah); stroke-linecap: round; }
+      .arrowUndo { stroke: #d97706; stroke-width: 2; fill: none; marker-end: url(#ahU); stroke-linecap: round; stroke-dasharray: 6 4; }
+      .labelSm { font: 700 13px 'Segoe UI', Arial, sans-serif; fill: #7c3aed; }
+      .labelRC { font: 700 14px 'Segoe UI', Arial, sans-serif; fill: #0369a1; }
+      .labelRR { font: 700 14px 'Segoe UI', Arial, sans-serif; fill: #7c3aed; }
+    </style>
+    <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#0f172a" />
+    </marker>
+    <marker id="ahU" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#d97706" />
+    </marker>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="1000" height="620" />
+  <text class="title" x="40" y="42">InnoDB MVCC &amp; 잠금 없는 일관된 읽기</text>
+  <text class="subtitle" x="40" y="68">버퍼 풀에 최신 버전, 언두 로그 체인에 과거 버전 보관</text>
+
+  <!-- Buffer Pool -->
+  <rect class="layer" x="40" y="95" width="440" height="210" />
+  <text class="layerTitle" x="70" y="125">버퍼 풀 (Buffer Pool)</text>
+
+  <rect class="boxLatest" x="70" y="145" width="380" height="60" />
+  <text class="boxText" x="260" y="165">id=1, balance=200 (최신)</text>
+  <text class="boxTextSm" x="260" y="185">trx_id=T2, roll_ptr → undo</text>
+
+  <rect class="boxLatest" x="70" y="220" width="380" height="60" />
+  <text class="boxText" x="260" y="240">id=2, balance=500 (최신)</text>
+  <text class="boxTextSm" x="260" y="260">trx_id=T0, roll_ptr → undo</text>
+
+  <!-- Undo Log -->
+  <rect class="layer" x="540" y="95" width="420" height="210" />
+  <text class="layerTitle" x="570" y="125">언두 로그 (Undo Log)</text>
+
+  <rect class="boxUndo" x="570" y="145" width="170" height="55" />
+  <text class="boxText" x="655" y="165">balance=100</text>
+  <text class="boxTextSm" x="655" y="183">trx_id=T0</text>
+
+  <rect class="boxUndo" x="770" y="145" width="170" height="55" />
+  <text class="boxText" x="855" y="165">balance=50</text>
+  <text class="boxTextSm" x="855" y="183">trx_id=T_init</text>
+
+  <path class="arrowUndo" d="M 450 175 L 570 175" />
+  <path class="arrowUndo" d="M 740 175 L 770 175" />
+
+  <!-- Read View comparison -->
+  <rect class="layer" x="40" y="340" width="920" height="130" />
+  <text class="layerTitle" x="70" y="370">Read View: 격리 수준별로 어떤 버전을 보는가?</text>
+
+  <rect class="boxRV" x="70" y="390" width="400" height="55" />
+  <text class="labelRC" x="80" y="410" text-anchor="start">READ COMMITTED</text>
+  <text class="boxTextSm" x="270" y="432">문장(statement)마다 Read View 생성</text>
+
+  <rect class="boxRV" x="530" y="390" width="400" height="55" />
+  <text class="labelRR" x="540" y="410" text-anchor="start">REPEATABLE READ</text>
+  <text class="boxTextSm" x="730" y="432">트랜잭션당 Read View 한 번 생성</text>
+
+  <!-- Timeline example -->
+  <text class="note" x="40" y="505">시나리오: T1 시작 → T2가 balance를 100→200으로 변경 후 커밋 → T1이 다시 읽기</text>
+  <text class="labelRC" x="70" y="530">RC: T1은 200을 본다 (새 Read View가 커밋된 T2를 반영)</text>
+  <text class="labelRR" x="70" y="555">RR: T1은 100을 본다 (기존 Read View 유지, T2 변경 안 보임)</text>
+
+  <!-- Purge warning -->
+  <text class="noteWarn" x="40" y="590">장기 트랜잭션 → undo purge 지연 → undo 공간 증가 → 성능 저하</text>
+</svg>

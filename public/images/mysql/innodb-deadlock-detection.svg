@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="460" viewBox="-20 -20 1040 500" role="img" aria-labelledby="title desc">
+  <title id="title">InnoDB 데드락 감지</title>
+  <desc id="desc">wait-for graph에서 순환이 발생하면 InnoDB가 이를 감지하고 비용이 낮은 트랜잭션을 롤백한다.</desc>
+  <defs>
+    <style>
+      .bg { fill: #f8fafc; }
+      .title { font: 700 28px 'Segoe UI', Arial, sans-serif; fill: #0f172a; }
+      .subtitle { font: 500 16px 'Segoe UI', Arial, sans-serif; fill: #334155; }
+      .layer { fill: #ffffff; stroke: #1e293b; stroke-width: 2; rx: 12; }
+      .layerTitle { font: 700 18px 'Segoe UI', Arial, sans-serif; fill: #0f172a; }
+      .trx { fill: #dbeafe; stroke: #1d4ed8; stroke-width: 2; rx: 24; }
+      .lock { fill: #e2e8f0; stroke: #334155; stroke-width: 1.5; rx: 8; }
+      .lockHeld { fill: #dcfce7; stroke: #16a34a; stroke-width: 1.5; rx: 8; }
+      .lockWait { fill: #fee2e2; stroke: #dc2626; stroke-width: 1.5; rx: 8; }
+      .victim { fill: #fef3c7; stroke: #d97706; stroke-width: 2; rx: 24; }
+      .boxText { font: 600 15px 'Segoe UI', Arial, sans-serif; fill: #0f172a; text-anchor: middle; dominant-baseline: middle; }
+      .boxTextSm { font: 500 12px 'Segoe UI', Arial, sans-serif; fill: #334155; text-anchor: middle; dominant-baseline: middle; }
+      .note { font: 500 13px 'Segoe UI', Arial, sans-serif; fill: #334155; }
+      .noteWarn { font: 600 13px 'Segoe UI', Arial, sans-serif; fill: #dc2626; }
+      .arrow { stroke: #0f172a; stroke-width: 2; fill: none; marker-end: url(#ah); stroke-linecap: round; }
+      .arrowWait { stroke: #dc2626; stroke-width: 2.5; fill: none; marker-end: url(#ahR); stroke-linecap: round; }
+      .arrowCycle { stroke: #dc2626; stroke-width: 3; fill: none; marker-end: url(#ahR); stroke-linecap: round; stroke-dasharray: 8 5; }
+      .labelHeld { font: 700 12px 'Segoe UI', Arial, sans-serif; fill: #16a34a; }
+      .labelWait { font: 700 12px 'Segoe UI', Arial, sans-serif; fill: #dc2626; }
+      .labelVictim { font: 700 14px 'Segoe UI', Arial, sans-serif; fill: #d97706; }
+    </style>
+    <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#0f172a" />
+    </marker>
+    <marker id="ahR" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#dc2626" />
+    </marker>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="1000" height="460" />
+  <text class="title" x="40" y="42">InnoDB 데드락 감지 (Wait-for Graph)</text>
+  <text class="subtitle" x="40" y="68">wait-for graph에서 순환 감지 → 비용이 낮은 트랜잭션을 롤백</text>
+
+  <!-- Left: deadlock scenario -->
+  <rect class="layer" x="40" y="90" width="480" height="260" />
+  <text class="layerTitle" x="70" y="118">데드락 시나리오</text>
+
+  <!-- Transactions -->
+  <rect class="trx" x="70" y="140" width="120" height="50" />
+  <text class="boxText" x="130" y="165">T1</text>
+
+  <rect class="trx" x="70" y="260" width="120" height="50" />
+  <text class="boxText" x="130" y="285">T2</text>
+
+  <!-- Locks -->
+  <rect class="lockHeld" x="280" y="140" width="120" height="50" />
+  <text class="boxText" x="340" y="158">Row A</text>
+  <text class="labelHeld" x="340" y="178">T1 보유</text>
+
+  <rect class="lockHeld" x="280" y="260" width="120" height="50" />
+  <text class="boxText" x="340" y="278">Row B</text>
+  <text class="labelHeld" x="340" y="298">T2 보유</text>
+
+  <!-- Hold arrows -->
+  <path class="arrow" d="M 190 165 L 280 165" />
+  <path class="arrow" d="M 190 285 L 280 285" />
+
+  <!-- Wait arrows (crossing) -->
+  <path class="arrowWait" d="M 130 190 L 130 218 Q 130 230 145 230 L 260 230 Q 280 230 280 248 L 280 260" />
+  <text class="labelWait" x="210" y="224">T1이 B 대기</text>
+
+  <path class="arrowWait" d="M 400 260 L 400 220 Q 400 200 420 200 L 460 200 Q 480 200 480 180 L 480 165 Q 480 148 460 148 L 400 148" />
+  <text class="labelWait" x="460" y="210">T2가 A 대기</text>
+
+  <!-- Right: detection & resolution -->
+  <rect class="layer" x="560" y="90" width="400" height="260" />
+  <text class="layerTitle" x="590" y="118">감지 &amp; 해소</text>
+
+  <!-- Wait-for graph -->
+  <rect class="trx" x="620" y="155" width="100" height="45" />
+  <text class="boxText" x="670" y="178">T1</text>
+
+  <rect class="victim" x="820" y="155" width="100" height="45" />
+  <text class="boxText" x="870" y="178">T2</text>
+  <text class="labelVictim" x="870" y="218">희생자</text>
+  <text class="boxTextSm" x="870" y="235">(롤백 비용 낮음)</text>
+
+  <path class="arrowCycle" d="M 720 168 L 820 168" />
+  <path class="arrowCycle" d="M 820 188 L 720 188" />
+  <text class="noteWarn" x="745" y="158">대기</text>
+  <text class="noteWarn" x="745" y="205">대기</text>
+
+  <text class="note" x="600" y="278">InnoDB가 wait-for graph를 스캔</text>
+  <text class="note" x="600" y="298">순환 감지 → 희생자 선택</text>
+  <text class="note" x="600" y="318">희생자는 ERROR 1213 (Deadlock found) 수신</text>
+
+  <!-- Bottom notes -->
+  <text class="note" x="40" y="385">innodb_deadlock_detect = ON (기본값): wait-for graph를 통한 자동 순환 감지</text>
+  <text class="note" x="40" y="407">innodb_deadlock_detect = OFF: 감지 비활성화, innodb_lock_wait_timeout + 앱 재시도에 의존</text>
+  <text class="noteWarn" x="40" y="435">감지 OFF는 극단적 고동시성 시나리오(핫 로우 경합)에서만 검토 대상이다.</text>
+</svg>

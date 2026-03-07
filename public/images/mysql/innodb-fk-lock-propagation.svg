@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="500" viewBox="-20 -20 1040 540" role="img" aria-labelledby="title desc">
+  <title id="title">InnoDB 외래 키 잠금 전파</title>
+  <desc id="desc">자식 INSERT와 부모 DELETE가 동시에 발생하면, FK 검증으로 인해 테이블 간 잠금이 전파된다.</desc>
+  <defs>
+    <style>
+      .bg { fill: #f8fafc; }
+      .title { font: 700 26px 'Segoe UI', Arial, sans-serif; fill: #0f172a; }
+      .subtitle { font: 500 15px 'Segoe UI', Arial, sans-serif; fill: #334155; }
+      .layer { fill: #ffffff; stroke: #1e293b; stroke-width: 2; rx: 12; }
+      .layerTitle { font: 700 17px 'Segoe UI', Arial, sans-serif; fill: #0f172a; }
+      .tbl { fill: #e2e8f0; stroke: #334155; stroke-width: 1.5; rx: 8; }
+      .tblHeader { fill: #cbd5e1; stroke: #334155; stroke-width: 1.5; rx: 8 8 0 0; }
+      .row { fill: #f1f5f9; stroke: #94a3b8; stroke-width: 1; }
+      .rowLock { fill: #fee2e2; stroke: #dc2626; stroke-width: 1.5; }
+      .trx { fill: #dbeafe; stroke: #1d4ed8; stroke-width: 2; rx: 10; }
+      .boxText { font: 600 14px 'Segoe UI', Arial, sans-serif; fill: #0f172a; text-anchor: middle; dominant-baseline: middle; }
+      .boxTextSm { font: 500 12px 'Segoe UI', Arial, sans-serif; fill: #334155; text-anchor: middle; dominant-baseline: middle; }
+      .cellText { font: 500 13px 'Segoe UI', Arial, sans-serif; fill: #0f172a; text-anchor: middle; dominant-baseline: middle; }
+      .note { font: 500 13px 'Segoe UI', Arial, sans-serif; fill: #334155; }
+      .noteWarn { font: 600 13px 'Segoe UI', Arial, sans-serif; fill: #dc2626; }
+      .labelLock { font: 700 12px 'Segoe UI', Arial, sans-serif; fill: #dc2626; }
+      .labelCheck { font: 700 12px 'Segoe UI', Arial, sans-serif; fill: #0369a1; }
+      .arrow { stroke: #0f172a; stroke-width: 2; fill: none; marker-end: url(#ah); stroke-linecap: round; }
+      .arrowLock { stroke: #dc2626; stroke-width: 2.5; fill: none; marker-end: url(#ahR); stroke-linecap: round; stroke-dasharray: 7 5; }
+      .arrowCheck { stroke: #0369a1; stroke-width: 2; fill: none; marker-end: url(#ahB); stroke-linecap: round; stroke-dasharray: 6 4; }
+      .stepNum { font: 700 16px 'Segoe UI', Arial, sans-serif; fill: #ffffff; text-anchor: middle; dominant-baseline: middle; }
+      .stepCircle { fill: #1d4ed8; }
+      .stepCircleR { fill: #dc2626; }
+    </style>
+    <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#0f172a" />
+    </marker>
+    <marker id="ahR" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#dc2626" />
+    </marker>
+    <marker id="ahB" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#0369a1" />
+    </marker>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="1000" height="500" />
+  <text class="title" x="40" y="38">외래 키 잠금 전파</text>
+  <text class="subtitle" x="40" y="62">자식 INSERT → 부모 행에 공유 잠금(S-lock) → 동시 부모 DELETE 차단</text>
+
+  <!-- Parent table -->
+  <rect class="layer" x="40" y="85" width="300" height="200" />
+  <text class="layerTitle" x="70" y="112">parent 테이블</text>
+  <rect class="tblHeader" x="70" y="125" width="240" height="30" />
+  <text class="cellText" x="190" y="140">id (PK)</text>
+  <rect class="row" x="70" y="155" width="240" height="30" />
+  <text class="cellText" x="190" y="170">1</text>
+  <rect class="rowLock" x="70" y="185" width="240" height="30" />
+  <text class="cellText" x="150" y="200">2</text>
+  <text class="labelLock" x="280" y="200">S-lock</text>
+  <rect class="row" x="70" y="215" width="240" height="30" />
+  <text class="cellText" x="190" y="230">3</text>
+
+  <!-- Child table -->
+  <rect class="layer" x="540" y="85" width="420" height="200" />
+  <text class="layerTitle" x="570" y="112">child 테이블</text>
+  <rect class="tblHeader" x="570" y="125" width="360" height="30" />
+  <text class="cellText" x="650" y="140">id (PK)</text>
+  <text class="cellText" x="820" y="140">parent_id (FK)</text>
+  <rect class="row" x="570" y="155" width="360" height="30" />
+  <text class="cellText" x="650" y="170">10</text>
+  <text class="cellText" x="820" y="170">1</text>
+  <rect class="row" x="570" y="185" width="360" height="30" />
+  <text class="cellText" x="650" y="200">11</text>
+  <text class="cellText" x="820" y="200">2  (신규)</text>
+
+  <!-- Transactions -->
+  <rect class="trx" x="540" y="310" width="220" height="45" />
+  <text class="boxText" x="650" y="333">T1: child INSERT</text>
+
+  <rect class="trx" x="40" y="310" width="270" height="45" />
+  <text class="boxText" x="175" y="333">T2: parent id=2 DELETE</text>
+
+  <!-- Step 1 -->
+  <circle class="stepCircle" cx="505" cy="260" r="13" />
+  <text class="stepNum" x="505" y="261">1</text>
+  <path class="arrow" d="M 650 310 L 650 220" />
+
+  <!-- Step 2: FK check -->
+  <circle class="stepCircle" cx="420" cy="200" r="13" />
+  <text class="stepNum" x="420" y="201">2</text>
+  <path class="arrowCheck" d="M 570 200 L 310 200" />
+  <text class="labelCheck" x="440" y="190">FK 검증</text>
+
+  <!-- Step 3: X-lock WAIT -->
+  <circle class="stepCircleR" cx="175" cy="265" r="13" />
+  <text class="stepNum" x="175" y="266">3</text>
+  <path class="arrowLock" d="M 175 310 L 175 248" />
+  <text class="labelLock" x="80" y="276">X-lock 대기</text>
+
+  <!-- Bottom explanation -->
+  <rect x="40" y="380" width="920" height="100" rx="8" fill="#fffbeb" stroke="#d97706" stroke-width="1.5" />
+  <text class="note" x="60" y="402">1  T1: INSERT INTO child (id, parent_id) VALUES (11, 2)</text>
+  <text class="note" x="60" y="422">2  FK 검증: InnoDB가 parent id=2 행에 공유 잠금(S-lock) 획득</text>
+  <text class="note" x="60" y="442">3  T2: DELETE FROM parent WHERE id = 2 → 배타 잠금(X-lock) 필요 → S-lock에 의해 차단</text>
+  <text class="noteWarn" x="60" y="466">T2가 T1이 필요로 하는 잠금까지 보유하고 있으면 → 데드락 발생</text>
+</svg>

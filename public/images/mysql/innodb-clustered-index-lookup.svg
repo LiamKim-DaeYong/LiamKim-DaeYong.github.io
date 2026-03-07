@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="520" viewBox="-20 -20 1040 560" role="img" aria-labelledby="title desc">
+  <title id="title">InnoDB 클러스터드 인덱스 조회</title>
+  <desc id="desc">세컨더리 인덱스는 PK 값을 저장하며, 조회 경로는 세컨더리 인덱스 → PK → 클러스터드 인덱스 리프(데이터 페이지)로 이어진다.</desc>
+  <defs>
+    <style>
+      .bg { fill: #f8fafc; }
+      .title { font: 700 28px 'Segoe UI', Arial, sans-serif; fill: #0f172a; }
+      .subtitle { font: 500 16px 'Segoe UI', Arial, sans-serif; fill: #334155; }
+      .layer { fill: #ffffff; stroke: #1e293b; stroke-width: 2; rx: 12; }
+      .layerTitle { font: 700 18px 'Segoe UI', Arial, sans-serif; fill: #0f172a; }
+      .box { fill: #e2e8f0; stroke: #334155; stroke-width: 1.5; rx: 8; }
+      .boxPK { fill: #dbeafe; stroke: #1d4ed8; stroke-width: 1.5; rx: 8; }
+      .boxData { fill: #dcfce7; stroke: #16a34a; stroke-width: 1.5; rx: 8; }
+      .boxText { font: 600 14px 'Segoe UI', Arial, sans-serif; fill: #0f172a; text-anchor: middle; dominant-baseline: middle; }
+      .boxTextSm { font: 500 12px 'Segoe UI', Arial, sans-serif; fill: #334155; text-anchor: middle; dominant-baseline: middle; }
+      .note { font: 500 13px 'Segoe UI', Arial, sans-serif; fill: #334155; }
+      .stepLabel { font: 700 15px 'Segoe UI', Arial, sans-serif; fill: #dc2626; }
+      .arrow { stroke: #0f172a; stroke-width: 2; fill: none; marker-end: url(#ah); stroke-linecap: round; }
+      .arrowRed { stroke: #dc2626; stroke-width: 2.5; fill: none; marker-end: url(#ahR); stroke-linecap: round; stroke-dasharray: 7 5; }
+    </style>
+    <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#0f172a" />
+    </marker>
+    <marker id="ahR" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#dc2626" />
+    </marker>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="1000" height="520" />
+  <text class="title" x="40" y="42">InnoDB 클러스터드 인덱스 &amp; 세컨더리 인덱스 조회</text>
+  <text class="subtitle" x="40" y="68">세컨더리 인덱스는 물리 주소가 아닌 PK 값을 저장한다</text>
+
+  <!-- Secondary Index -->
+  <rect class="layer" x="40" y="95" width="420" height="195" />
+  <text class="layerTitle" x="70" y="125">세컨더리 인덱스 (idx_email)</text>
+
+  <rect class="box" x="70" y="145" width="160" height="40" />
+  <text class="boxText" x="150" y="165">alice@ex.com</text>
+  <rect class="box" x="70" y="195" width="160" height="40" />
+  <text class="boxText" x="150" y="215">bob@ex.com</text>
+  <rect class="box" x="70" y="245" width="160" height="40" />
+  <text class="boxText" x="150" y="265">carol@ex.com</text>
+
+  <!-- PK pointers in secondary index -->
+  <rect class="boxPK" x="260" y="145" width="80" height="40" />
+  <text class="boxText" x="300" y="160">PK=3</text>
+  <text class="boxTextSm" x="300" y="178">(저장)</text>
+  <rect class="boxPK" x="260" y="195" width="80" height="40" />
+  <text class="boxText" x="300" y="210">PK=1</text>
+  <text class="boxTextSm" x="300" y="228">(저장)</text>
+  <rect class="boxPK" x="260" y="245" width="80" height="40" />
+  <text class="boxText" x="300" y="260">PK=5</text>
+  <text class="boxTextSm" x="300" y="278">(저장)</text>
+
+  <path class="arrow" d="M 230 165 L 260 165" />
+  <path class="arrow" d="M 230 215 L 260 215" />
+  <path class="arrow" d="M 230 265 L 260 265" />
+
+  <!-- Clustered Index (PK ordered data pages) -->
+  <rect class="layer" x="540" y="95" width="420" height="310" />
+  <text class="layerTitle" x="570" y="125">클러스터드 인덱스 (PK 순서 = 데이터)</text>
+
+  <rect class="boxData" x="570" y="145" width="360" height="50" />
+  <text class="boxText" x="660" y="165">PK=1</text>
+  <text class="boxTextSm" x="830" y="165">bob | bob@ex.com | ...</text>
+
+  <rect class="boxData" x="570" y="210" width="360" height="50" />
+  <text class="boxText" x="660" y="230">PK=3</text>
+  <text class="boxTextSm" x="830" y="230">alice | alice@ex.com | ...</text>
+
+  <rect class="boxData" x="570" y="275" width="360" height="50" />
+  <text class="boxText" x="660" y="295">PK=5</text>
+  <text class="boxTextSm" x="830" y="295">carol | carol@ex.com | ...</text>
+
+  <rect class="boxData" x="570" y="340" width="360" height="50" />
+  <text class="boxText" x="660" y="360">PK=7</text>
+  <text class="boxTextSm" x="830" y="360">dave | dave@ex.com | ...</text>
+
+  <!-- Lookup path -->
+  <text class="stepLabel" x="70" y="320">1 email = 'alice@...'</text>
+  <path class="arrowRed" d="M 340 165 Q 450 130 570 230" />
+  <text class="stepLabel" x="430" y="118">2 PK=3 조회</text>
+
+  <!-- Note at bottom -->
+  <text class="note" x="40" y="440">PK = 클러스터드 키: 데이터 페이지가 PK 순서로 물리적으로 정렬된다.</text>
+  <text class="note" x="40" y="462">세컨더리 인덱스 엔트리는 행 포인터가 아닌 PK 값을 저장하므로,</text>
+  <text class="note" x="40" y="484">세컨더리 인덱스 조회마다 클러스터드 인덱스를 한 번 더 탐색해야 한다.</text>
+  <text class="note" x="40" y="510">PK가 길거나 랜덤하면 세컨더리 인덱스 크기 증가와 페이지 분할 비용이 커진다.</text>
+</svg>
