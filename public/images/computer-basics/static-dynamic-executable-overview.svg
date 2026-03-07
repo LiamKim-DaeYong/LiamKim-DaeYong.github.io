@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="500" viewBox="-20 -20 1040 540" role="img" aria-labelledby="title desc">
+  <title id="title">정적 링크 vs 동적 링크</title>
+  <desc id="desc">정적 링크는 라이브러리를 실행 파일에 복사하고, 동적 링크는 실행 시점에 외부 라이브러리를 로딩한다.</desc>
+  <defs>
+    <style>
+      .bg { fill: #f8fafc; }
+      .title { font: 700 26px 'Segoe UI', Arial, sans-serif; fill: #0f172a; }
+      .subtitle { font: 500 15px 'Segoe UI', Arial, sans-serif; fill: #334155; }
+      .layer { fill: #ffffff; stroke: #1e293b; stroke-width: 2; rx: 12; }
+      .layerTitle { font: 700 17px 'Segoe UI', Arial, sans-serif; fill: #0f172a; text-anchor: middle; dominant-baseline: middle; }
+      .boxStatic { fill: #dbeafe; stroke: #1d4ed8; stroke-width: 1.5; rx: 8; }
+      .boxDynamic { fill: #dcfce7; stroke: #16a34a; stroke-width: 1.5; rx: 8; }
+      .boxObj { fill: #e2e8f0; stroke: #334155; stroke-width: 1.5; rx: 6; }
+      .boxLib { fill: #fef3c7; stroke: #d97706; stroke-width: 1.5; rx: 6; }
+      .boxExe { fill: #ecfeff; stroke: #0891b2; stroke-width: 1.5; rx: 8; }
+      .boxText { font: 600 14px 'Segoe UI', Arial, sans-serif; fill: #0f172a; text-anchor: middle; dominant-baseline: middle; }
+      .boxTextSm { font: 500 12px 'Segoe UI', Arial, sans-serif; fill: #334155; text-anchor: middle; dominant-baseline: middle; }
+      .labelB { font: 700 13px 'Segoe UI', Arial, sans-serif; fill: #1d4ed8; text-anchor: middle; }
+      .labelG { font: 700 13px 'Segoe UI', Arial, sans-serif; fill: #16a34a; text-anchor: middle; }
+      .note { font: 500 13px 'Segoe UI', Arial, sans-serif; fill: #334155; }
+      .noteB { font: 600 13px 'Segoe UI', Arial, sans-serif; fill: #1d4ed8; }
+      .noteG { font: 600 13px 'Segoe UI', Arial, sans-serif; fill: #16a34a; }
+      .arrow { stroke: #0f172a; stroke-width: 2; fill: none; marker-end: url(#ah); stroke-linecap: round; }
+      .arrowD { stroke: #16a34a; stroke-width: 2; fill: none; marker-end: url(#ahG); stroke-linecap: round; stroke-dasharray: 6 4; }
+    </style>
+    <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#0f172a" />
+    </marker>
+    <marker id="ahG" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#16a34a" />
+    </marker>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="1000" height="500" />
+  <text class="title" x="40" y="38">정적 링크 vs 동적 링크</text>
+  <text class="subtitle" x="40" y="62">라이브러리를 실행 파일에 포함할 것인가, 실행 시점에 로딩할 것인가</text>
+
+  <!-- Static linking side -->
+  <rect class="layer" x="40" y="85" width="440" height="350" />
+  <text class="layerTitle" x="260" y="112">정적 링크</text>
+
+  <!-- inputs -->
+  <rect class="boxObj" x="70" y="135" width="110" height="40" />
+  <text class="boxText" x="125" y="155">main.o</text>
+  <rect class="boxLib" x="200" y="135" width="130" height="40" />
+  <text class="boxText" x="265" y="155">libmath.a</text>
+  <text class="boxTextSm" x="265" y="195">정적 라이브러리</text>
+
+  <!-- arrow to linker -->
+  <path class="arrow" d="M 125 175 L 200 230" />
+  <path class="arrow" d="M 265 175 L 240 230" />
+
+  <!-- linker box -->
+  <rect class="boxStatic" x="160" y="230" width="160" height="40" />
+  <text class="boxText" x="240" y="250">링커: 코드 복사</text>
+
+  <!-- arrow to exe -->
+  <path class="arrow" d="M 240 270 L 240 310" />
+
+  <!-- executable -->
+  <rect class="boxExe" x="110" y="310" width="260" height="100" />
+  <text class="boxText" x="240" y="335">실행 파일</text>
+  <text class="boxTextSm" x="240" y="355">main 코드 + libmath 코드 포함</text>
+  <text class="labelB" x="240" y="385">외부 의존 없이 독립 실행 가능</text>
+
+  <!-- Dynamic linking side -->
+  <rect class="layer" x="520" y="85" width="440" height="350" />
+  <text class="layerTitle" x="740" y="112">동적 링크</text>
+
+  <!-- inputs -->
+  <rect class="boxObj" x="550" y="135" width="110" height="40" />
+  <text class="boxText" x="605" y="155">main.o</text>
+  <rect class="boxLib" x="680" y="135" width="130" height="40" />
+  <text class="boxText" x="745" y="155">libmath.so</text>
+  <text class="boxTextSm" x="745" y="195">공유 라이브러리</text>
+
+  <!-- arrow to linker (only main.o) -->
+  <path class="arrow" d="M 605 175 L 660 230" />
+
+  <!-- linker box -->
+  <rect class="boxDynamic" x="600" y="230" width="180" height="40" />
+  <text class="boxText" x="690" y="250">링커: 참조만 기록</text>
+
+  <!-- arrow to exe -->
+  <path class="arrow" d="M 690 270 L 690 310" />
+
+  <!-- executable (smaller) -->
+  <rect class="boxExe" x="590" y="310" width="200" height="55" />
+  <text class="boxText" x="690" y="335">실행 파일 (가벼움)</text>
+  <text class="boxTextSm" x="690" y="355">libmath 참조만 포함</text>
+
+  <!-- runtime library loading -->
+  <rect class="boxLib" x="820" y="310" width="120" height="55" />
+  <text class="boxText" x="880" y="335">libmath.so</text>
+  <text class="boxTextSm" x="880" y="355">실행 시 로딩</text>
+
+  <path class="arrowD" d="M 790 338 L 820 338" />
+  <text class="labelG" x="740" y="400">실행 시점에 로더가 라이브러리 로딩</text>
+
+  <!-- Bottom comparison -->
+  <text class="noteB" x="40" y="460">정적: 배포 단순, 실행 파일 크기 큼, 라이브러리 수정 시 재빌드 필요</text>
+  <text class="noteG" x="40" y="484">동적: 실행 파일 작음, 코드 공유 가능, 런타임 환경 의존성 발생</text>
+</svg>

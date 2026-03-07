@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="460" viewBox="-20 -20 1040 500" role="img" aria-labelledby="title desc">
+  <title id="title">심벌 해석: 참조와 정의 매칭</title>
+  <desc id="desc">링커가 각 대상 파일의 심벌 테이블을 모아 참조(needs)와 정의(provides)를 1:1로 연결한다.</desc>
+  <defs>
+    <style>
+      .bg { fill: #f8fafc; }
+      .title { font: 700 26px 'Segoe UI', Arial, sans-serif; fill: #0f172a; }
+      .subtitle { font: 500 15px 'Segoe UI', Arial, sans-serif; fill: #334155; }
+      .layer { fill: #ffffff; stroke: #1e293b; stroke-width: 2; rx: 12; }
+      .layerTitle { font: 700 17px 'Segoe UI', Arial, sans-serif; fill: #0f172a; text-anchor: middle; dominant-baseline: middle; }
+      .boxProv { fill: #dcfce7; stroke: #16a34a; stroke-width: 1.5; rx: 6; }
+      .boxNeed { fill: #fee2e2; stroke: #dc2626; stroke-width: 1.5; rx: 6; }
+      .boxMatch { fill: #dbeafe; stroke: #1d4ed8; stroke-width: 2; rx: 12; }
+      .boxText { font: 600 14px 'Segoe UI', Arial, sans-serif; fill: #0f172a; text-anchor: middle; dominant-baseline: middle; }
+      .boxTextSm { font: 500 12px 'Segoe UI', Arial, sans-serif; fill: #334155; text-anchor: middle; dominant-baseline: middle; }
+      .mono { font: 600 13px 'Consolas', monospace; fill: #0f172a; text-anchor: middle; dominant-baseline: middle; }
+      .labelG { font: 700 12px 'Segoe UI', Arial, sans-serif; fill: #16a34a; }
+      .labelR { font: 700 12px 'Segoe UI', Arial, sans-serif; fill: #dc2626; }
+      .note { font: 500 13px 'Segoe UI', Arial, sans-serif; fill: #334155; }
+      .noteR { font: 600 13px 'Segoe UI', Arial, sans-serif; fill: #dc2626; }
+      .arrow { stroke: #16a34a; stroke-width: 2; fill: none; marker-end: url(#ahG); stroke-linecap: round; }
+      .arrowDown { stroke: #0f172a; stroke-width: 2; fill: none; marker-end: url(#ah); stroke-linecap: round; }
+    </style>
+    <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#0f172a" />
+    </marker>
+    <marker id="ahG" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#16a34a" />
+    </marker>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="1000" height="460" />
+  <text class="title" x="40" y="38">심벌 해석 (Symbol Resolution)</text>
+  <text class="subtitle" x="40" y="62">각 대상 파일의 "필요한 이름"과 "제공하는 이름"을 1:1로 매칭한다</text>
+
+  <!-- main.o -->
+  <rect class="layer" x="40" y="90" width="260" height="160" />
+  <text class="layerTitle" x="170" y="115">main.o</text>
+  <rect class="boxProv" x="60" y="132" width="220" height="30" />
+  <text class="mono" x="170" y="147">정의: main()</text>
+  <rect class="boxNeed" x="60" y="172" width="220" height="30" />
+  <text class="mono" x="170" y="187">참조: add()</text>
+  <rect class="boxNeed" x="60" y="208" width="220" height="30" />
+  <text class="mono" x="170" y="223">참조: log()</text>
+
+  <!-- util.o -->
+  <rect class="layer" x="370" y="90" width="260" height="130" />
+  <text class="layerTitle" x="500" y="115">util.o</text>
+  <rect class="boxProv" x="390" y="132" width="220" height="30" />
+  <text class="mono" x="500" y="147">정의: add()</text>
+  <text class="boxTextSm" x="500" y="195">외부 참조 없음</text>
+
+  <!-- log.o -->
+  <rect class="layer" x="700" y="90" width="260" height="130" />
+  <text class="layerTitle" x="830" y="115">log.o</text>
+  <rect class="boxProv" x="720" y="132" width="220" height="30" />
+  <text class="mono" x="830" y="147">정의: log()</text>
+  <text class="boxTextSm" x="830" y="195">외부 참조 없음</text>
+
+  <!-- arrows down -->
+  <path class="arrowDown" d="M 170 250 L 170 280" />
+  <path class="arrowDown" d="M 500 220 L 500 280" />
+  <path class="arrowDown" d="M 830 220 L 830 280" />
+
+  <!-- linker matching area -->
+  <rect class="boxMatch" x="40" y="285" width="920" height="110" />
+  <text class="layerTitle" x="500" y="310">링커: 심벌 매칭</text>
+
+  <text class="mono" x="280" y="340">add() 참조</text>
+  <text class="boxTextSm" x="370" y="340">→</text>
+  <text class="mono" x="470" y="340">util.o가 정의</text>
+  <text class="labelG" x="570" y="340">연결 성공</text>
+
+  <text class="mono" x="280" y="370">log() 참조</text>
+  <text class="boxTextSm" x="370" y="370">→</text>
+  <text class="mono" x="470" y="370">log.o가 정의</text>
+  <text class="labelG" x="570" y="370">연결 성공</text>
+
+  <!-- error cases -->
+  <text class="note" x="40" y="425">정의를 찾지 못하면: undefined reference to 'print_log'</text>
+  <text class="note" x="40" y="447">같은 이름이 여러 곳에 정의되면: multiple definition of 'counter'</text>
+</svg>

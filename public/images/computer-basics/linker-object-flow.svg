@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="480" viewBox="-20 -20 1040 520" role="img" aria-labelledby="title desc">
+  <title id="title">대상 파일 구조와 링커 결합 흐름</title>
+  <desc id="desc">대상 파일은 코드, 데이터, 심벌 테이블을 포함하며, 링커가 이를 결합해 실행 파일을 만든다.</desc>
+  <defs>
+    <style>
+      .bg { fill: #f8fafc; }
+      .title { font: 700 26px 'Segoe UI', Arial, sans-serif; fill: #0f172a; }
+      .subtitle { font: 500 15px 'Segoe UI', Arial, sans-serif; fill: #334155; }
+      .layer { fill: #ffffff; stroke: #1e293b; stroke-width: 2; rx: 12; }
+      .layerTitle { font: 700 17px 'Segoe UI', Arial, sans-serif; fill: #0f172a; text-anchor: middle; dominant-baseline: middle; }
+      .boxCode { fill: #dbeafe; stroke: #1d4ed8; stroke-width: 1.5; rx: 6; }
+      .boxData { fill: #dcfce7; stroke: #16a34a; stroke-width: 1.5; rx: 6; }
+      .boxSym { fill: #fef3c7; stroke: #d97706; stroke-width: 1.5; rx: 6; }
+      .boxLinker { fill: #fff7ed; stroke: #ea580c; stroke-width: 2; rx: 12; }
+      .boxExe { fill: #ecfeff; stroke: #0891b2; stroke-width: 2; rx: 12; }
+      .boxText { font: 600 13px 'Segoe UI', Arial, sans-serif; fill: #0f172a; text-anchor: middle; dominant-baseline: middle; }
+      .boxTextSm { font: 500 11px 'Segoe UI', Arial, sans-serif; fill: #334155; text-anchor: middle; dominant-baseline: middle; }
+      .mono { font: 600 12px 'Consolas', monospace; fill: #0f172a; text-anchor: middle; dominant-baseline: middle; }
+      .note { font: 500 13px 'Segoe UI', Arial, sans-serif; fill: #334155; }
+      .arrow { stroke: #0f172a; stroke-width: 2.5; fill: none; marker-end: url(#ah); stroke-linecap: round; }
+    </style>
+    <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#0f172a" />
+    </marker>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="1000" height="480" />
+  <text class="title" x="40" y="38">대상 파일 구조와 링커 결합</text>
+  <text class="subtitle" x="40" y="62">각 .o 파일의 코드·데이터·심벌 테이블을 링커가 하나의 실행 파일로 완성한다</text>
+
+  <!-- main.o -->
+  <rect class="layer" x="40" y="90" width="230" height="200" />
+  <text class="layerTitle" x="155" y="118">main.o</text>
+  <rect class="boxCode" x="60" y="135" width="90" height="35" />
+  <text class="boxText" x="105" y="148">.text</text>
+  <text class="boxTextSm" x="105" y="163">코드</text>
+  <rect class="boxData" x="160" y="135" width="90" height="35" />
+  <text class="boxText" x="205" y="148">.data</text>
+  <text class="boxTextSm" x="205" y="163">데이터</text>
+  <rect class="boxSym" x="60" y="185" width="190" height="85" />
+  <text class="boxText" x="155" y="206">심벌 테이블</text>
+  <text class="mono" x="155" y="228">정의: main</text>
+  <text class="mono" x="155" y="248">참조: add, log</text>
+
+  <!-- math.o -->
+  <rect class="layer" x="40" y="310" width="230" height="155" />
+  <text class="layerTitle" x="155" y="338">math.o</text>
+  <rect class="boxCode" x="60" y="355" width="90" height="35" />
+  <text class="boxText" x="105" y="368">.text</text>
+  <text class="boxTextSm" x="105" y="383">코드</text>
+  <rect class="boxData" x="160" y="355" width="90" height="35" />
+  <text class="boxText" x="205" y="368">.data</text>
+  <text class="boxTextSm" x="205" y="383">데이터</text>
+  <rect class="boxSym" x="60" y="400" width="190" height="45" />
+  <text class="boxText" x="155" y="418">정의: add</text>
+
+  <!-- linker -->
+  <rect class="boxLinker" x="380" y="140" width="220" height="200" />
+  <text class="layerTitle" x="490" y="172">링커</text>
+  <text class="boxText" x="490" y="206">1) 심벌 해석</text>
+  <text class="boxTextSm" x="490" y="224">이름 → 정의 연결</text>
+  <text class="boxText" x="490" y="252">2) 섹션 병합</text>
+  <text class="boxTextSm" x="490" y="270">.text + .text → 하나로</text>
+  <text class="boxText" x="490" y="298">3) 재배치</text>
+  <text class="boxTextSm" x="490" y="316">임시 주소 → 실제 주소</text>
+
+  <!-- executable -->
+  <rect class="boxExe" x="710" y="130" width="250" height="220" />
+  <text class="layerTitle" x="835" y="162">실행 파일</text>
+  <text class="boxTextSm" x="835" y="182">a.out / .exe</text>
+  <rect class="boxCode" x="730" y="200" width="100" height="35" />
+  <text class="boxText" x="780" y="222">코드 세그먼트</text>
+  <rect class="boxData" x="840" y="200" width="100" height="35" />
+  <text class="boxText" x="890" y="222">데이터 세그먼트</text>
+  <text class="boxTextSm" x="835" y="270">심벌 해석 완료</text>
+  <text class="boxTextSm" x="835" y="290">섹션 병합 완료</text>
+  <text class="boxTextSm" x="835" y="310">주소 확정 → 실행 가능</text>
+
+  <!-- arrows -->
+  <path class="arrow" d="M 270 190 L 380 210" />
+  <path class="arrow" d="M 270 388 L 380 290" />
+  <path class="arrow" d="M 600 240 L 710 240" />
+
+  <text class="note" x="40" y="478">심벌 테이블에는 "이 파일이 제공하는 이름"과 "외부에서 필요한 이름"이 정리되어 있다.</text>
+</svg>

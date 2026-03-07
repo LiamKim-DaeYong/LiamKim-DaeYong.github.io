@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="480" viewBox="-20 -20 1040 520" role="img" aria-labelledby="title desc">
+  <title id="title">가상 메모리 주소 변환</title>
+  <desc id="desc">프로세스가 사용하는 가상 주소가 MMU와 페이지 테이블을 통해 물리 주소로 변환되는 흐름.</desc>
+  <defs>
+    <style>
+      .bg { fill: #f8fafc; }
+      .title { font: 700 26px 'Segoe UI', Arial, sans-serif; fill: #0f172a; }
+      .subtitle { font: 500 15px 'Segoe UI', Arial, sans-serif; fill: #334155; }
+      .layer { fill: #ffffff; stroke: #1e293b; stroke-width: 2; rx: 12; }
+      .layerTitle { font: 700 17px 'Segoe UI', Arial, sans-serif; fill: #0f172a; text-anchor: middle; dominant-baseline: middle; }
+      .boxProc { fill: #dbeafe; stroke: #1d4ed8; stroke-width: 2; rx: 12; }
+      .boxTLB { fill: #ecfeff; stroke: #0891b2; stroke-width: 1.5; rx: 8; }
+      .boxPT { fill: #fef3c7; stroke: #d97706; stroke-width: 1.5; rx: 8; }
+      .boxPhy { fill: #dcfce7; stroke: #16a34a; stroke-width: 2; rx: 12; }
+      .boxOS { fill: #fee2e2; stroke: #dc2626; stroke-width: 1.5; rx: 8; }
+      .boxText { font: 600 14px 'Segoe UI', Arial, sans-serif; fill: #0f172a; text-anchor: middle; dominant-baseline: middle; }
+      .boxTextSm { font: 500 12px 'Segoe UI', Arial, sans-serif; fill: #334155; text-anchor: middle; dominant-baseline: middle; }
+      .mono { font: 600 13px 'Consolas', monospace; fill: #0f172a; text-anchor: middle; dominant-baseline: middle; }
+      .labelB { font: 700 12px 'Segoe UI', Arial, sans-serif; fill: #1d4ed8; text-anchor: middle; }
+      .labelG { font: 700 12px 'Segoe UI', Arial, sans-serif; fill: #16a34a; text-anchor: middle; }
+      .labelR { font: 700 12px 'Segoe UI', Arial, sans-serif; fill: #dc2626; text-anchor: middle; }
+      .note { font: 500 13px 'Segoe UI', Arial, sans-serif; fill: #334155; }
+      .noteR { font: 600 13px 'Segoe UI', Arial, sans-serif; fill: #dc2626; }
+      .arrow { stroke: #0f172a; stroke-width: 2.5; fill: none; marker-end: url(#ah); stroke-linecap: round; }
+      .arrowR { stroke: #dc2626; stroke-width: 2; fill: none; marker-end: url(#ahR); stroke-linecap: round; stroke-dasharray: 6 4; }
+      .stepLabel { font: 700 13px 'Segoe UI', Arial, sans-serif; fill: #0f172a; text-anchor: middle; }
+    </style>
+    <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#0f172a" />
+    </marker>
+    <marker id="ahR" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#dc2626" />
+    </marker>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="1000" height="480" />
+  <text class="title" x="40" y="38">가상 메모리 주소 변환</text>
+  <text class="subtitle" x="40" y="62">프로세스의 가상 주소가 MMU를 거쳐 물리 메모리 주소로 변환되는 흐름</text>
+
+  <!-- Process -->
+  <rect class="boxProc" x="40" y="110" width="180" height="120" />
+  <text class="boxText" x="130" y="140">프로세스 코드</text>
+  <text class="mono" x="130" y="170">load [0x7ffc1234]</text>
+  <text class="boxTextSm" x="130" y="200">가상 주소 사용</text>
+
+  <!-- MMU area -->
+  <rect class="layer" x="290" y="85" width="370" height="280" />
+  <text class="layerTitle" x="475" y="112">MMU (메모리 관리 유닛)</text>
+
+  <!-- TLB -->
+  <rect class="boxTLB" x="320" y="135" width="310" height="80" />
+  <text class="boxText" x="475" y="158">TLB (변환 색인 버퍼)</text>
+  <text class="boxTextSm" x="475" y="178">최근 변환 결과를 캐시</text>
+  <text class="labelG" x="475" y="200">히트 → 즉시 변환</text>
+
+  <!-- Page Table -->
+  <rect class="boxPT" x="320" y="235" width="310" height="80" />
+  <text class="boxText" x="475" y="258">페이지 테이블 탐색</text>
+  <text class="boxTextSm" x="475" y="278">가상 페이지 → 물리 프레임 매핑</text>
+  <text class="labelR" x="475" y="300">미스 → 페이지 테이블 워크</text>
+
+  <!-- arrow TLB miss to page table -->
+  <path class="arrow" d="M 475 215 L 475 235" />
+  <text class="boxTextSm" x="530" y="228">미스</text>
+
+  <!-- Physical memory -->
+  <rect class="boxPhy" x="730" y="110" width="230" height="120" />
+  <text class="boxText" x="845" y="140">물리 메모리</text>
+  <text class="mono" x="845" y="170">프레임 #42 + 오프셋</text>
+  <text class="boxTextSm" x="845" y="200">실제 RAM 위치</text>
+
+  <!-- OS / page fault -->
+  <rect class="boxOS" x="730" y="260" width="230" height="100" />
+  <text class="boxText" x="845" y="288">OS 페이지 폴트 핸들러</text>
+  <text class="boxTextSm" x="845" y="310">디스크에서 페이지 로드</text>
+  <text class="boxTextSm" x="845" y="330">페이지 테이블 갱신</text>
+
+  <!-- Arrows -->
+  <!-- process → MMU -->
+  <path class="arrow" d="M 220 170 L 290 170" />
+  <text class="stepLabel" x="255" y="158">1</text>
+
+  <!-- TLB hit → physical -->
+  <path class="arrow" d="M 630 170 L 730 170" />
+  <text class="stepLabel" x="680" y="158">2 변환</text>
+
+  <!-- page table → physical -->
+  <path class="arrow" d="M 630 275 Q 690 275 690 200 L 690 170 L 730 170" />
+
+  <!-- page fault path -->
+  <path class="arrowR" d="M 630 300 L 730 310" />
+  <text class="labelR" x="680" y="318">폴트</text>
+
+  <!-- OS resume -->
+  <path class="arrowR" d="M 730 270 Q 700 250 660 245" />
+  <text class="labelR" x="680" y="252">복구</text>
+
+  <!-- Bottom: ASLR note -->
+  <text class="note" x="40" y="405">ASLR: 실행할 때마다 가상 베이스 주소를 무작위로 변경 → 재배치 규칙이 보정하므로 참조는 유효</text>
+  <text class="note" x="40" y="427">프로세스마다 독립된 가상 주소 공간 → 같은 가상 주소도 서로 다른 물리 프레임에 매핑된다</text>
+  <text class="note" x="40" y="455">링크는 "실행 규칙을 준비하는 단계", 실제 주소 매핑은 로더와 MMU가 완성한다</text>
+</svg>

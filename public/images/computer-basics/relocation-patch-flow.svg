@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="440" viewBox="-20 -20 1040 480" role="img" aria-labelledby="title desc">
+  <title id="title">재배치: 임시 주소를 실제 주소로 패치</title>
+  <desc id="desc">컴파일러가 남긴 임시 주소를 링커가 심벌 위치 계산 후 실제 주소로 교체하는 과정.</desc>
+  <defs>
+    <style>
+      .bg { fill: #f8fafc; }
+      .title { font: 700 26px 'Segoe UI', Arial, sans-serif; fill: #0f172a; }
+      .subtitle { font: 500 15px 'Segoe UI', Arial, sans-serif; fill: #334155; }
+      .layer { fill: #ffffff; stroke: #1e293b; stroke-width: 2; rx: 12; }
+      .layerTitle { font: 700 17px 'Segoe UI', Arial, sans-serif; fill: #0f172a; text-anchor: middle; dominant-baseline: middle; }
+      .boxBefore { fill: #fee2e2; stroke: #dc2626; stroke-width: 1.5; rx: 8; }
+      .boxAfter { fill: #dcfce7; stroke: #16a34a; stroke-width: 1.5; rx: 8; }
+      .boxRelo { fill: #fef3c7; stroke: #d97706; stroke-width: 1.5; rx: 6; }
+      .boxLinker { fill: #fff7ed; stroke: #ea580c; stroke-width: 2; rx: 12; }
+      .boxText { font: 600 14px 'Segoe UI', Arial, sans-serif; fill: #0f172a; text-anchor: middle; dominant-baseline: middle; }
+      .boxTextSm { font: 500 12px 'Segoe UI', Arial, sans-serif; fill: #334155; text-anchor: middle; dominant-baseline: middle; }
+      .mono { font: 700 15px 'Consolas', monospace; fill: #0f172a; text-anchor: middle; dominant-baseline: middle; }
+      .monoSm { font: 500 12px 'Consolas', monospace; fill: #334155; text-anchor: middle; dominant-baseline: middle; }
+      .labelR { font: 700 13px 'Segoe UI', Arial, sans-serif; fill: #dc2626; text-anchor: middle; }
+      .labelG { font: 700 13px 'Segoe UI', Arial, sans-serif; fill: #16a34a; text-anchor: middle; }
+      .note { font: 500 13px 'Segoe UI', Arial, sans-serif; fill: #334155; }
+      .arrow { stroke: #0f172a; stroke-width: 2.5; fill: none; marker-end: url(#ah); stroke-linecap: round; }
+      .arrowBig { stroke: #ea580c; stroke-width: 3; fill: none; marker-end: url(#ahO); stroke-linecap: round; }
+    </style>
+    <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#0f172a" />
+    </marker>
+    <marker id="ahO" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#ea580c" />
+    </marker>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="1000" height="440" />
+  <text class="title" x="40" y="38">재배치 (Relocation)</text>
+  <text class="subtitle" x="40" y="62">컴파일러가 남긴 임시 주소를 링커가 실제 주소로 패치한다</text>
+
+  <!-- Before: object file -->
+  <rect class="layer" x="40" y="90" width="280" height="270" />
+  <text class="layerTitle" x="180" y="118">대상 파일 (컴파일 결과)</text>
+
+  <!-- code with placeholder -->
+  <rect class="boxBefore" x="65" y="140" width="230" height="55" />
+  <text class="mono" x="180" y="163">call 0x00000000</text>
+  <text class="labelR" x="180" y="185">주소 미정 → 임시값</text>
+
+  <!-- relocation entry -->
+  <rect class="boxRelo" x="65" y="215" width="230" height="65" />
+  <text class="boxText" x="180" y="237">재배치 엔트리</text>
+  <text class="monoSm" x="180" y="258">위치: 0x0012</text>
+  <text class="monoSm" x="180" y="275">심벌: foo</text>
+
+  <!-- symbol table -->
+  <rect class="boxRelo" x="65" y="295" width="230" height="45" />
+  <text class="boxText" x="180" y="315">심벌 테이블</text>
+  <text class="monoSm" x="180" y="332">참조: foo (미해결)</text>
+
+  <!-- Linker -->
+  <rect class="boxLinker" x="400" y="140" width="200" height="180" />
+  <text class="layerTitle" x="500" y="172">링커</text>
+  <text class="boxTextSm" x="500" y="202">1) foo의 최종 위치 계산</text>
+  <text class="boxTextSm" x="500" y="225">2) 재배치 엔트리 확인</text>
+  <text class="boxTextSm" x="500" y="248">3) 0x00000000을</text>
+  <text class="boxTextSm" x="500" y="268">   실제 주소로 교체</text>
+
+  <!-- arrow object → linker -->
+  <path class="arrowBig" d="M 320 230 L 400 230" />
+
+  <!-- arrow linker → exe -->
+  <path class="arrowBig" d="M 600 230 L 680 230" />
+
+  <!-- After: executable -->
+  <rect class="layer" x="680" y="90" width="280" height="200" />
+  <text class="layerTitle" x="820" y="118">실행 파일 (링크 결과)</text>
+
+  <rect class="boxAfter" x="705" y="145" width="230" height="55" />
+  <text class="mono" x="820" y="168">call 0x4004d6</text>
+  <text class="labelG" x="820" y="190">실제 주소로 패치 완료</text>
+
+  <text class="boxTextSm" x="820" y="230">foo의 위치가 확정되었으므로</text>
+  <text class="boxTextSm" x="820" y="250">CPU가 이 호출을 실행할 수 있다</text>
+
+  <!-- Bottom notes -->
+  <text class="note" x="40" y="395">ELF에서는 재배치 정보가 .rel.* 또는 .rela.* 섹션에 저장된다.</text>
+  <text class="note" x="40" y="417">각 엔트리: "어느 위치를", "어떤 심벌 기준으로", "어떤 계산식으로" 패치할지 기록한다.</text>
+</svg>
