@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="520" viewBox="-20 -20 1040 560" role="img" aria-labelledby="title desc">
+  <title id="title">InnoDB 버퍼 풀 내부 구조</title>
+  <desc id="desc">버퍼 풀은 LRU 리스트, 프리 리스트, 플러시 리스트 세 가지로 페이지를 관리한다.</desc>
+  <defs>
+    <style>
+      .bg { fill: #f8fafc; }
+      .title { font: 700 26px 'Segoe UI', Arial, sans-serif; fill: #0f172a; }
+      .subtitle { font: 500 15px 'Segoe UI', Arial, sans-serif; fill: #334155; }
+      .layer { fill: #ffffff; stroke: #1e293b; stroke-width: 2; rx: 12; }
+      .layerTitle { font: 700 17px 'Segoe UI', Arial, sans-serif; fill: #0f172a; }
+      .boxHot { fill: #dbeafe; stroke: #1d4ed8; stroke-width: 1.5; rx: 6; }
+      .boxCold { fill: #e2e8f0; stroke: #64748b; stroke-width: 1.5; rx: 6; }
+      .boxFree { fill: #dcfce7; stroke: #16a34a; stroke-width: 1.5; rx: 6; }
+      .boxDirty { fill: #fee2e2; stroke: #dc2626; stroke-width: 1.5; rx: 6; }
+      .boxText { font: 600 13px 'Segoe UI', Arial, sans-serif; fill: #0f172a; text-anchor: middle; dominant-baseline: middle; }
+      .boxTextSm { font: 500 11px 'Segoe UI', Arial, sans-serif; fill: #334155; text-anchor: middle; dominant-baseline: middle; }
+      .note { font: 500 13px 'Segoe UI', Arial, sans-serif; fill: #334155; }
+      .noteB { font: 600 13px 'Segoe UI', Arial, sans-serif; fill: #1d4ed8; }
+      .noteR { font: 600 13px 'Segoe UI', Arial, sans-serif; fill: #dc2626; }
+      .noteG { font: 600 13px 'Segoe UI', Arial, sans-serif; fill: #16a34a; }
+      .arrow { stroke: #0f172a; stroke-width: 2; fill: none; marker-end: url(#ah); stroke-linecap: round; }
+      .arrowD { stroke: #0f172a; stroke-width: 1.5; fill: none; marker-end: url(#ah); stroke-linecap: round; stroke-dasharray: 6 4; }
+      .divider { stroke: #d97706; stroke-width: 2; stroke-dasharray: 8 4; }
+      .midLabel { font: 700 12px 'Segoe UI', Arial, sans-serif; fill: #d97706; text-anchor: middle; }
+    </style>
+    <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#0f172a" />
+    </marker>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="1000" height="520" />
+  <text class="title" x="40" y="38">InnoDB 버퍼 풀 내부 구조</text>
+  <text class="subtitle" x="40" y="62">세 가지 리스트로 페이지의 캐시·공간·쓰기 상태를 관리한다</text>
+
+  <!-- LRU List -->
+  <rect class="layer" x="40" y="85" width="920" height="150" />
+  <text class="layerTitle" x="70" y="112">LRU 리스트 (사용 빈도 기준 페이지 관리)</text>
+
+  <!-- Hot sublist (New) -->
+  <rect class="boxHot" x="70" y="130" width="90" height="40" />
+  <text class="boxText" x="115" y="145">페이지 A</text>
+  <text class="boxTextSm" x="115" y="162">자주 접근</text>
+  <rect class="boxHot" x="170" y="130" width="90" height="40" />
+  <text class="boxText" x="215" y="145">페이지 B</text>
+  <text class="boxTextSm" x="215" y="162">자주 접근</text>
+  <rect class="boxHot" x="270" y="130" width="90" height="40" />
+  <text class="boxText" x="315" y="145">페이지 C</text>
+  <text class="boxTextSm" x="315" y="162">자주 접근</text>
+
+  <text class="noteB" x="200" y="195">New (Hot) 영역</text>
+
+  <!-- Midpoint -->
+  <line class="divider" x1="420" y1="120" x2="420" y2="210" />
+  <text class="midLabel" x="420" y="220">midpoint</text>
+
+  <!-- Cold sublist (Old) -->
+  <rect class="boxCold" x="470" y="130" width="90" height="40" />
+  <text class="boxText" x="515" y="145">페이지 D</text>
+  <text class="boxTextSm" x="515" y="162">최근 적재</text>
+  <rect class="boxCold" x="570" y="130" width="90" height="40" />
+  <text class="boxText" x="615" y="145">페이지 E</text>
+  <text class="boxTextSm" x="615" y="162">덜 사용</text>
+  <rect class="boxCold" x="670" y="130" width="90" height="40" />
+  <text class="boxText" x="715" y="145">페이지 F</text>
+  <text class="boxTextSm" x="715" y="162">오래됨</text>
+
+  <text class="note" x="590" y="195">Old (Cold) 영역 → 밀려나면 제거 대상</text>
+
+  <!-- Arrow: new pages enter at midpoint -->
+  <path class="arrowD" d="M 420 88 L 470 130" />
+  <text class="boxTextSm" x="480" y="100">신규 적재</text>
+
+  <!-- Free List -->
+  <rect class="layer" x="40" y="260" width="420" height="110" />
+  <text class="layerTitle" x="70" y="287">프리 리스트 (빈 프레임)</text>
+
+  <rect class="boxFree" x="70" y="300" width="80" height="40" />
+  <text class="boxText" x="110" y="320">빈 칸</text>
+  <rect class="boxFree" x="160" y="300" width="80" height="40" />
+  <text class="boxText" x="200" y="320">빈 칸</text>
+  <rect class="boxFree" x="250" y="300" width="80" height="40" />
+  <text class="boxText" x="290" y="320">빈 칸</text>
+
+  <text class="noteG" x="370" y="325">새 페이지 적재 시 여기서 꺼냄</text>
+
+  <!-- Flush List -->
+  <rect class="layer" x="540" y="260" width="420" height="110" />
+  <text class="layerTitle" x="570" y="287">플러시 리스트 (더티 페이지, LSN 순서)</text>
+
+  <rect class="boxDirty" x="570" y="300" width="100" height="40" />
+  <text class="boxText" x="620" y="315">페이지 A</text>
+  <text class="boxTextSm" x="620" y="332">LSN=120</text>
+  <rect class="boxDirty" x="680" y="300" width="100" height="40" />
+  <text class="boxText" x="730" y="315">페이지 C</text>
+  <text class="boxTextSm" x="730" y="332">LSN=95</text>
+  <rect class="boxDirty" x="790" y="300" width="100" height="40" />
+  <text class="boxText" x="840" y="315">페이지 E</text>
+  <text class="boxTextSm" x="840" y="332">LSN=80</text>
+
+  <text class="noteR" x="570" y="360">오래된 LSN 순으로 디스크에 flush →</text>
+
+  <!-- Bottom summary -->
+  <text class="note" x="40" y="410">LRU 리스트: 자주 쓰는 페이지를 메모리에 유지, midpoint 전략으로 풀스캔 오염 방지</text>
+  <text class="note" x="40" y="432">프리 리스트: 빈 프레임 부족 시 LRU 하위 페이지를 내보내(eviction) 공간 확보</text>
+  <text class="note" x="40" y="454">플러시 리스트: 더티 페이지를 LSN 순서로 추적 → 체크포인트 전진 → 복구 시간 제어</text>
+  <text class="noteR" x="40" y="484">세 리스트는 독립이 아니라, 하나의 페이지가 LRU + 플러시 리스트에 동시에 존재할 수 있다.</text>
+</svg>

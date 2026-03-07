@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="440" viewBox="-20 -20 1040 480" role="img" aria-labelledby="title desc">
+  <title id="title">InnoDB 페이지 생명주기</title>
+  <desc id="desc">페이지가 디스크에서 버퍼 풀로 적재되고, 수정 후 redo 기록을 거쳐 다시 디스크로 flush되는 흐름.</desc>
+  <defs>
+    <style>
+      .bg { fill: #f8fafc; }
+      .title { font: 700 26px 'Segoe UI', Arial, sans-serif; fill: #0f172a; }
+      .subtitle { font: 500 15px 'Segoe UI', Arial, sans-serif; fill: #334155; }
+      .comp { fill: #ffffff; stroke: #1e293b; stroke-width: 2; rx: 12; }
+      .compTitle { font: 700 16px 'Segoe UI', Arial, sans-serif; fill: #0f172a; text-anchor: middle; dominant-baseline: middle; }
+      .compSub { font: 500 12px 'Segoe UI', Arial, sans-serif; fill: #334155; text-anchor: middle; dominant-baseline: middle; }
+      .disk { fill: #e2e8f0; stroke: #334155; stroke-width: 2; rx: 12; }
+      .redo { fill: #fef3c7; stroke: #d97706; stroke-width: 2; rx: 12; }
+      .pool { fill: #dbeafe; stroke: #1d4ed8; stroke-width: 2; rx: 12; }
+      .dirty { fill: #fee2e2; stroke: #dc2626; stroke-width: 2; rx: 12; }
+      .arrow { stroke: #0f172a; stroke-width: 2.5; fill: none; marker-end: url(#ah); stroke-linecap: round; }
+      .arrowR { stroke: #dc2626; stroke-width: 2.5; fill: none; marker-end: url(#ahR); stroke-linecap: round; }
+      .arrowO { stroke: #d97706; stroke-width: 2.5; fill: none; marker-end: url(#ahO); stroke-linecap: round; }
+      .stepLabel { font: 700 13px 'Segoe UI', Arial, sans-serif; fill: #0f172a; text-anchor: middle; }
+      .stepLabelR { font: 700 13px 'Segoe UI', Arial, sans-serif; fill: #dc2626; text-anchor: middle; }
+      .stepLabelO { font: 700 13px 'Segoe UI', Arial, sans-serif; fill: #d97706; text-anchor: middle; }
+      .note { font: 500 13px 'Segoe UI', Arial, sans-serif; fill: #334155; }
+      .noteWarn { font: 600 13px 'Segoe UI', Arial, sans-serif; fill: #dc2626; }
+    </style>
+    <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#0f172a" />
+    </marker>
+    <marker id="ahR" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#dc2626" />
+    </marker>
+    <marker id="ahO" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#d97706" />
+    </marker>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="1000" height="440" />
+  <text class="title" x="40" y="38">InnoDB 페이지 생명주기</text>
+  <text class="subtitle" x="40" y="62">읽기 → 수정 → redo 기록 → 지연 flush 순서로 진행</text>
+
+  <!-- Disk (data file) -->
+  <rect class="disk" x="40" y="100" width="160" height="80" />
+  <text class="compTitle" x="120" y="132">디스크</text>
+  <text class="compSub" x="120" y="155">(데이터 파일)</text>
+
+  <!-- Buffer Pool -->
+  <rect class="pool" x="320" y="90" width="200" height="100" />
+  <text class="compTitle" x="420" y="125">버퍼 풀</text>
+  <text class="compSub" x="420" y="148">(클린 페이지)</text>
+  <text class="compSub" x="420" y="168">캐시 히트 시 즉시 반환</text>
+
+  <!-- Dirty page in buffer pool -->
+  <rect class="dirty" x="320" y="230" width="200" height="80" />
+  <text class="compTitle" x="420" y="260">버퍼 풀</text>
+  <text class="compSub" x="420" y="282">(더티 페이지)</text>
+
+  <!-- Redo Log -->
+  <rect class="redo" x="640" y="230" width="170" height="80" />
+  <text class="compTitle" x="725" y="260">Redo Log</text>
+  <text class="compSub" x="725" y="282">(변경 이력 기록)</text>
+
+  <!-- Read path: disk → buffer pool -->
+  <path class="arrow" d="M 200 140 L 320 140" />
+  <text class="stepLabel" x="260" y="128">1 캐시 미스 → 적재</text>
+
+  <!-- Modify: clean → dirty -->
+  <path class="arrowR" d="M 420 190 L 420 230" />
+  <text class="stepLabelR" x="500" y="215">2 수정 (dirty)</text>
+
+  <!-- Redo write -->
+  <path class="arrowO" d="M 520 270 L 640 270" />
+  <text class="stepLabelO" x="580" y="255">3 redo 기록</text>
+
+  <!-- Flush: dirty → disk -->
+  <path class="arrowR" d="M 320 270 L 200 270 Q 120 270 120 220 L 120 180" />
+  <text class="stepLabelR" x="180" y="240">4 백그라운드 flush</text>
+
+  <!-- Recovery path -->
+  <path class="arrowO" d="M 725 310 Q 725 350 600 350 Q 120 350 120 280 L 120 180" />
+  <text class="stepLabelO" x="450" y="342">장애 복구: redo 재적용 →</text>
+
+  <!-- Bottom notes -->
+  <text class="note" x="40" y="395">커밋 시점 = redo log 내구성 보장 시점 (데이터 파일 반영 시점과 다를 수 있음)</text>
+  <text class="note" x="40" y="417">체크포인트: flush 완료 지점을 기록 → 복구 시 이 지점 이후 redo만 재적용</text>
+  <text class="noteWarn" x="40" y="439">flush가 지연되면 → 체크포인트 정체 → 복구 시간 증가 + 스파이크성 I/O 위험</text>
+</svg>
